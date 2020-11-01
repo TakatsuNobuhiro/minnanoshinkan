@@ -4,17 +4,31 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-      <% if club_signed_in? %>
-        <li class="nav-item"><%= link_to "クラブ情報変更",edit_club_registration_path ,class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
-      <% else %>
-        <li class="nav-item"><%= link_to "新規会員登録",new_club_registration_path ,class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to "ログイン",new_club_session_path ,class:"nav-link" %></li>
-      <% end %>
-      </ul>
-    </div>
+    <% if !club_signed_in? %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+        <% if student_signed_in? %>
+          <li class="nav-item"><%= link_to "学生情報変更",edit_student_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト",destroy_student_session_path,method: :delete ,class:"nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "学生登録",new_student_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "学生ログイン",new_student_session_path ,class:"nav-link" %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if !student_signed_in? %>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+        <% if club_signed_in? %>
+          <li class="nav-item"><%= link_to "クラブ情報変更",edit_club_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "クラブ登録",new_club_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "クラブログイン",new_club_session_path ,class:"nav-link" %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   </nav>
 </header>
