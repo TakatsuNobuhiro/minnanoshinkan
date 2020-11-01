@@ -54,8 +54,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-
+gem 'omniauth-google-oauth2'
 # 日本語化
 gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
