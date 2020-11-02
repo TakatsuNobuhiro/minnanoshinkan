@@ -10,14 +10,4 @@ class Student < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
-
-  def self.new_with_session(params, session)
-    if session["devise.user_attributes"]
-      new(session["devise.user_attributes"]) do |user|
-        user.attributes = params
-      end
-    else
-      super
-    end
-  end
 end

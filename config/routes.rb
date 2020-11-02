@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :students, controllers: {
-     :omniauth_callbacks => "students/omniauth_callbacks",
+     :omniauth_callbacks => "omniauth_callbacks",
      sessions:      'students/sessions',
      passwords:     'students/passwords',
      registrations: 'students/registrations'     
