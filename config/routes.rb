@@ -7,7 +7,11 @@ Rails.application.routes.draw do
      registrations: 'students/registrations'     
   }
   root to: 'toppages#home'
-  devise_for :clubs
+  devise_for :clubs, controllers: {
+    sessions:      'clubs/sessions',
+    passwords:     'clubs/passwords',
+    registrations: 'clubs/registrations'     
+ }
 
   devise_scope :club do
     get '/clubs/sign_out' => 'devise/sessions#destroy'
