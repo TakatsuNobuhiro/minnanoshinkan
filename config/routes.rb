@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
-  devise_for :students, controllers: { :omniauth_callbacks => "students/omniauth_callbacks" }
+  devise_for :students, controllers: {
+     :omniauth_callbacks => "students/omniauth_callbacks",
+     sessions:      'students/sessions',
+     passwords:     'students/passwords',
+     registrations: 'students/registrations'     
+  }
   root to: 'toppages#home'
   devise_for :clubs
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
   devise_scope :club do
     get '/clubs/sign_out' => 'devise/sessions#destroy'
     get '/clubs' => 'devise/registrations#destroy'
