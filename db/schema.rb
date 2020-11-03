@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_063755) do
+ActiveRecord::Schema.define(version: 2020_11_02_115838) do
 
   create_table "clubs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 2020_10_31_063755) do
     t.string "provider"
     t.string "uid"
     t.string "username"
+    t.string "name"
+    t.integer "gender"
+    t.string "university"
+    t.string "department"
+    t.string "highschool"
+    t.string "hobby"
+    t.text "detail"
     t.index ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true

@@ -1,0 +1,18 @@
+<h2>生徒一覧</h2>
+<% @students.each do |student|%>
+<table class="table">
+  <thead>
+    <tr>
+      <th>生徒名</th>
+      <th>性別</th>
+      <th>趣味</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to student.name,student_path %></td>
+      <td><%= student.gender %></td>
+      <td><%= student.hobby %></td>
+    </tr>
+  </tbody>
+</table>
