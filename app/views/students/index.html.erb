@@ -1,5 +1,5 @@
 <h2>生徒一覧</h2>
-<% @students.each do |student|%>
+
 <table class="table">
   <thead>
     <tr>
@@ -9,10 +9,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><%= link_to student.name,student_path %></td>
-      <td><%= student.gender %></td>
-      <td><%= student.hobby %></td>
-    </tr>
+    <% @students.each do |s|%>
+      <tr>
+        <td><%= link_to s.name,students_show_path %></td>
+        <td><%= s.gender %></td>
+        <td><%= s.hobby %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
+
+
