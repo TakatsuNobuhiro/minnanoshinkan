@@ -4,29 +4,27 @@
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    <%= f.label :name, 'ニックネーム' %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
+
 
   <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
-
-    <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+    <%= f.label :university, '大学' %>
+    <%= f.text_field :university, class: 'form-control' %>
   </div>
-
   <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
+    <%= f.label :department, '学部' %>
+    <%= f.text_field :department, class: 'form-control' %>
   </div>
-
   <div class="form-group">
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
-
-    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+    <%= f.label :hobby, '趣味' %>
+    <%= f.text_field :hobby, class: 'form-control' %>
   </div>
-
+  <div class="form-group">
+    <%= f.label :detail, '自己紹介' %>
+    <%= f.text_area :detail, class: 'form-control' %>
+  </div>
   <div class="form-group">
     <%= f.submit t('.update'), class: 'btn btn-primary btn-block' %>
   </div>

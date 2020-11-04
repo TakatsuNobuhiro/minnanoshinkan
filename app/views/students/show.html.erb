@@ -1,10 +1,10 @@
-<h2><%= student.name %>のプロフィール</h2>
+<h2><%= @student.name %>のプロフィール</h2>
 <ul>
-  <li><%= student.university %></li>
-  <li><%= student.gender %></li>
-  <li><%= student.highschool %></li>
-  <li><%= student.hobby %></li>
-  <li><%= student.department %></li>
-  <li><%= student.detail %></li>
+  <li><%= @student.university %></li>
+  <li><%= @student.gender %></li>
+  <li><%= @student.highschool %></li>
+  <li><%= @student.hobby %></li>
+  <li><%= @student.department %></li>
+  <li><%= @student.detail %></li>
 </ul>
-<%= link_to "プロフィール編集" student_edit_path, class: "btn btn-primary btn-sm"%>
+
