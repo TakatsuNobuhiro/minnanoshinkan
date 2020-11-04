@@ -3,8 +3,11 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-
-    students_show_path(resource)
+    if resource.name.blank?
+      edit_student_registration_path(resource)
+    else 
+      students_show_path(resource)
+    end
     
   end
 
