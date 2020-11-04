@@ -66,6 +66,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 
 gem 'kaminari'
 gem 'dotenv-rails'
+gem 'enum_help' 
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'

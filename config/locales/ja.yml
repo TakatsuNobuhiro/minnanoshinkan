@@ -1,0 +1,7 @@
+ja:
+  enums:
+    student:
+      gender:
+        man: "男"
+        female: "女"
+        other: "未選択"
