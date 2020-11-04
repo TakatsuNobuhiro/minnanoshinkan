@@ -1,6 +1,7 @@
 class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  enum gender: { man: 1, female: 2, other: 3}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter google_oauth2]

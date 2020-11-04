@@ -1,21 +1,31 @@
-<h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
+<h2>学生プロフィール編集</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
     <%= f.label :name, 'ニックネーム' %>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
-
-
+  <div class="form-group">
+    <%= f.label :gender, :man %>
+    <%= f.radio_button :gender, :man %>
+    <%= f.label :gender, :female %>
+    <%= f.radio_button :gender, :female %>
+    <%= f.label :gender, :other %>
+    <%= f.radio_button :gender, :other %>
+  </div>
   <div class="form-group">
     <%= f.label :university, '大学' %>
-    <%= f.text_field :university, class: 'form-control' %>
+    <%= f.text_field :university, class: 'form-control', required: true %>
   </div>
   <div class="form-group">
     <%= f.label :department, '学部' %>
-    <%= f.text_field :department, class: 'form-control' %>
+    <%= f.text_field :department, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :highschool, '出身高校' %>
+    <%= f.text_field :highschool, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :hobby, '趣味' %>
