@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_094535) do
+ActiveRecord::Schema.define(version: 2020_11_05_102218) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2020_11_04_094535) do
     t.index ["unlock_token"], name: "index_clubs_on_unlock_token", unique: true
   end
 
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "follow_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["student_id", "follow_id"], name: "index_relationships_on_student_id_and_follow_id", unique: true
+    t.index ["student_id"], name: "index_relationships_on_student_id"
+  end
+
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -89,6 +99,8 @@ ActiveRecord::Schema.define(version: 2020_11_04_094535) do
     t.string "highschool"
     t.string "hobby"
     t.text "detail"
+    t.integer "prefectre"
+    t.integer "prefecture", default: 0
     t.index ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
@@ -96,4 +108,6 @@ ActiveRecord::Schema.define(version: 2020_11_04_094535) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "relationships", "students"
+  add_foreign_key "relationships", "students", column: "follow_id"
 end

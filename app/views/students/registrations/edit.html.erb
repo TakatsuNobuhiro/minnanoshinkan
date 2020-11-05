@@ -15,9 +15,13 @@
     <%= f.label :gender, '未選択' %>
     <%= f.radio_button :gender, :other %>
   </div>
-    <span class="avatar">
-    <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
-  </span>
+  <div class="form-group">
+    <%= f.label :prefecture,'出身(都道府県)' %>
+    <%= f.select :prefecture, Student.prefectures.keys,{},class: 'form-control' %>
+  </div>
+
+  <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
+
   <div class="form-group">
     <%= f.label :university, '大学(必須)' %>
     <%= f.text_field :university, class: 'form-control', required: true %>

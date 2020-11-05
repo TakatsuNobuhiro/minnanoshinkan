@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'students/show'
-
+  get 'students/index'
   devise_for :students, controllers: {
      :omniauth_callbacks => "omniauth_callbacks",
      sessions:      'students/sessions',

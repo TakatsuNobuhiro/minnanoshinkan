@@ -1,12 +1,52 @@
-<h2><%= @student.name %>のプロフィール</h2>
-<%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0") if @student.avatar.attached? %>
+<h2 class='text-center'><%= @student.name %>のプロフィール</h2>
+
+<div class="container">
+<header>
+<div class="bio">
+        <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" class="bg">
+<div class="desc">
+<h3>@carlf</h3>
+<p><%= @student.detail %></p>
+</div>
+</div>
+
+<div class="avatarcontainer">
+<%= image_tag @student.avatar.variant(gravity: :center, resize:"80x80", crop:"80x80+0+0") ,class: 'avatar'if @student.avatar.attached?%>
+<div class="hover">
+<div class="icon-twitter"></div>
+</div>
+</div>
+
+
+</header>
+
+<div class="content">
+<div class="data">
+<ul>
+<li>
+2,934
+<span>Tweets</span>
+</li>
+<li>
+1,119
+<span>Followers</span>
+</li>
+<li>
+530
+<span>Following</span>
+</li>
+</ul>
+</div>
+
+<div class="follow"> <div class="icon-twitter"></div> Follow</div>
+</div>
 <ul>
   <li><%= @student.gender_i18n %></li>
+  <li><%= @student.prefecture %></li>
   <li><%= @student.university %></li>
   <li><%= @student.department %></li>
   <li><%= @student.highschool %></li>
   <li><%= @student.hobby %></li>
-  <li><%= @student.detail %></li>
 </ul>
-
-
+</div>
+<%= link_to '生徒一覧',students_index_path%>

@@ -1,5 +1,8 @@
 class StudentsController < ApplicationController
-
+  before_action :profile_blank?
+  def index
+    @students=Student.all
+  end
 
 
   def show
