@@ -5,13 +5,20 @@ class RelationshipsController < ApplicationController
     student = Student.find(params[:follow_id])
     current_student.follow(student)
     flash[:success] = 'ユーザをフォローしました。'
-    redirect_to students_show_path(student.id)
+    respond_to do |format|
+      format.html { students_show_path(student.id) }
+      format.js
+    end
+
   end
 
   def destroy
     student = Student.find(params[:follow_id])
     current_student.unfollow(student)
     flash[:success] = 'ユーザのフォローを解除しました。'
-    redirect_to students_show_path(student.id)
+    respond_to do |format|
+      format.html { students_show_path(student.id) }
+      format.js
+    end
   end
 end

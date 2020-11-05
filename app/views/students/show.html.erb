@@ -40,17 +40,13 @@
 
 <div class="text-center">
   <% unless current_student == @student %>
-    <% if current_student.following?(@student) %>
-      <%= form_with(model: current_student.relationships.find_by(follow_id: @student.id), local: true, method: :delete) do |f| %>
-        <%= hidden_field_tag :follow_id, @student.id %>
-        <%= f.submit 'Unfollow',class: 'btn btn-danger' %>
+    <div id="follow_form">
+      <% if current_student.following?(@student) %>
+        <%= render 'unfollow'%>
+      <% else %>
+        <%= render 'follow'%>
       <% end %>
-    <% else %>
-      <%= form_with(model: current_student.relationships.build, local: true) do |f| %>
-        <%= hidden_field_tag :follow_id, @student.id %>
-        <%= f.submit 'Follow',class: 'btn btn-success' %>
-      <% end %>
-    <% end %>
+    </div>
   <% end %>
 </div>
 
