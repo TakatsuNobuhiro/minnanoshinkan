@@ -7,8 +7,19 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:format])
+    counts(@student)
   end
-
+  def followings
+    @student = Student.find(params[:format])
+    @followings = @student.followings.page(params[:page])
+    counts(@student)
+  end
+  
+  def followers
+    @student = Student.find(params[:format])
+    @followers = @student.followers.page(params[:page])
+    counts(@student)
+  end
   private
   def profile_blank?
     if current_student.name.blank?

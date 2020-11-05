@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
 
-  get 'relationships/create'
-  get 'relationships/destroy'
+  resources :relationships, only: [:create, :destroy]
   get 'students/show'
   get 'students/index'
   devise_for :students, controllers: {
