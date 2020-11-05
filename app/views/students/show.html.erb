@@ -1,10 +1,12 @@
 <h2><%= @student.name %>のプロフィール</h2>
+<%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0") if @student.avatar.attached? %>
 <ul>
-  <li><%= @student.university %></li>
   <li><%= @student.gender_i18n %></li>
+  <li><%= @student.university %></li>
+  <li><%= @student.department %></li>
   <li><%= @student.highschool %></li>
   <li><%= @student.hobby %></li>
-  <li><%= @student.department %></li>
   <li><%= @student.detail %></li>
 </ul>
+
 

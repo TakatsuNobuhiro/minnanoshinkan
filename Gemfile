@@ -57,7 +57,6 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
-# 日本語化
 gem 'rails-i18n', '~> 6.0'
 gem 'devise-i18n'
 
@@ -67,6 +66,13 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem 'kaminari'
 gem 'dotenv-rails'
 gem 'enum_help' 
+gem 'pry-rails'
+gem 'ancestry'
+#activestorage
+gem 'active_storage_validations', '0.8.2'
+gem 'image_processing',           '1.9.3'
+gem 'mini_magick',                '4.9.5'
+gem 'aws-sdk-s3',              '1.46.0', require: false
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
