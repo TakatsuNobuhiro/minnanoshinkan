@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'clubs/index'
+  get 'clubs/show'
   resources :relationships, only: [:create, :destroy]
   get 'students/show'
   get 'students/index'
