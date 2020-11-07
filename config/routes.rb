@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'events/show'
   get 'events/new'
   get 'events/edit'
+  
   get 'clubs/index'
   get 'clubs/show'
   resources :relationships, only: [:create, :destroy]
