@@ -1,2 +1,19 @@
-<h1>Clubs#show</h1>
-<p>Find me in app/views/clubs/show.html.erb</p>
+<div class="profile">
+  <h2 class='text-center'><%= @club.name %>のプロフィール</h2>
+
+  <%= image_tag @club.avatar.variant(gravity: :center, resize:"300x300", crop:"300x300+0+0"),id: 'club_image' if @club.avatar.attached?%>
+
+  <ul>
+    <li><%= @club.active %></li>
+    <li><%= @club.intercollege %></li>
+    <li><%= @club.university %></li>
+    <li><%= @club.sns %></li>
+    <li><%= @club.home %></li>
+    <li><%= @club.detail %></li>
+  </ul>
+</div>
+
+<%= link_to 'サークル一覧',clubs_index_path, class: 'btn btn-primary'%>
+<% if current_student||current_club == @club%>
+  <%= link_to 'サークル編集',edit_club_registration_path(@club), class: 'btn btn-success'%>
+<% end %>

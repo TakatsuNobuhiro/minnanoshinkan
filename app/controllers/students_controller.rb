@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :profile_blank?
+
   def index
     @students=Student.all
   end
@@ -20,11 +20,6 @@ class StudentsController < ApplicationController
     @followers = @student.followers.page(params[:format])
     counts(@student)
   end
-  private
-  def profile_blank?
-    if current_student.name.blank?
-      edit_student_regisration_path(current_student.id)
-    end
-  end
+
 
 end

@@ -57,7 +57,7 @@ class Clubs::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    edit_club_regisration_path(resource)
+    edit_club_registration_path(resource)
   end
 
   def after_update_path_for(resource)

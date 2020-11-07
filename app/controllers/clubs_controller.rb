@@ -6,7 +6,7 @@ class ClubsController < ApplicationController
 
 
   def show
-    @student = Club.find(params[:format])
+    @club = Club.find(params[:format])
   end
 
 

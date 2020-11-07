@@ -37,22 +37,23 @@
 </li>
 </ul>
 </div>
-
-<div class="text-center">
-  <% unless current_student == @student %>
-    <div id="follow_form">
-      <% if current_student.following?(@student) %>
-        <%= render 'unfollow'%>
-      <% else %>
-        <%= render 'follow'%>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<% if student_signed_in? %>
+  <div class="text-center">
+    <% unless current_student == @student %>
+      <div id="follow_form">
+        <% if current_student.following?(@student) %>
+          <%= render 'unfollow'%>
+        <% else %>
+          <%= render 'follow'%>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 </div>
 <ul>
-  <li><%= @student.gender_i18n %></li>
+  <li><%= @student.gender %></li>
   <li><%= @student.prefecture %></li>
   <li><%= @student.university %></li>
   <li><%= @student.department %></li>

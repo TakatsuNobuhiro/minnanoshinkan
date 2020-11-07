@@ -27,7 +27,7 @@ class Student < ApplicationRecord
                           message: "must be a valid image format" },
                              size:   { less_than: 5.megabytes,
                           message: "should be less than 5MB" }
-  enum gender: { man: 1, female: 2, other: 3}
+  enum gender: { 男: 1, 女: 2, 未選択: 3}
   enum prefecture:{
     "---":0,
     北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

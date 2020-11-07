@@ -7,17 +7,34 @@
     <%= f.label :name, '団体名(必須)' %>
     <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
-
+  <%= f.label :avator, '画像' %>
   <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
 
   <div class="form-group">
     <%= f.label :university, '大学(必須)' %>
     <%= f.text_field :university, class: 'form-control', required: true %>
   </div>
-  
+
+  <div class="form-group">
+    <%= f.label :active, '文化系' %>
+    <%= f.radio_button :active, :文化系 %>
+    <%= f.label :active, '運動系'%>
+    <%= f.radio_button :active, :運動系 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :intercollege, '学内' %>
+    <%= f.radio_button :intercollege, :学内 %>
+    <%= f.label :intercollege, 'インカレ'%>
+    <%= f.radio_button :intercollege, :インカレ %>
+  </div>
+
   <div class="form-group">
     <%= f.label :home, 'ホームページ' %>
-    <%= f.text_field :home, class: 'form-control' %>
+    <%= f.url_field :home, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :sns, 'SNS' %>
+    <%= f.url_field :sns, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :detail, '団体紹介' %>

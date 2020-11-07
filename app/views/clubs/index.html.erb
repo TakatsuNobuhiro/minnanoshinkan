@@ -1,2 +1,20 @@
-<h1>Clubs#index</h1>
-<p>Find me in app/views/clubs/index.html.erb</p>
+<h2>生徒一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>サークル名</th>
+      <th>種類</th>
+      <th>詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clubs.each do |c|%>
+      <tr>
+        <td><%= link_to c.name,clubs_show_path(c.id) %></td>
+        <td><%= c.active %></td>
+        <td><%= c.detail %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
