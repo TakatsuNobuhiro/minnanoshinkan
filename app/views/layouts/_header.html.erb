@@ -22,7 +22,7 @@
         <ul class="navbar-nav">
         <% if club_signed_in? %>
           <li class="nav-item"><%= link_to "クラブ情報変更",edit_club_registration_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "イベント新規投稿",events_new_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "イベント新規投稿",new_event_path ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "クラブ登録",new_club_registration_path ,class:"nav-link" %></li>

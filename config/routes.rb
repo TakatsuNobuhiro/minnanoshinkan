@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :events, only: [:index, :show, :new, :edit]
 
-  get 'events/index'
-  get 'events/show'
-  get 'events/new'
-  get 'events/edit'
   
   get 'clubs/index'
   get 'clubs/show'

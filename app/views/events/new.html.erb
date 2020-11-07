@@ -1,4 +1,4 @@
-<%= form_with(url: events_new_path, local: true) do |f| %>
+<%= form_with(model: @event, local: true) do |f| %>
   <div class="form-group">
     <%= f.label :name, '名前(必須)' %>
     <%= f.text_field :name, class: 'form-control', required: true %>

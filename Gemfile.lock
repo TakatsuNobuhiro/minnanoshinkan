@@ -303,6 +303,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actiontext
   active_storage_validations (= 0.8.2)
   ancestry
   aws-sdk-s3 (= 1.46.0)

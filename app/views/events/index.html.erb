@@ -1,2 +1,16 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<h2>イベント一覧</h2>
+<% @clubs.each do |c|%>
+<table>
+  <thead>
+    <tr>
+      <td>日付</td>
+      <td>題名</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= c.created_at%></td>
+      <td><%= c.name %></td>
+    </tr>
+  </tbody>
+</table>
