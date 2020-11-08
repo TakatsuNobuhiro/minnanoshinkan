@@ -3,10 +3,16 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .profile {
-  background-color: yellow;
+  background-color: rgb(204, 245, 248);
   border: solid black;
   border-radius: 10%;
 }
-#club_image {
-  margin: 50px;
+.image {
+  background-color: tomato;
+  justify-content: center;
+}
+
+.club-button {
+  background-color: tomato;
+  justify-content: space-between;
 }
