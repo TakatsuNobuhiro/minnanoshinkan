@@ -1,6 +1,10 @@
-<h2>イベント一覧</h2>
-<% @clubs.each do |c|%>
-<table>
+<h2 class="text-center">イベント一覧</h2>
+<%= form_tag(events_path,:method => 'get') do %>
+  <%= text_field_tag :search, params[:search] ,placeholder: "イベント名で検索" %>
+  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+<% end %>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <td>日付</td>
@@ -8,9 +12,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><%= c.created_at%></td>
-      <td><%= c.name %></td>
-    </tr>
+    <% @events.each do |e|%>
+      <tr>
+        <td><%= link_to e.created_at ,event_path(e.id) %></td>
+        <td><%= e.title %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

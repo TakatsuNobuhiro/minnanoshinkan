@@ -74,4 +74,6 @@ Rails.application.configure do
   }
 
   config.hosts.clear
+
+  config.web_console.whitelisted_ips = '172.23.0.1'
 end

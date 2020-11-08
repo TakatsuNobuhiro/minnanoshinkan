@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+  before_action :correct_user, only: [:destroy]
+
   def index
-    @events=Event.all
+    @events = Event.search(params[:search])
   end
 
   def show
@@ -12,10 +14,11 @@ class EventsController < ApplicationController
   end
 
   def create 
-    @event = Event.new(event_params)
+    @event=current_club.events.build(event_params)
+
     if @event.save 
       flash[:success]='イベントが投稿されました'
-      redirect_to event_path(@event.id)
+      redirect_to @event
     else  
       flash.now[:danger]='イベントが投稿されませんでした'
       render :new
@@ -28,8 +31,8 @@ class EventsController < ApplicationController
   end
 
   def update 
-    @event = Event.new(event_params)
-    if @event.save 
+    @event=Event.find(params[:id])
+    if @event.update(event_params)
       flash[:success]='イベントが投稿されました'
       redirect_to @event
     else  
@@ -39,11 +42,20 @@ class EventsController < ApplicationController
   end
 
   def destroy 
+    @event.destroy 
+    flash[:success]="イベントを削除しました"
+    redirect_to root_path
 
   end
   private
 
-  def event_params
-    params.require(:event).permit(:content,:name)
-  end
+    def event_params
+      params.require(:event).permit(:content, :title)
+    end
+    def correct_user
+      @event = current_club.events.find_by(id: params[:id])
+      unless @event
+        redirect_to root_url
+      end
+    end
 end

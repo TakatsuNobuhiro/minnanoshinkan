@@ -1,5 +1,7 @@
 
-const form = document.getElementById('follow_form')
-form.innerHTML = <%= j(render('students/follow')) %>
+document.getElementById('follow_form').innerHTML = '<%= j(render('students/follow')) %>'
+
+document.getElementById('count_followers').innerHTML = '<%= @count_followers %><span>Followers</span>'
+
 
 

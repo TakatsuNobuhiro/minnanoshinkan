@@ -1,11 +1,1 @@
-<%= form_with(model: @event, local: true) do |f| %>
-  <div class="form-group">
-    <%= f.label :name, '名前(必須)' %>
-    <%= f.text_field :name, class: 'form-control', required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
-  </div>
-  <%= f.submit '投稿' %>
-<% end %>
+<%= render "form" %>

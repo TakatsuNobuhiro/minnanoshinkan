@@ -1,2 +1,9 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<h2>イベント詳細ページ</h2>
+<p>イベント名:<%= @event.title %></p>
+<%= @event.content %>
+<% if club_signed_in? %>
+  <% if current_club==@event.club%>
+    <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-primary" %>
+    <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-primary" %>
+  <% end %>
+<% end %>

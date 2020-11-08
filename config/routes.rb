@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :events, only: [:index, :show, :new, :edit]
+  resources :events
 
   
   get 'clubs/index'
