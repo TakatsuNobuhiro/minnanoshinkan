@@ -3,9 +3,9 @@ class Student < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   #follow
-  has_many :relationships
+  has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
   has_many :followers, through: :reverses_of_relationship, source: :student
   def follow(other_student)
     unless self == other_student
@@ -51,4 +51,6 @@ class Student < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  has_many :comments, dependent: :destroy
 end

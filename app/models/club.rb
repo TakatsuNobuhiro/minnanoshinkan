@@ -2,7 +2,7 @@ class Club < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #active_storage
-  has_many :events
+  has_many :events, dependent: :destroy
   has_one_attached :avatar
   validates :avatar, content_type: { in: %w[image/jpg image/jpeg image/gif image/png],
                           message: "must be a valid image format" },
