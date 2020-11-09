@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
   def club_count(club)
     @count_clubs = club.student_likes.count
     @count_events = club.events.count
+    
   end
 
+  def event_count(event)
+    @count_like_events = event.student_event_likes.count
+  end
 
 end

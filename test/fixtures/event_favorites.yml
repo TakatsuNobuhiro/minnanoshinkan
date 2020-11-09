@@ -2,8 +2,8 @@
 
 one:
   student: one
-  club: one
+  event: one
 
 two:
   student: two
-  club: two
+  event: two

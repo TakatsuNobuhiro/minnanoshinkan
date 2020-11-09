@@ -1,6 +1,17 @@
 <h2>イベント詳細ページ</h2>
-<p>イベント名:<%= @event.title %></p>
-<%= @event.content %>
+<div class="profile">
+  <p>イベント名:<%= @event.title %></p>
+  <%= @event.content %>
+  <% if student_signed_in?%>
+    <div id="event_favorite">
+      <% if current_student.club_favorite?(@club) %>
+        <%= render "unfavorite"%>
+      <% else %>
+        <%= render "favorite"%>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 <% if club_signed_in? %>
   <% if current_club==@event.club%>
     <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-primary" %>
@@ -39,11 +50,14 @@
     <div class="media-body">
       <h5 class="mt-0">
       <%= comment.student.name %>
-      <% if current_student==comment.student %>
-        <%= link_to "削除", event_comment_path(@event,comment.id), method: :delete%>
+      <% if student_signed_in? %>
+        <% if current_student==comment.student %>
+          <%= link_to "削除", event_comment_path(@event,comment.id), method: :delete ,class: 'btn btn-danger btn-sm'%>
+        <% end %>
       <% end %>
       </h5>
       <%= comment.content %>
     </div>
   </div>
+  
 <% end %>

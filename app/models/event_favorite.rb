@@ -1,4 +1,4 @@
 class EventFavorite < ApplicationRecord
   belongs_to :student
-  belongs_to :club
+  belongs_to :event
 end
