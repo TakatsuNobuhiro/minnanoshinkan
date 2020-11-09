@@ -6,4 +6,6 @@ class Event < ApplicationRecord
     return Event.all unless search
     Event.where(['title LIKE ?', "%#{search}%"])
   end
+  has_many :event_favorites, dependent: :destroy 
+  has_many :student_event_likes, through: :event_favorites,source: :student
 end

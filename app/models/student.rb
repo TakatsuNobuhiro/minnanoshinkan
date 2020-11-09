@@ -56,6 +56,8 @@ class Student < ApplicationRecord
  #club_favorite
   has_many :club_favorites, dependent: :destroy
   has_many :club_likes,through: :club_favorites,source: :club
+
+
   def club_favorite(club)
 
     self.club_favorites.find_or_create_by(club_id: club.id)
@@ -69,4 +71,21 @@ class Student < ApplicationRecord
   def club_favorite?(club)
     self.club_likes.include?(club)
   end
+ #event_favorite
+ has_many :event_favorites, dependent: :destroy
+ has_many :event_likes, through: :event_favorites,source: :event
+  def event_favorite(event)
+
+    self.event_favorites.find_or_create_by(event_id: event.id)
+  end
+
+  def event_unfavorite(event)
+    event_favorite = self.event_favorites.find_by(event_id: event.id)
+    event_favorite.destroy if event_favorite 
+  end
+
+  def event_favorite?(event)
+    self.event_likes.include?(event)
+  end
+
 end

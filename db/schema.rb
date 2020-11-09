@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_004547) do
+ActiveRecord::Schema.define(version: 2020_11_09_150245) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,15 @@ ActiveRecord::Schema.define(version: 2020_11_09_004547) do
     t.index ["student_id"], name: "index_comments_on_student_id"
   end
 
+  create_table "event_favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "club_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_id"], name: "index_event_favorites_on_club_id"
+    t.index ["student_id"], name: "index_event_favorites_on_student_id"
+  end
+
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.bigint "club_id", null: false
@@ -155,6 +164,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_004547) do
   add_foreign_key "club_favorites", "students"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "students"
+  add_foreign_key "event_favorites", "clubs"
+  add_foreign_key "event_favorites", "students"
   add_foreign_key "events", "clubs"
   add_foreign_key "relationships", "students"
   add_foreign_key "relationships", "students", column: "follow_id"
