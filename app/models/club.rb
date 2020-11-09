@@ -14,6 +14,8 @@ class Club < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
-
+                        
+  has_many :club_favorites, dependent: :destroy 
+  has_many :student_likes, through: :club_favorites,source: :student
 
 end

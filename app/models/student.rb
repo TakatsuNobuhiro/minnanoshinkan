@@ -53,7 +53,7 @@ class Student < ApplicationRecord
   end
 
   has_many :comments, dependent: :destroy
-
+ #favorite
   has_many :club_favorites, dependent: :destroy
-  has_many :club_likes,through: :club_favorites,source: :student
+  has_many :club_likes,through: :club_favorites,source: :club
 end
