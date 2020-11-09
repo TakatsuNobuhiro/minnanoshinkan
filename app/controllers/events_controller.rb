@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     @event=Event.find(params[:id])
     @comment = Comment.new
     @comments = @event.comments
+    event_count(@event)
   end
 
   def new

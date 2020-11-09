@@ -2,6 +2,7 @@
 <div class="profile">
   <p>イベント名:<%= @event.title %></p>
   <%= @event.content %>
+  <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
   <% if student_signed_in?%>
     <div id="event_favorite">
       <% if current_student.club_favorite?(@club) %>
@@ -12,6 +13,7 @@
     </div>
   <% end %>
 </div>
+<p id="event_count">いいね数:<%= @count_like_events %></p>
 <% if club_signed_in? %>
   <% if current_club==@event.club%>
     <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-primary" %>
