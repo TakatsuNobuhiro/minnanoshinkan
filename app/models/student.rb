@@ -53,7 +53,20 @@ class Student < ApplicationRecord
   end
 
   has_many :comments, dependent: :destroy
- #favorite
+ #club_favorite
   has_many :club_favorites, dependent: :destroy
   has_many :club_likes,through: :club_favorites,source: :club
+  def club_favorite(club)
+
+    self.club_favorites.find_or_create_by(club_id: club.id)
+  end
+  
+  def club_unfavorite(club)
+    club_favorite = self.club_favorites.find_by(club_id: club.id)
+    club_favorite.destroy if club_favorite 
+  end
+  
+  def club_favorite?(club)
+    self.club_likes.include?(club)
+  end
 end

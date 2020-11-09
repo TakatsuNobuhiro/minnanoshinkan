@@ -1,4 +1,4 @@
-<h2>生徒一覧</h2>
+<h2>サークル一覧</h2>
 
 <table class="table">
   <thead>
@@ -11,7 +11,7 @@
   <tbody>
     <% @clubs.each do |c|%>
       <tr>
-        <td><%= link_to c.name,clubs_show_path(c.id) %></td>
+        <td><%= link_to c.name,club_path(c.id) %></td>
         <td><%= c.active %></td>
         <td><%= c.detail %></td>
       </tr>

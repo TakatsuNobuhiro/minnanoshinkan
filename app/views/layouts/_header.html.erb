@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
         <% if student_signed_in? %>
-          <li class="nav-item"><%= link_to "学生情報変更",edit_student_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイページ",students_show_path(current_student.id) ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_student_session_path,method: :delete ,class:"nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "学生登録",new_student_registration_path ,class:"nav-link" %></li>
@@ -21,12 +21,12 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
         <% if club_signed_in? %>
-          <li class="nav-item"><%= link_to "クラブ情報変更",edit_club_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイページ",club_path(current_club.id) ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "イベント新規投稿",new_event_path ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
         <% else %>
-          <li class="nav-item"><%= link_to "クラブ登録",new_club_registration_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "クラブログイン",new_club_session_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "サークル登録",new_club_registration_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "サークルログイン",new_club_session_path ,class:"nav-link" %></li>
         <% end %>
         </ul>
       </div>

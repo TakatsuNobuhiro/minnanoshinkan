@@ -8,12 +8,14 @@
   border-radius: 10%;
 }
 .image {
-  background-color: tomato;
-  justify-content: center;
+  #club_image {
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 .club-button {
-  background-color: tomato;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-bottom: 10px;
 }

@@ -28,7 +28,7 @@ class Clubs::SessionsController < Devise::SessionsController
     if resource.name.blank?
       edit_club_registration_path(resource)
     else 
-      clubs_show_path(resource)
+      club_path(resource)
     end
     
   end

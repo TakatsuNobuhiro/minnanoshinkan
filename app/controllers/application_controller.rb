@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
 
     @count_followings = student.followings.count
     @count_followers = student.followers.count
+    @count_club_likes = student.club_likes.count
+  end
+
+  def club_count(club)
+    @count_clubs = club.student_likes.count
+    @count_events = club.events.count
   end
 
 

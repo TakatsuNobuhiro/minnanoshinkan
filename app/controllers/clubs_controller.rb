@@ -6,7 +6,8 @@ class ClubsController < ApplicationController
 
 
   def show
-    @club = Club.find(params[:format])
+    @club = Club.find(params[:id])
+    club_count(@club)
   end
 
 

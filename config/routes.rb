@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :events do 
     resources :comments, only: [:create, :destroy]
   end
-
+  resources :clubs, only: [:index]
   
-  get 'clubs/index'
-  get 'clubs/show'
+
+
   resources :relationships, only: [:create, :destroy]
   get 'students/show'
   get 'students/index'
@@ -30,5 +30,8 @@ Rails.application.routes.draw do
   devise_scope :student do
     get '/students/sign_out' => 'devise/sessions#destroy'
     get '/students' => 'devise/registrations#destroy'
+  end
+  resources :clubs, only: [:show] do
+    resources :club_favorites, only: [:create,:destroy]
   end
 end

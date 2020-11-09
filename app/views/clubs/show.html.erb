@@ -12,13 +12,41 @@
     <li><%= @club.home %></li>
     <li><%= @club.detail %></li>
   </ul>
+
+  <div class="data">
+  <ul>
+  <li>
+  <%= @count_events %>
+  <span>イベント投稿数</span>
+  </li>
+  <li id='count_clubs'>
+  <%= @count_clubs %>
+  <span>お気に入り数（サークル）</span>
+  </li>
+  <li>
+  1
+  <span>お気に入り数（イベント）</span>
+  </li>
+  </ul>
+  </div>
   <div class="club-button">
     <div class="button1">
-      <%= link_to 'サークル一覧',clubs_index_path, class: 'btn btn-primary'%>
+      <%= link_to 'サークル一覧',clubs_path, class: 'btn btn-primary'%>
     </div>
     <div class="button2">
-      <% if current_student||current_club == @club%>
-        <%= link_to 'サークル編集',edit_club_registration_path(@club), class: 'btn btn-success'%>
+      <% if club_signed_in? %>
+        <% if current_club == @club%>
+          <%= link_to 'サークル編集',edit_club_registration_path(@club), class: 'btn btn-success'%>
+        <% end %>
+      <% end %>
+      <% if student_signed_in?%>
+        <div id="club_favorite">
+          <% if current_student.club_favorite?(@club) %>
+            <%= render "unfavorite"%>
+          <% else %>
+            <%= render "favorite"%>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
