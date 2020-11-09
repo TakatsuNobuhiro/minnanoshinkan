@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_154751) do
+ActiveRecord::Schema.define(version: 2020_11_09_172835) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -159,6 +159,22 @@ ActiveRecord::Schema.define(version: 2020_11_09_154751) do
     t.index ["unlock_token"], name: "index_students_on_unlock_token", unique: true
   end
 
+  create_table "tag_relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id", "tag_id"], name: "index_tag_relationships_on_event_id_and_tag_id", unique: true
+    t.index ["event_id"], name: "index_tag_relationships_on_event_id"
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "club_favorites", "clubs"
   add_foreign_key "club_favorites", "students"
@@ -169,4 +185,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_154751) do
   add_foreign_key "events", "clubs"
   add_foreign_key "relationships", "students"
   add_foreign_key "relationships", "students", column: "follow_id"
+  add_foreign_key "tag_relationships", "events"
+  add_foreign_key "tag_relationships", "tags"
 end
