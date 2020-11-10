@@ -25,4 +25,7 @@ class Event < ApplicationRecord
       self.tags << event_tag
     end
   end
+  def start_time
+    self.start ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+  end 
 end

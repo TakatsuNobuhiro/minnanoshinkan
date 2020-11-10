@@ -62,7 +62,7 @@ gem 'devise-i18n'
 
 # Bootstrap
 
-
+gem "simple_calendar", "~> 2.0"
 gem 'kaminari'
 gem 'dotenv-rails'
 gem 'enum_help' 
@@ -74,7 +74,7 @@ gem 'image_processing',           '1.9.3'
 gem 'mini_magick',                '4.9.5'
 gem 'aws-sdk-s3',              '1.46.0', require: false
 gem 'actiontext'
-
+ 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
 end
