@@ -15,6 +15,7 @@
       <% end %>
     </div>
   <% end %>
+  <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}/&text=イベント名:#{@event.title}\n新入生は参加しましょう！\n/&hashtags=みんなの新歓", title: 'Twitter', class: 'btn btn-default' %>
 </div>
 <p id="event_count">いいね数:<%= @count_like_events %></p>
 <% if club_signed_in? %>

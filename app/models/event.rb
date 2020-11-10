@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   has_rich_text :content
   has_many :comments, dependent: :destroy
   def self.events_search(search)
-    Event.where(['title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%"])
+    Event.where(['title LIKE ?', "%#{search}%"])
   end
   has_many :event_favorites, dependent: :destroy 
   has_many :student_event_likes, through: :event_favorites,source: :student
@@ -24,8 +24,5 @@ class Event < ApplicationRecord
       event_tag = Tag.find_or_create_by(name: new_name)
       self.tags << event_tag
     end
-
   end
-
-
 end

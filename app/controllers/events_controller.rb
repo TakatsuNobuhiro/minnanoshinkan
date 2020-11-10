@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     if params[:search].present?
-      events = Event.events_serach(params[:search])
+      events = Event.events_search(params[:search])
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       events = @tag.events.order(created_at: :desc)
