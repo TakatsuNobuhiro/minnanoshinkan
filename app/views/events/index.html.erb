@@ -1,13 +1,23 @@
 <h2 class="text-center">イベント一覧</h2>
 <%= form_tag(events_path,:method => 'get') do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "イベント名で検索" %>
+  <%= text_field_tag :search, params[:search] ,placeholder: "キーワード検索" %>
   <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
 <% end %>
-
+<div id="tagbox">
+  <div id="tagbox_title">
+  タグ一覧
+  </div>
+  <div id="tag_list">
+    <% @tag_lists.each do |t| %>
+      <%= link_to t.name, events_path(tag_id: t.id), class: "tag btn btn-primary btn-sm"%>
+    <% end %>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
       <td>日付</td>
+      <td>タグ</td>
       <td>題名</td>
     </tr>
   </thead>
@@ -15,8 +25,15 @@
     <% @events.each do |e|%>
       <tr>
         <td><%= link_to e.created_at ,event_path(e.id) %></td>
+        <td>
+        <% e.tags.each do |t|%>
+          <%= link_to t.name, events_path(tag_id: t.id), class: "btn btn-primary btn-sm" %>
+        <% end %>
+        </td>
         <td><%= e.title %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @events%>
+

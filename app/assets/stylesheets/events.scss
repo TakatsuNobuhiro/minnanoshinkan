@@ -1,3 +1,20 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#tagbox {
+  display: flex;
+  background-color: sandybrown;
+  border: 2px solid black;
+  #tagbox_title {
+    size: 14px;
+    background-color: salmon;
+    margin-right: auto 7px;
+  }
+  #tag_list {
+  }
+
+  .tag {
+    margin: 1px;
+  }
+}

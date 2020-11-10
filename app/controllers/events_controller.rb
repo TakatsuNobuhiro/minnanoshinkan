@@ -2,7 +2,17 @@ class EventsController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def index
-    @events = Event.search(params[:search])
+    if params[:search].present?
+      events = Event.events_serach(params[:search])
+    elsif params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      events = @tag.events.order(created_at: :desc)
+    else
+      events = Event.all.order(created_at: :desc)
+    end
+    @tag_lists = Tag.all
+    @events = Kaminari.paginate_array(events).page(params[:page]).per(10)
+    
   end
 
   def show
@@ -18,8 +28,10 @@ class EventsController < ApplicationController
 
   def create 
     @event=current_club.events.build(event_params)
-
+    tag_list = params[:event][:tag_ids].split(',')
     if @event.save 
+      @event.save_tags(tag_list)
+
       flash[:success]='イベントが投稿されました'
       redirect_to @event
     else  
@@ -31,11 +43,15 @@ class EventsController < ApplicationController
 
   def edit
     @event=Event.find(params[:id])
+    @tag_list =@event.tags.pluck(:name).join(",")
   end
 
   def update 
     @event=Event.find(params[:id])
+    tag_list = params[:event][:tag_ids].split(',')
     if @event.update(event_params)
+      @event.save_tags(tag_list)
+      tag_delete
       flash[:success]='イベントが投稿されました'
       redirect_to @event
     else  
@@ -46,6 +62,7 @@ class EventsController < ApplicationController
 
   def destroy 
     @event.destroy 
+    tag_delete
     flash[:success]="イベントを削除しました"
     redirect_to root_path
 
@@ -59,6 +76,14 @@ class EventsController < ApplicationController
       @event = current_club.events.find_by(id: params[:id])
       unless @event
         redirect_to root_url
+      end
+    end
+
+    def tag_delete
+      Tag.all.each do |tag|
+        if tag.tag_relationships.length == 0
+          tag.delete
+        end
       end
     end
 end
