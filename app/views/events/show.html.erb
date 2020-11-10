@@ -15,13 +15,15 @@
       <% end %>
     </div>
   <% end %>
-  <%= link_to 'Twitter', "https://twitter.com/share?url=#{request.url}/&text=イベント名:#{@event.title}\n新入生は参加しましょう！\n/&hashtags=みんなの新歓", title: 'Twitter', class: 'btn btn-default' %>
-</div>
+  <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
+    <i class="fab fa-twitter" style='color: #3399FF;'></i>
+    Twitterでシェア
+  <% end %>
 <p id="event_count">いいね数:<%= @count_like_events %></p>
 <% if club_signed_in? %>
   <% if current_club==@event.club%>
-    <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-primary" %>
-    <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-primary" %>
+    <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
+    <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-danger" %>
   <% end %>
 <% end %>
 <% if student_signed_in? %>
