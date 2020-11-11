@@ -3,10 +3,10 @@
 <%= link_to 'イベント一覧',events_path%>
 
 <%= month_calendar events: @events do |date, event| %>
-  <%= date %>
+  <%= date.day %>
   <% event.each do |e| %>
-    <div>
-      <%= link_to e.title, e %>
+    <div class="event-box">
+      <%= link_to e.title, e,class: "calendar-event" %>
     </div>
   <% end %>
 

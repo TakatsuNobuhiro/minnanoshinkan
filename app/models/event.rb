@@ -26,6 +26,7 @@ class Event < ApplicationRecord
     end
   end
   def start_time
-    self.start ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+    self.start
   end 
+
 end
