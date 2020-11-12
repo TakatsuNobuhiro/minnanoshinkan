@@ -23,6 +23,7 @@
         <% if club_signed_in? %>
           <li class="nav-item"><%= link_to "マイページ",club_path(current_club.id) ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "イベント新規投稿",new_event_path ,class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "メール",new_premium_mail_path ,class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "サークル登録",new_club_registration_path ,class:"nav-link" %></li>

@@ -11,6 +11,8 @@ class Event < ApplicationRecord
   has_many  :tag_relationships, dependent: :destroy
   has_many  :tags, through: :tag_relationships,source: :tag
 
+
+
   def save_tags(save_event_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - save_event_tags

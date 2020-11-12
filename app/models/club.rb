@@ -17,5 +17,6 @@ class Club < ApplicationRecord
                         
   has_many :club_favorites, dependent: :destroy 
   has_many :student_likes, through: :club_favorites,source: :student
-
+  #premium_mail
+  has_many :premium_mails
 end
