@@ -1,0 +1,2 @@
+class PremiumMail < ApplicationRecord
+end

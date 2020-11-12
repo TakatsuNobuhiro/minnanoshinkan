@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'premium_mails/new'
+  get 'premium_mails/create'
   resources :events do 
     resources :comments, only: [:create, :destroy]
     resources :event_favorites, only: [:create, :destroy]
