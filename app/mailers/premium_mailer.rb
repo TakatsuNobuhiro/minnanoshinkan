@@ -7,7 +7,7 @@ class PremiumMailer < ApplicationMailer
     end
 
     mail(
-      from: 'minnanoshinkan.com',
+      from: 'minnanoshinkan@gmail.com',
       to:   email_list,
       subject: mail.title
     )

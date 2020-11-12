@@ -17,6 +17,6 @@ class PremiumMailsController < ApplicationController
   end
 
   def mail_params
-    params.require(:premium_mail).permit(:title,:message)
+    params.require(:premium_mail).permit(:title,:message,:content)
   end
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  resources :contacts, only: [:index]
   resources :premium_mails, only: [:new, :create]
   resources :events do 
     resources :comments, only: [:create, :destroy]
