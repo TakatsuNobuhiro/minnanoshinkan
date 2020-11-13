@@ -2,6 +2,10 @@ class Event < ApplicationRecord
   belongs_to :club
   has_rich_text :content
   has_many :comments, dependent: :destroy
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+  
   def self.events_search(search)
     Event.where(['title LIKE ?', "%#{search}%"])
   end

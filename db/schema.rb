@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_023736) do
+ActiveRecord::Schema.define(version: 2020_11_12_112104) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(version: 2020_11_12_023736) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start"
     t.datetime "end"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["club_id"], name: "index_events_on_club_id"
   end
 

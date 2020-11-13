@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   private
 
     def event_params
-      params.require(:event).permit(:content, :title, :start, :end)
+      params.require(:event).permit(:content, :title, :start, :end, :address, :latitude, :longitude)
     end
     def correct_user
       @event = current_club.events.find_by(id: params[:id])
