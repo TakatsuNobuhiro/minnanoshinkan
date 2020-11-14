@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :event_favorites, only: [:create, :destroy]
   end
   resources :clubs, only: [:index]
-  
+  resources :charges, only: [:new, :create]
 
 
   resources :relationships, only: [:create, :destroy]
