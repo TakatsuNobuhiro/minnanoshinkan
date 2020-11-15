@@ -7,12 +7,12 @@ Rails.application.routes.draw do
     resources :event_favorites, only: [:create, :destroy]
   end
   resources :clubs, only: [:index]
+  resources :students, only: [:index, :show]
   resources :charges, only: [:new, :create]
 
 
   resources :relationships, only: [:create, :destroy]
-  get 'students/show'
-  get 'students/index'
+
   devise_for :students, controllers: {
      :omniauth_callbacks => "omniauth_callbacks",
      sessions:      'students/sessions',

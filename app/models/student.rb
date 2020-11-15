@@ -87,5 +87,8 @@ class Student < ApplicationRecord
   def event_favorite?(event)
     self.event_likes.include?(event)
   end
-
+  def self.search(search)
+    return Student.all unless search
+    Student.where(['name LIKE ?', "%#{search}%"])
+  end
 end

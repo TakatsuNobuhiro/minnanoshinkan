@@ -1,5 +1,8 @@
 <h2>サークル一覧</h2>
-
+<%= form_tag(clubs_path,:method => 'get') do %>
+  <%= text_field_tag :search, params[:search] ,placeholder: "サークル名で検索" %>
+  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+<% end %>
 <table class="table">
   <thead>
     <tr>

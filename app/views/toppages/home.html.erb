@@ -1,7 +1,7 @@
-<%= link_to '生徒一覧',students_index_path%>
-<%= link_to 'サークル一覧',clubs_path%>
-<%= link_to 'イベント一覧',events_path%>
-<%= link_to 'お問い合わせ',contacts_path%>
+<%= link_to '生徒一覧',students_path, class: 'btn btn-success'%>
+<%= link_to 'サークル一覧',clubs_path, class: 'btn btn-success'%>
+<%= link_to 'イベント一覧',events_path, class: 'btn btn-success'%>
+<%= link_to 'お問い合わせ',contacts_path, class: 'btn btn-success'%>
 
 <%= month_calendar events: @events do |date, event| %>
   <%= date.day %>
