@@ -1,37 +1,41 @@
-<h2>イベント詳細ページ</h2>
 
-<div class="profile">
+
+<div class="event">
+  <h2>イベント詳細</h2>
   <p>イベント名:<%= @event.title %></p>
   <% time = (@event.end-@event.start).to_i %>
-  <p>開始日時：<%= @event.start.strftime('%m月%d日 %H時%M分') %></p>
-  <p>終了日時：<%= @event.end.strftime('%m月%d日 %H時%M分') %></p>
-  <p>時間：<%=time/3600 %>時間</p>
-  
+  <p><i class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)</p>
+ 
   <% @event.tags.each do |tag| %>
     <%= tag.name %>
   <% end %>
   <%= @event.content %>
-  <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
-  <% if student_signed_in?%>
-    <div id="event_favorite">
-      <% if current_student.club_favorite?(@club) %>
-        <%= render "unfavorite"%>
-      <% else %>
-        <%= render "favorite"%>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="event_favorite_box">
+    
+    <% if student_signed_in?%>
+      <div id="event_favorite">
+        <% if current_student.club_favorite?(@club) %>
+          <%= render "unfavorite"%>
+        <% else %>
+          <%= render "favorite"%>
+        <% end %>
+      </div>
+    <% end %>
+    <p id="event_count"><i class="fas fa-heart"></i><%= @count_like_events %></p>
+  </div>
   <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
     <i class="fab fa-twitter" style='color: #3399FF;'></i>
     Twitterでシェア
   <% end %>
-  <p id="event_count">いいね数:<%= @count_like_events %></p>
+
   <% if club_signed_in? %>
     <% if current_club==@event.club%>
       <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
       <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-danger" %>
     <% end %>
   <% end %>
+  <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
+  <%= link_to "サークル詳細",club_path(@event.club.id),class: "btn btn-warning"%>
 </div>
 <% if student_signed_in? %>
   <%= form_for [@event, @comment] do |f| %>
