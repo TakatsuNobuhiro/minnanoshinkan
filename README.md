@@ -39,7 +39,9 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 
 ### 投稿機能(サークルのみ)
 
-- 投稿（タイトル,時間,場所,内容）・編集・削除(Action Text) -地図表示（Google Maps API） -投稿タグ付機能
+- 投稿（タイトル,時間,場所,内容）・編集・削除(Action Text)
+- 地図表示（Google Maps API）
+- 投稿タグ付機能
 
 ### メール送信機能(Action Mailer)
 
@@ -62,7 +64,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 ### コメント機能
 
 - 投稿（コメント対しコメントが延々とできる）
-- コメントの表示（同一スレッド上にある直前・直後のコメントを表示可能)
+- コメントの表示
 
 ## 使用技術
 
