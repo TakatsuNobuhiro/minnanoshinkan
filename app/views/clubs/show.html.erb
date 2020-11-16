@@ -1,17 +1,10 @@
-<div class="profile">
-  <h2 class='text-center'><%= @club.name %>のプロフィール</h2>
-  <div class="image">
-    <%= image_tag @club.avatar.variant(gravity: :center, resize:"300x300", crop:"300x300+0+0"),id: 'club_image' if @club.avatar.attached?%>
+<div class="student profile">
+  <h2>サークル詳細</h2>
+  <div class="club_image">
+    <%= image_tag @club.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'club_image' if @club.avatar.attached?%>
   </div>
-
-  <ul>
-    <li><%= @club.active %></li>
-    <li><%= @club.intercollege %></li>
-    <li><%= @club.university %></li>
-    <li><%= @club.sns %></li>
-    <li><%= @club.home %></li>
-    <li><%= @club.detail %></li>
-  </ul>
+  <div class="student name"><%= @club.name %></div>
+  <div class="student detail"><%= @club.detail %></div>
 
   <div class="data">
   <ul>
@@ -29,6 +22,31 @@
   </li>
   </ul>
   </div>
+
+  <div class="ul-align-center">
+    <ul class="student">
+      <%if @club.active == "運動系"%>
+      <li><i class="fas fa-running"></i>種類：<%= @club.active %></li>
+      <% elsif @club.active == "文化系"%><li><i class="fas fa-pen"></i>種類：<%= @club.active %></li>
+      <% end %>
+      <%if @club.intercollege == "学内"%>
+      <li><i class="fas fa-universal-access"></i><%= @club.intercollege %></li>
+      <% elsif @club.intercollege == "インカレ"%><li><i class="fas fa-globe"></i><%= @club.intercollege %></li>
+      <% end %>
+
+      <li>
+      <i class="fas fa-graduation-cap"></i>大学：<%= @club.university %>
+      </li>
+      <% if @club.sns %>
+        <li><i class="fas fa-users"></i>SNS:<%= text_url_to_link(h(@club.sns)).html_safe %></li>
+      <% end %>
+      <% if @club.home%>
+        <li><i class="fas fa-home"></i></i>ホームページ:<%= text_url_to_link(h(@club.home)).html_safe %></li>
+      <% end %>
+      
+    </ul>
+  </div>
+
   <div class="club-button">
     <div class="button1">
       <%= link_to 'サークル一覧',clubs_path, class: 'btn btn-primary'%>
