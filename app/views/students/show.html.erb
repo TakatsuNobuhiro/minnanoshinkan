@@ -1,39 +1,47 @@
 <div class="profile">
 
-  <h2 class='text-center'><%= @student.name %>のプロフィール</h2>
+  <h2 class='text-center'>プロフィール詳細</h2>
 
-  <div class="image">
-    <%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300", crop:"300x300+0+0") ,id: 'club_image'if @student.avatar.attached?%>
+  <div class="club_image">
+    <%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'club_image'if @student.avatar.attached?%>
   </div>
-
+  <div class="club_name"><%= @student.name %></div>
+  <div class="club_detail"><%= @student.detail %></div>
   <div class="content">
   <div class="data">
   <ul>
   <li>
   2,934
-  <span>Tweets</span>
+  <span>お気に入り</span>
   </li>
   <li id="count_followers">
   <%= @count_followers %>
-  <span>Followers</span>
+  <span>フォローワー</span>
   </li>
   <li>
   <%= @count_followings %>
-  <span>Following</span>
+  <span>フォロー</span>
   </li>
   </ul>
   </div>
 
   </div>
-  <ul>
-    <li><%= @student.gender %></li>
-    <li><%= @student.prefecture %></li>
-    <li><%= @student.university %></li>
-    <li><%= @student.department %></li>
-    <li><%= @student.highschool %></li>
-    <li><%= @student.hobby %></li>
-    <li><%= @student.detail %></li>
-  </ul>
+  <div class="ul-align-center">
+    <ul class="student">
+      <%if @student.gender == "男"%>
+      <li><i class="fas fa-male"></i>性別：<%= @student.gender %></li>
+      <% elsif @student.gender == "女"%><li><i class="fas fa-female"></i>性別：<%= @student.gender %></li>
+      <% end %>
+      <li><i class="fas fa-map-marker-alt"></i>出身:<%= @student.prefecture %></li>
+      <li>
+      <i class="fas fa-graduation-cap"></i>大学：<%= @student.university %>
+      <%= @student.department %>
+      </li>
+      <li><i class="fas fa-school"></i>出身高校:<%= @student.highschool %></li>
+      <li><i class="fas fa-cog"></i>趣味:<%= @student.hobby %></li>
+      
+    </ul>
+  </div>
 
   <div class="club-button">
     <div class="button1">

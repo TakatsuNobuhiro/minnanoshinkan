@@ -4,11 +4,11 @@
 
 #tagbox {
   display: flex;
-  background-color: sandybrown;
-  border: 2px solid black;
+  margin: 10px 0;
+  border-bottom: 1px solid rgb(223, 223, 223);
   #tagbox_title {
     size: 14px;
-    background-color: salmon;
+
     margin-right: auto 7px;
   }
   #tag_list {

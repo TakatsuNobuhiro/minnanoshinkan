@@ -66,7 +66,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
   #   edit_student_regisration_path
   # end
   def after_update_path_for(resource)
-    students_show_path(resource)
+    student_path(resource)
   end
 
 end

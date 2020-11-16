@@ -16,9 +16,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <td>題名</td>
+      <td>イベント名</td>
       <td>タグ</td>
-      <td>投稿日時</td>
+      <td>日時</td>
     </tr>
   </thead>
   <tbody>
@@ -30,7 +30,7 @@
           <%= link_to t.name, events_path(tag_id: t.id), class: "btn btn-primary btn-sm" %>
         <% end %>
         </td>
-        <td><%= time_ago_in_words(e.created_at) %></td>
+        <td><%= e.start.strftime('%m月%d日 %H時') %>(<%= time_ago_in_words(e.start) %>後)</td>
       </tr>
     <% end %>
   </tbody>

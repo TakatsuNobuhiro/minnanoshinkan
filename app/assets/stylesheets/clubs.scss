@@ -3,19 +3,23 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .profile {
-  background-color: rgb(204, 245, 248);
-  border: solid black;
-  border-radius: 10%;
-}
-.image {
-  #club_image {
-    margin: 0 auto;
-    display: block;
+  .club_image {
+    #club_image {
+      margin: 10px auto;
+      display: block;
+      border-radius: 50%;
+    }
   }
-}
-
-.club-button {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
+  .club_name {
+    text-align: center;
+    font-weight: bold;
+  }
+  .club_detail {
+    text-align: center;
+  }
+  .club-button {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
 }

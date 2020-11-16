@@ -3,21 +3,21 @@
   <%= text_field_tag :search, params[:search] ,placeholder: "サークル名で検索" %>
   <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
 <% end %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>サークル名</th>
-      <th>種類</th>
-      <th>詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @clubs.each do |c|%>
-      <tr>
-        <td><%= link_to c.name,club_path(c.id) %></td>
-        <td><%= c.active %></td>
-        <td><%= c.detail %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+<% @clubs.each do |c|%>
+  <div class="index-profile">
+  <%= link_to "",club_path(c.id) %>
+    <div class="index-avatar">
+      <%= image_tag c.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed if c.avatar.attached?%>
+    </div>
+    <div class="index-rightbox">
+      <div class="index-name">
+        <%= c.name %>
+      </div>
+      <div class="index-detail">
+        <%= c.detail%>
+      </div>   
+    </div>
+  </div>
+<% end %>

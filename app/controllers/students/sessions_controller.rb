@@ -28,7 +28,7 @@ class Students::SessionsController < Devise::SessionsController
     if resource.name.blank?
       edit_student_registration_path(resource)
     else 
-      students_show_path(resource)
+      student_path(resource)
     end
     
   end

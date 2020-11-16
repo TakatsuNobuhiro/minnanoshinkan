@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :event_favorites, only: [:create, :destroy]
   end
   resources :clubs, only: [:index]
-  resources :students, only: [:index, :show]
+  resources :students, only: [:index]
   resources :charges, only: [:new, :create]
 
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     get '/students/sign_out' => 'devise/sessions#destroy'
     get '/students' => 'devise/registrations#destroy'
   end
-
+  resources :students, only: [:show]
   resources :clubs, only: [:show] do
     resources :club_favorites, only: [:create,:destroy]
   end

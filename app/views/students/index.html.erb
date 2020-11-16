@@ -5,16 +5,16 @@
 <% end %>
 
 <% @students.each do |s|%>
-  <div class="student-profile">
+  <div class="index-profile">
   <%= link_to "",student_path(s.id) %>
-    <div class="student-avatar">
+    <div class="index-avatar">
       <%= image_tag s.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed if s.avatar.attached?%>
     </div>
-    <div class="student-rightbox">
-      <div class="student-name">
+    <div class="index-rightbox">
+      <div class="index-name">
         <%= s.name %>
       </div>
-      <div class="student-detail">
+      <div class="index-detail">
         <%= s.detail%>
       </div>   
     </div>
