@@ -32,4 +32,11 @@ class Students::SessionsController < Devise::SessionsController
     end
     
   end
+  #guest_login
+  def new_guest
+    student = Student.guest
+    sign_in student
+    flash[:success] = 'ゲストユーザーとしてログインしました。'
+    redirect_to student_path(student.id)
+  end
 end

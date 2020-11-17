@@ -23,4 +23,6 @@ class Club < ApplicationRecord
     return Club.all unless search
     Club.where(['name LIKE ?', "%#{search}%"])
   end
+
+
 end

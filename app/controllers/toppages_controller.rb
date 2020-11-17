@@ -3,4 +3,5 @@ class ToppagesController < ApplicationController
     @events = Event.all
 
   end
+
 end

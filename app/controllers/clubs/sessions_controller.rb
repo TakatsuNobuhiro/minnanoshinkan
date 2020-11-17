@@ -32,4 +32,11 @@ class Clubs::SessionsController < Devise::SessionsController
     end
     
   end
+  #guest_login
+  def new_guest
+    club = Club.guest
+    sign_in club
+    flash[:success] = 'ゲストユーザーとしてログインしました。'
+    redirect_to club_path(club.id)
+  end
 end

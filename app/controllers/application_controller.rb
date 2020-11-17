@@ -19,5 +19,12 @@ class ApplicationController < ActionController::Base
   def event_count(event)
     @count_like_events = event.student_event_likes.count
   end
-
+  #guset_login
+  def check_guest
+    email = resource&.email || params[:user][:email].downcase
+    if email == 'test@example.com'
+      flash[:danger]='ゲストユーザーの変更・削除はできません。'
+      redirect_to root_path 
+    end
+  end
 end

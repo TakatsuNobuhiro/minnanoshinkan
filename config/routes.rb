@@ -20,6 +20,7 @@ Rails.application.routes.draw do
      registrations: 'students/registrations'     
   }
   root to: 'toppages#home'
+
   devise_for :clubs, controllers: {
     sessions:      'clubs/sessions',
     passwords:     'clubs/passwords',
@@ -29,10 +30,12 @@ Rails.application.routes.draw do
   devise_scope :club do
     get '/clubs/sign_out' => 'devise/sessions#destroy'
     get '/clubs' => 'devise/registrations#destroy'
+    post 'clubs/guest_sign_in', to: 'clubs/sessions#new_guest'
   end
   devise_scope :student do
     get '/students/sign_out' => 'devise/sessions#destroy'
     get '/students' => 'devise/registrations#destroy'
+    post 'students/guest_sign_in', to: 'students/sessions#new_guest'
   end
   resources :students, only: [:show]
   resources :clubs, only: [:show] do

@@ -1,3 +1,9 @@
+<% if !student_signed_in?&&!club_signed_in? %>
+  <div class="guest-button">
+    <%= link_to 'ゲストログイン（閲覧用）', students_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
+    <%= link_to 'ゲストログイン（閲覧用）', clubs_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
+  </div>
+<% end %>
 <div class="home-button-box">
   <%= link_to '生徒一覧',students_path, class: 'btn btn-success'%>
   <%= link_to 'サークル一覧',clubs_path, class: 'btn btn-success'%>
