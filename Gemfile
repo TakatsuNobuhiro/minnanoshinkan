@@ -78,6 +78,3 @@ gem 'actiontext'
 gem "geocoder"
 gem 'gon' #コントローラーで定義したインスタンス変数をビューのJavaScript内で使用出来る様にする。
 gem "stripe"
-group :production do
-  gem 'pg', '>= 0.18', '< 2.0'
-end
