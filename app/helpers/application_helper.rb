@@ -14,6 +14,6 @@ module ApplicationHelper
   end
 
   def unchecked_notifications
-    @notifications = current_club||current_student.passive_notifications.where(checked: false)
+    @notifications = (current_club||current_student).passive_notifications.where(checked: false)
   end
 end

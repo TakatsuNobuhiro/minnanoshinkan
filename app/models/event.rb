@@ -38,11 +38,11 @@ class Event < ApplicationRecord
   has_many :notifications, dependent: :destroy
   def create_notification_like!(current_user)
     temp = Notification.where(["student_visitor_id = ? and club_visited_id = ? and event_id = ? and action = ? ",
-                                  current_user.id, user_id, id, 'like'])
+                                  current_user.id, club_id, id, 'like'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         event_id: id,
-        club_visited_id: user_id,
+        club_visited_id: club_id,
         action: 'like'
       )
 
@@ -51,20 +51,30 @@ class Event < ApplicationRecord
   end
   def create_notification_comment!(current_user, comment_id)
     #同じ投稿にコメントしているユーザーに通知を送る。（current_userと投稿ユーザーのぞく）
-    temp_ids = Comment.where(event_id: id).where.not("student_id=? or student_id=?", current_user.id,student_id).select(:student_id).distinct
+    temp_ids = Comment.where(event_id: id).where.not("student_id=?", current_user.id).select(:student_id).distinct
     #取得したユーザー達へ通知を作成。（user_idのみ繰り返し取得）
     temp_ids.each do |temp_id|
-      save_notification_comment!(current_user, comment_id, temp_id['student_id'])
+      save_student_notification_comment!(current_user, comment_id, temp_id['student_id'])
     end
     #投稿者へ通知を作成
-    save_notification_comment!(current_user, comment_id, student_id)
+    save_club_notification_comment!(current_user, comment_id, self.club.id)
   end
 
-  def save_notification_comment!(current_user, comment_id, visited_id)
+  def save_student_notification_comment!(current_user, comment_id, visited_id)
     notification = current_user.active_notifications.new(
       event_id: id,
       comment_id: comment_id,
-      club_visited_id: club_visited_id,
+      student_visited_id: visited_id,
+      action: 'comment'
+    )
+
+    notification.save if notification.valid?
+  end
+  def save_club_notification_comment!(current_user, comment_id, visited_id)
+    notification = current_user.active_notifications.new(
+      event_id: id,
+      comment_id: comment_id,
+      club_visited_id: visited_id,
       action: 'comment'
     )
 
