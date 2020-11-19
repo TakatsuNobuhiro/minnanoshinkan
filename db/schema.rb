@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_112104) do
+ActiveRecord::Schema.define(version: 2020_11_18_225350) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_112104) do
     t.text "sns"
     t.boolean "intercollege", default: false
     t.boolean "active"
+    t.integer "premium", default: 0
     t.index ["confirmation_token"], name: "index_clubs_on_confirmation_token", unique: true
     t.index ["email"], name: "index_clubs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clubs_on_reset_password_token", unique: true
