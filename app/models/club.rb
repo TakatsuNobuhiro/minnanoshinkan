@@ -24,5 +24,7 @@ class Club < ApplicationRecord
     Club.where(['name LIKE ?', "%#{search}%"])
   end
 
-
+  #notificaton
+  has_many :active_notifications, foreign_key:"club_visitor_id", class_name: "Notification", dependent: :destroy
+  has_many :passive_notifications, foreign_key:"club_visited_id", class_name: "Notification", dependent: :destroy
 end

@@ -34,5 +34,6 @@ class Event < ApplicationRecord
   def start_time
     self.start
   end 
-
+  #notification
+  has_many :notifications, dependent: :destroy
 end

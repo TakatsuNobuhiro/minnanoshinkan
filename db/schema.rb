@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_18_225350) do
+ActiveRecord::Schema.define(version: 2020_11_19_061943) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 2020_11_18_225350) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["club_id"], name: "index_club_favorites_on_club_id"
     t.index ["student_id"], name: "index_club_favorites_on_student_id"
+  end
+
+  create_table "club_notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "visiter_id"
+    t.integer "visited_id"
+    t.integer "event_id"
+    t.integer "comment_id"
+    t.string "action"
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "clubs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -116,6 +127,25 @@ ActiveRecord::Schema.define(version: 2020_11_18_225350) do
     t.float "latitude"
     t.float "longitude"
     t.index ["club_id"], name: "index_events_on_club_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "club_visitor_id", null: false
+    t.bigint "club_visited_id", null: false
+    t.bigint "student_visitor_id", null: false
+    t.bigint "student_visited_id", null: false
+    t.bigint "event_id", null: false
+    t.bigint "comment_id", null: false
+    t.string "action"
+    t.boolean "checked", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_visited_id"], name: "index_notifications_on_club_visited_id"
+    t.index ["club_visitor_id"], name: "index_notifications_on_club_visitor_id"
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["student_visited_id"], name: "index_notifications_on_student_visited_id"
+    t.index ["student_visitor_id"], name: "index_notifications_on_student_visitor_id"
   end
 
   create_table "premium_mails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -199,6 +229,12 @@ ActiveRecord::Schema.define(version: 2020_11_18_225350) do
   add_foreign_key "event_favorites", "events"
   add_foreign_key "event_favorites", "students"
   add_foreign_key "events", "clubs"
+  add_foreign_key "notifications", "clubs", column: "club_visited_id"
+  add_foreign_key "notifications", "clubs", column: "club_visitor_id"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "events"
+  add_foreign_key "notifications", "students", column: "student_visited_id"
+  add_foreign_key "notifications", "students", column: "student_visitor_id"
   add_foreign_key "premium_mails", "clubs"
   add_foreign_key "relationships", "students"
   add_foreign_key "relationships", "students", column: "follow_id"
