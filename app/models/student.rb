@@ -96,7 +96,7 @@ class Student < ApplicationRecord
   has_many :passive_notifications, foreign_key:"student_visited_id", class_name: "Notification", dependent: :destroy
 
   def create_notification_follow!(current_user)
-    temp = Notification.where(["student_visiter_id = ? and student_visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(["student_visitor_id = ? and student_visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         student_visited_id: id,

@@ -4,8 +4,8 @@ class Notification < ApplicationRecord
   belongs_to :club_visited, class_name: "Club", optional: true
   belongs_to :student_visitor, class_name: "Student", optional: true
   belongs_to :student_visited, class_name: "Student", optional: true
-  belongs_to :event
-  belongs_to :comment
+  belongs_to :event, optional: true
+  belongs_to :comment, optional: true
   ACTION_VALUES = ["like", "follow", "comment"]
   validates :action,  presence: true, inclusion: {in:ACTION_VALUES}
   validates :checked, inclusion: {in: [true,false]}

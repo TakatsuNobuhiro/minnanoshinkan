@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = current_student||current_club.passive_notifications
+    @notifications = (current_student||current_club).passive_notifications
     #通知画面を開くとcheckedをtrueにして通知確認済にする
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
