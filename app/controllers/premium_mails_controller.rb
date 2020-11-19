@@ -8,6 +8,7 @@ class PremiumMailsController < ApplicationController
     if @premium_mail.save 
       PremiumMailer.send_mail(@premium_mail).deliver_now
       flash[:success] = 'メールを送信しました'
+      current_club.update(premium: 0)
       redirect_to club_path(current_club.id)
 
     else 
