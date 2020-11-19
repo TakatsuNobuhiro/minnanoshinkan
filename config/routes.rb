@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :notifications, only: [:index, :destroy]
   resources :contacts, only: [:index]
   resources :premium_mails, only: [:new, :create]
   resources :events do 

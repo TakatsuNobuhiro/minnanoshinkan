@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
     @student = Student.find(params[:follow_id])
     current_student.follow(@student)
     counts(@student)
-
+    @student.create_notification_follow!(current_student)
     respond_to do |format|
       format.html { redirect_to students_show_path(@student.id) }
       format.js
