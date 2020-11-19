@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_19_061943) do
+ActiveRecord::Schema.define(version: 2020_11_19_115034) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -130,12 +130,12 @@ ActiveRecord::Schema.define(version: 2020_11_19_061943) do
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "club_visitor_id", null: false
-    t.bigint "club_visited_id", null: false
-    t.bigint "student_visitor_id", null: false
-    t.bigint "student_visited_id", null: false
-    t.bigint "event_id", null: false
-    t.bigint "comment_id", null: false
+    t.bigint "club_visitor_id"
+    t.bigint "club_visited_id"
+    t.bigint "student_visitor_id"
+    t.bigint "student_visited_id"
+    t.bigint "event_id"
+    t.bigint "comment_id"
     t.string "action"
     t.boolean "checked", default: false
     t.datetime "created_at", precision: 6, null: false
