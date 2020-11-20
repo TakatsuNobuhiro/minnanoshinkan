@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
-  before_action :correct_user, only: %i[destroy]
+  before_action :correct_user, :only => %i[destroy]
 
   def index
     if params[:search].present?
       events =
         Event.events_search(params[:search]).where('start > ?', Date.today)
-          .order(start: :asc)
+          .order(:start => :asc)
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
-      events = @tag.events.where('start > ?', Date.today).order(start: :asc)
+      events = @tag.events.where('start > ?', Date.today).order(:start => :asc)
     else
-      events = Event.where('start > ?', Date.today).order(start: :asc)
+      events = Event.where('start > ?', Date.today).order(:start => :asc)
     end
     @tag_lists = Tag.all
     @events = Kaminari.paginate_array(events).page(params[:page]).per(10)
@@ -82,7 +82,7 @@ class EventsController < ApplicationController
     )
   end
   def correct_user
-    @event = current_club.events.find_by(id: params[:id])
+    @event = current_club.events.find_by(:id => params[:id])
     redirect_to root_url unless @event
   end
 

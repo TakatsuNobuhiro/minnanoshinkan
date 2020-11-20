@@ -4,6 +4,6 @@ class PremiumMailer < ApplicationMailer
     email_list = []
     mail.club.student_likes.each { |student| email_list.push(student.email) }
 
-    mail(from: 'minnanoshinkan@gmail.com', to: email_list, subject: mail.title)
+    mail(:from => 'minnanoshinkan@gmail.com', :to => email_list, :subject => mail.title)
   end
 end

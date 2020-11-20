@@ -1,1 +1,14 @@
 inherit_from: .rubocop_todo.yml
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+
+# 桁揃えが綺麗にならないことが多いので migration は除外
+Style/ExtraSpacing:
+  Exclude:
+    - "db/migrate/*.rb"
+
+# if 文の中に 3 行程度のブロックを書くぐらいは許容した方が現実的
+Style/GuardClause:
+  MinBodyLength: 5

@@ -8,9 +8,9 @@ class ContactMailer < ApplicationMailer
   def contact_mail(contact)
     @contact = contact
     mail(
-      from: 'minnanoshinkan@gmail.com',
-      to: 'nobuhiro19980622@gmail.com',
-      subject: @contact[:title]
+      :from => 'minnanoshinkan@gmail.com',
+      :to => 'nobuhiro19980622@gmail.com',
+      :subject => @contact[:title]
     )
   end
 end

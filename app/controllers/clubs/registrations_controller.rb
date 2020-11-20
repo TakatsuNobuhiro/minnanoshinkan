@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Clubs::RegistrationsController < Devise::RegistrationsController # before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: %i[update]
-  before_action :check_guest, only: %i[destroy]
+  before_action :configure_account_update_params, :only => %i[update]
+  before_action :check_guest, :only => %i[destroy]
 
   # GET /resource/sign_up
   # def new
@@ -52,7 +52,7 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: %i[name sns home university intercollege active detail avatar]
+      :keys => %i[name sns home university intercollege active detail avatar]
     )
   end
 
