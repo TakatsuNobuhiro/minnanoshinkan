@@ -14,7 +14,7 @@
     
     <% if student_signed_in?%>
       <div id="event_favorite">
-        <% if current_student.club_favorite?(@club) %>
+        <% if current_student.event_favorite?(@event) %>
           <%= render "unfavorite"%>
         <% else %>
           <%= render "favorite"%>
