@@ -9,20 +9,20 @@
   <div class="student detail"><%= @student.detail %></div>
 
   <div class="data">
-  <ul>
-  <li>
-  0
-  <span>お気に入り</span>
-  </li>
-  <li id="count_followers">
-  <%= @count_followers %>
-  <span>フォローワー</span>
-  </li>
-  <li>
-  <%= @count_followings %>
-  <span>フォロー</span>
-  </li>
-  </ul>
+    <ul>
+      <li>
+        0
+        <span>お気に入り</span>
+      </li>
+      <li id="count_followers">
+        <%= @count_followers %>
+        <span>フォローワー</span>
+      </li>
+      <li>
+        <%= @count_followings %>
+        <span>フォロー</span>
+      </li>
+    </ul>
   </div>
 
 
@@ -34,12 +34,12 @@
       <% end %>
       <li><i class="fas fa-map-marker-alt"></i>出身:<%= @student.prefecture %></li>
       <li>
-      <i class="fas fa-graduation-cap"></i>大学：<%= @student.university %>
-      <%= @student.department %>
+        <i class="fas fa-graduation-cap"></i>大学：<%= @student.university %>
+        <%= @student.department %>
       </li>
       <li><i class="fas fa-school"></i>出身高校:<%= @student.highschool %></li>
       <li><i class="fas fa-cog"></i>趣味:<%= @student.hobby %></li>
-      
+
     </ul>
   </div>
 
@@ -48,19 +48,19 @@
       <%= link_to '生徒一覧',students_path, class: 'btn btn-primary'%>
     </div>
     <% if student_signed_in? %>
-      <% if current_student==@student %>
-        <div class="button2">
-          <%= link_to 'プロフィール編集', edit_student_registration_path, class: 'btn btn-success'%>
-        </div>
+    <% if current_student==@student %>
+    <div class="button2">
+      <%= link_to 'プロフィール編集', edit_student_registration_path, class: 'btn btn-success'%>
+    </div>
+    <% else %>
+    <div id="follow_form">
+      <% if current_student.following?(@student) %>
+      <%= render 'unfollow'%>
       <% else %>
-        <div id="follow_form">
-          <% if current_student.following?(@student) %>
-            <%= render 'unfollow'%>
-          <% else %>
-            <%= render 'follow'%>
-          <% end %>
-        </div>  
+      <%= render 'follow'%>
       <% end %>
+    </div>
+    <% end %>
     <% end %>
   </div>
 </div>

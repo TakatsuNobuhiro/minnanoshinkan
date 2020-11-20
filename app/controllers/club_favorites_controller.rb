@@ -10,14 +10,12 @@ class ClubFavoritesController < ApplicationController
       format.js
     end
   end
-    
-
 
   def destroy
     @club = Club.find(params[:club_id])
     current_student.club_unfavorite(@club)
     club_count(@club)
-    
+
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
       format.js

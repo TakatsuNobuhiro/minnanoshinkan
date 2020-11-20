@@ -10,7 +10,6 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to students_show_path(@student.id) }
       format.js
     end
-
   end
 
   def destroy

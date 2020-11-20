@@ -1,25 +1,18 @@
 <div id="stripe">
   <%= form_tag charges_path do %>
-    <article>
-      <% if flash[:danger].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:danger] %></p>
-        </div>
-      <% end %>
-      <p>一通30000円で生徒にメールを送ることが出来ます</p>
-    </article>
+  <article>
+    <% if flash[:danger].present? %>
+    <div id="error_explanation">
+      <p><%= flash[:danger] %></p>
+    </div>
+    <% end %>
+    <p>一通30000円で生徒にメールを送ることが出来ます</p>
+  </article>
 
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="クレジットカード決済"
-            data-currency="jpy"
-            data-locale="ja"
-            data-amount="30000"
-            data-label="購入する"
-            data-panel-label="30000円を支払う"
-            data-name="プレミアム会員"
-            data-email=<%= "#{current_club.email}" %>
-            data-locale="auto">
-    </script>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>" data-description="クレジットカード決済" data-currency="jpy"
+    data-locale="ja" data-amount="30000" data-label="購入する" data-panel-label="30000円を支払う" data-name="プレミアム会員"
+    data-email=<%= "#{current_club.email}" %> data-locale="auto">
+  </script>
   <% end %>
 </div>

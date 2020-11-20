@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-class Students::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  before_action :configure_account_update_params, only: [:update]
-  before_action :check_guest, only: [:destroy]
+class Students::RegistrationsController < Devise::RegistrationsController # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: %i[update]
+  before_action :check_guest, only: %i[destroy]
 
   # GET /resource/sign_up
   # def new
@@ -24,7 +23,7 @@ class Students::RegistrationsController < Devise::RegistrationsController
   def update
     super
     if account_update_params[:avatar].present?
-      resource.avatar.attach(account_update_params[:avatar])    
+      resource.avatar.attach(account_update_params[:avatar])
     end
   end
 
@@ -43,9 +42,10 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-    def update_resource(resource, params)
-      resource.update_without_password(params)
-    end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -53,9 +53,23 @@ class Students::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-    def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :age, :gender, :university, :department, :highschool, :detail, :hobby, :avatar, :prefecture])
-    end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(
+      :account_update,
+      keys: %i[
+        name
+        age
+        gender
+        university
+        department
+        highschool
+        detail
+        hobby
+        avatar
+        prefecture
+      ]
+    )
+  end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
@@ -69,5 +83,4 @@ class Students::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     student_path(resource)
   end
-
 end

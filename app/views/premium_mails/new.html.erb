@@ -1,16 +1,16 @@
 <p>お気に入りに追加してくれている学生にメールを送ることが出来ます。</p>
 <%= form_with(model: @premium_mail, local: true) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :title, '件名' %>
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
+<div class="form-group">
+  <%= f.label :title, '件名' %>
+  <%= f.text_field :title, class: 'form-control' %>
+</div>
 
- <div class="field">
-   <%= f.label :content, '内容' %>
-   <%= f.rich_text_area :content %>
- </div>
+<div class="field">
+  <%= f.label :content, '内容' %>
+  <%= f.rich_text_area :content %>
+</div>
 
-  <%= f.submit '送信' %>
+<%= f.submit '送信' %>
 
 <% end %>

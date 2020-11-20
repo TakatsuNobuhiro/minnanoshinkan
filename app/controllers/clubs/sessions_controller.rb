@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Clubs::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
-
+class Clubs::SessionsController < Devise::SessionsController # before_action :configure_sign_in_params, only: [:create]
   # GET /resource/sign_in
   # def new
   #   super
@@ -27,12 +25,11 @@ class Clubs::SessionsController < Devise::SessionsController
   def after_sign_in_path_for(resource)
     if resource.name.blank?
       edit_club_registration_path(resource)
-    else 
+    else
       club_path(resource)
     end
-    
-  end
-  #guest_login
+  end #guest_login
+
   def new_guest
     club = Club.guest
     sign_in club

@@ -1,8 +1,8 @@
 <% if !student_signed_in?&&!club_signed_in? %>
-  <div class="guest-button">
-    <%= link_to 'ゲストログイン（学生）', students_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
-    <%= link_to 'ゲストログイン（サークル）', clubs_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
-  </div>
+<div class="guest-button">
+  <%= link_to 'ゲストログイン（学生）', students_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
+  <%= link_to 'ゲストログイン（サークル）', clubs_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
+</div>
 <% end %>
 <div class="home-button-box">
   <%= link_to '生徒一覧',students_path, class: 'btn btn-success'%>
@@ -12,12 +12,11 @@
 </div>
 
 <%= month_calendar events: @events do |date, event| %>
-  <%= date.day %>
-  <% event.each do |e| %>
-    <div class="event-box">
-      <%= link_to e.title, e,class: "calendar-event" %>
-    </div>
-  <% end %>
-
+<%= date.day %>
+<% event.each do |e| %>
+<div class="event-box">
+  <%= link_to e.title, e,class: "calendar-event" %>
+</div>
 <% end %>
 
+<% end %>

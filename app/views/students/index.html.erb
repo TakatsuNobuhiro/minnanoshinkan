@@ -1,25 +1,22 @@
 <h2>生徒一覧</h2>
 <%= form_tag(students_path,:method => 'get') do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "生徒名で検索" %>
-  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+<%= text_field_tag :search, params[:search] ,placeholder: "生徒名で検索" %>
+<%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
 <% end %>
 
 <% @students.each do |s|%>
-  <div class="index-profile">
+<div class="index-profile">
   <%= link_to "",student_path(s.id) %>
-    <div class="index-avatar">
-      <%= image_tag s.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed if s.avatar.attached?%>
+  <div class="index-avatar">
+    <%= image_tag s.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed if s.avatar.attached?%>
+  </div>
+  <div class="index-rightbox">
+    <div class="index-name">
+      <%= s.name %>
     </div>
-    <div class="index-rightbox">
-      <div class="index-name">
-        <%= s.name %>
-      </div>
-      <div class="index-detail">
-        <%= s.detail%>
-      </div>   
+    <div class="index-detail">
+      <%= s.detail%>
     </div>
   </div>
+</div>
 <% end %>
-
-
-

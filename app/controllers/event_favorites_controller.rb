@@ -10,14 +10,12 @@ class EventFavoritesController < ApplicationController
       format.js
     end
   end
-    
-
 
   def destroy
     @event = Event.find(params[:event_id])
     current_student.event_unfavorite(@event)
     event_count(@event)
-    
+
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
       format.js

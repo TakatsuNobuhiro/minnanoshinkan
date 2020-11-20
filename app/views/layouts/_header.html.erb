@@ -5,44 +5,44 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <% if !club_signed_in? %>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
         <% if student_signed_in? %>
-          <li class="nav-item"><%= link_to "マイページ",student_path(current_student.id) ,class:"nav-link" %></li>
-          <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle" style="color: gold;"></i>
-          <% end %>
-          <li class="nav-item"><%= link_to "通知",notifications_path,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト",destroy_student_session_path,method: :delete ,class:"nav-link" %></li>
-        <% else %>
-          <li class="nav-item"><%= link_to "学生登録",new_student_registration_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "学生ログイン",new_student_session_path ,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "マイページ",student_path(current_student.id) ,class:"nav-link" %></li>
+        <% if unchecked_notifications.any? %>
+        <i class="fa fa-circle" style="color: gold;"></i>
         <% end %>
-        </ul>
-      </div>
+        <li class="nav-item"><%= link_to "通知",notifications_path,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "ログアウト",destroy_student_session_path,method: :delete ,class:"nav-link" %></li>
+        <% else %>
+        <li class="nav-item"><%= link_to "学生登録",new_student_registration_path ,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "学生ログイン",new_student_session_path ,class:"nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
     <% end %>
     <% if !student_signed_in? %>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
         <% if club_signed_in? %>
-          <li class="nav-item"><%= link_to "マイページ",club_path(current_club.id) ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "イベント新規投稿",new_event_path ,class:"nav-link" %></li>
-          <% if current_club.premium==0%>
-            <li class="nav-item"><%= link_to "プレミアム登録",new_charge_path ,class:"nav-link" %></li>
-          <% elsif current_club.premium==1 %>
-            <li class="nav-item"><%= link_to "プレミアムメール",new_premium_mail_path ,class:"nav-link" %></li>
-          <% end %>
-          <% if unchecked_notifications.any? %>
-            <i class="fa fa-circle" style="color: gold;"></i>
-          <% end %>
-          <li class="nav-item"><%= link_to "通知",notifications_path,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
-        <% else %>
-          <li class="nav-item"><%= link_to "サークル登録",new_club_registration_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "サークルログイン",new_club_session_path ,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "マイページ",club_path(current_club.id) ,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "イベント新規投稿",new_event_path ,class:"nav-link" %></li>
+        <% if current_club.premium==0%>
+        <li class="nav-item"><%= link_to "プレミアム登録",new_charge_path ,class:"nav-link" %></li>
+        <% elsif current_club.premium==1 %>
+        <li class="nav-item"><%= link_to "プレミアムメール",new_premium_mail_path ,class:"nav-link" %></li>
         <% end %>
-        </ul>
-      </div>
+        <% if unchecked_notifications.any? %>
+        <i class="fa fa-circle" style="color: gold;"></i>
+        <% end %>
+        <li class="nav-item"><%= link_to "通知",notifications_path,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "ログアウト",destroy_club_session_path,method: :delete ,class:"nav-link" %></li>
+        <% else %>
+        <li class="nav-item"><%= link_to "サークル登録",new_club_registration_path ,class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "サークルログイン",new_club_session_path ,class:"nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
     <% end %>
   </nav>
 </header>

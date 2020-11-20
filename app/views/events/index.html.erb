@@ -1,15 +1,15 @@
 <h2 class="text-center">イベント一覧</h2>
 <%= form_tag(events_path,:method => 'get') do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "キーワード検索" %>
-  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+<%= text_field_tag :search, params[:search] ,placeholder: "キーワード検索" %>
+<%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
 <% end %>
 <div id="tagbox">
   <div id="tagbox_title">
-  タグ一覧
+    タグ一覧
   </div>
   <div id="tag_list">
     <% @tag_lists.each do |t| %>
-      <%= link_to t.name, events_path(tag_id: t.id), class: "tag btn btn-primary btn-sm"%>
+    <%= link_to t.name, events_path(tag_id: t.id), class: "tag btn btn-primary btn-sm"%>
     <% end %>
   </div>
 </div>
@@ -23,17 +23,16 @@
   </thead>
   <tbody>
     <% @events.each do |e|%>
-      <tr>
-        <td><%= link_to e.title ,event_path(e.id)%></td>
-        <td>
+    <tr>
+      <td><%= link_to e.title ,event_path(e.id)%></td>
+      <td>
         <% e.tags.each do |t|%>
-          <%= link_to t.name, events_path(tag_id: t.id), class: "btn btn-primary btn-sm" %>
+        <%= link_to t.name, events_path(tag_id: t.id), class: "btn btn-primary btn-sm" %>
         <% end %>
-        </td>
-        <td><%= e.start.strftime('%m月%d日 %H時') %>(<%= time_ago_in_words(e.start) %>後)</td>
-      </tr>
+      </td>
+      <td><%= e.start.strftime('%m月%d日 %H時') %>(<%= time_ago_in_words(e.start) %>後)</td>
+    </tr>
     <% end %>
   </tbody>
 </table>
 <%= paginate @events%>
-

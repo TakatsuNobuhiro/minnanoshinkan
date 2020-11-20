@@ -1,9 +1,7 @@
 class StudentsController < ApplicationController
-
   def index
-    @students=Student.search(params[:search]) 
+    @students = Student.search(params[:search])
   end
-
 
   def show
     @student = Student.find(params[:id])
@@ -14,12 +12,10 @@ class StudentsController < ApplicationController
     @followings = @student.followings.page(params[:id])
     counts(@student)
   end
-  
+
   def followers
     @student = Student.find(params[:id])
     @followers = @student.followers.page(params[:id])
     counts(@student)
   end
-
-
 end

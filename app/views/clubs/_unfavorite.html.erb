@@ -1,4 +1,4 @@
 <%= form_with(model: [@club,current_student.club_favorites.find_by(student_id: current_student.id)], remote: true, method: :delete) do |f| %>
-  <%= hidden_field_tag :student_id, current_student.id %>
-  <%= f.submit 'いいねを外す',class: 'btn btn-danger' %>
+<%= hidden_field_tag :student_id, current_student.id %>
+<%= f.submit 'いいねを外す',class: 'btn btn-danger' %>
 <% end %>

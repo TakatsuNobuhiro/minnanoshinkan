@@ -1,95 +1,106 @@
-
-
 <div class="event">
   <h2>イベント詳細</h2>
   <p>イベント名:<%= @event.title %></p>
   <% time = (@event.end-@event.start).to_i %>
-  <p><i class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)</p>
- 
+  <p><i
+      class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)
+  </p>
+
   <% @event.tags.each do |tag| %>
-    <%= tag.name %>
+  <%= tag.name %>
   <% end %>
   <%= @event.content %>
   <div class="event_favorite_box">
-    
+
     <% if student_signed_in?%>
-      <div id="event_favorite">
-        <% if current_student.event_favorite?(@event) %>
-          <%= render "unfavorite"%>
-        <% else %>
-          <%= render "favorite"%>
-        <% end %>
-      </div>
+    <div id="event_favorite">
+      <% if current_student.event_favorite?(@event) %>
+      <%= render "unfavorite"%>
+      <% else %>
+      <%= render "favorite"%>
+      <% end %>
+    </div>
     <% end %>
     <p id="event_count"><i class="fas fa-heart"></i><%= @count_like_events %></p>
   </div>
   <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
-    <i class="fab fa-twitter" style='color: #3399FF;'></i>
-    Twitterでシェア
+  <i class="fab fa-twitter" style='color: #3399FF;'></i>
+  Twitterでシェア
   <% end %>
 
   <% if club_signed_in? %>
-    <% if current_club==@event.club%>
-      <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
-      <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-danger" %>
-    <% end %>
+  <% if current_club==@event.club%>
+  <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
+  <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-danger" %>
+  <% end %>
   <% end %>
   <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
   <%= link_to "サークル詳細",club_path(@event.club.id),class: "btn btn-warning"%>
 </div>
 <% if student_signed_in? %>
-  <%= form_for [@event, @comment] do |f| %>
-    <div class="media mt-1">
-      <%if student_signed_in? %>
-        <% if current_student.avatar.attached? %>
-          <%= image_tag current_student.avatar.variant(gravity: :center, resize:"64x64", crop:"64x64+0+0") %>
-        <% end %>
-      <% else %>
-      <svg class="bd-placeholder-img mr-3" width="64" height="64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 64x64"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">64x64</text></svg>
-      <% end %>
-      <div class="media-body">
-        <h5 class="mt-0">
-        <div class="form-group">
-          
-          <%= f.text_field :content, class: 'form-control' %>
-          <%= f.label :content, '内容' %> <%= f.submit 'コメントする',class:'btn btn-danger btn-sm' %>
-        </div>
-        </h5>
-      </div>
-    </div>
+<%= form_for [@event, @comment] do |f| %>
+<div class="media mt-1">
+  <%if student_signed_in? %>
+  <% if current_student.avatar.attached? %>
+  <%= image_tag current_student.avatar.variant(gravity: :center, resize:"64x64", crop:"64x64+0+0") %>
   <% end %>
+  <% else %>
+  <svg class="bd-placeholder-img mr-3" width="64" height="64" xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 64x64">
+    <title>Placeholder</title>
+    <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">64x64</text>
+  </svg>
+  <% end %>
+  <div class="media-body">
+    <h5 class="mt-0">
+      <div class="form-group">
+
+        <%= f.text_field :content, class: 'form-control' %>
+        <%= f.label :content, '内容' %> <%= f.submit 'コメントする',class:'btn btn-danger btn-sm' %>
+      </div>
+    </h5>
+  </div>
+</div>
+<% end %>
 <% end %>
 <% @comments.each do |comment| %>
-  <div class="media mt-1">
-    <% if comment.student.avatar.attached? %>
-      <%= image_tag comment.student.avatar.variant(gravity: :center, resize:"64x64", crop:"64x64+0+0") %>
-    <% else %>
-      <svg class="bd-placeholder-img mr-3" width="64" height="64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 64x64"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">64x64</text></svg>
-    <% end %>
-    <div class="media-body">
-      <h5 class="mt-0">
+<div class="media mt-1">
+  <% if comment.student.avatar.attached? %>
+  <%= image_tag comment.student.avatar.variant(gravity: :center, resize:"64x64", crop:"64x64+0+0") %>
+  <% else %>
+  <svg class="bd-placeholder-img mr-3" width="64" height="64" xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 64x64">
+    <title>Placeholder</title>
+    <rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">64x64</text>
+  </svg>
+  <% end %>
+  <div class="media-body">
+    <h5 class="mt-0">
       <%= comment.student.name %>
       <% if student_signed_in? %>
-        <% if current_student==comment.student %>
-          <%= link_to "削除", event_comment_path(@event,comment.id), method: :delete ,class: 'btn btn-danger btn-sm'%>
-        <% end %>
+      <% if current_student==comment.student %>
+      <%= link_to "削除", event_comment_path(@event,comment.id), method: :delete ,class: 'btn btn-danger btn-sm'%>
       <% end %>
-      </h5>
-      <%= comment.content %>
-    </div>
+      <% end %>
+    </h5>
+    <%= comment.content %>
   </div>
-  
+</div>
+
 <% end %>
 <div id="map"></div>
 
 <script type="text/javascript">
   function initMap() {
 
-    var test ={lat: <%= @event.latitude %>, lng: <%= @event.longitude %>};
+    var test = {
+      lat: < %= @event.latitude % > ,
+      lng: < %= @event.longitude % >
+    };
     var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15, 
-              center: test
-              });
+      zoom: 15,
+      center: test
+    });
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
@@ -99,25 +110,27 @@
     });
 
     var marker = new google.maps.Marker({
-                  position:test,
-                  map: map,
-                  title: contentString
-                 });
+      position: test,
+      map: map,
+      title: contentString
+    });
 
-     marker.addListener('click', function() {
-       infowindow.open(map, marker);
-     });
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
   }
 </script>
 
 
 <script async defer
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%=ENV["GOOGLE_MAP_API"]%>&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%=ENV["GOOGLE_MAP_API"]%>&callback=initMap">
 </script>
 
 <style type="text/css">
-  #map { height: 400px;
-         width: 100%;
-         margin-top:100px;
-         border:solid,5px,black;}
+  #map {
+    height: 400px;
+    width: 100%;
+    margin-top: 100px;
+    border: solid, 5px, black;
+  }
 </style>
