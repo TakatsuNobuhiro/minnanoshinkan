@@ -4,7 +4,7 @@ class ClubFavoritesController < ApplicationController
     @club = Club.find(params[:club_id])
     current_student.club_favorite(@club)
     club_count(@club)
-
+    @club.create_notification_like!(current_student)
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
       format.js

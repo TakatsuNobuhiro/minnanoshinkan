@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
       @comment.student_id = current_student.id
       if @comment.save
           flash[:success]='コメントの投稿に成功しました'
+          @comment.event.create_notification_comment!(current_student, @comment.id)
           redirect_to request.referer
       else
           flash[:danger]='コメントの投稿に失敗しました'
