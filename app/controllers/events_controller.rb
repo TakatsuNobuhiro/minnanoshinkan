@@ -31,8 +31,9 @@ class EventsController < ApplicationController
     tag_list = params[:event][:tag_ids].split(',')
     if @event.save 
       @event.save_tags(tag_list)
-
+      
       flash[:success]='イベントが投稿されました'
+      @event.create_notification_event!(current_club)
       redirect_to @event
     else  
       flash.now[:danger]='イベントが投稿されませんでした'

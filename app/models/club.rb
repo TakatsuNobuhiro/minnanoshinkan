@@ -27,4 +27,17 @@ class Club < ApplicationRecord
   #notificaton
   has_many :active_notifications, foreign_key:"club_visitor_id", class_name: "Notification", dependent: :destroy
   has_many :passive_notifications, foreign_key:"club_visited_id", class_name: "Notification", dependent: :destroy
+  #お気に入り（クラブ）
+  def create_notification_like!(current_user)
+    temp = Notification.where(["student_visitor_id = ? and club_visited_id = ? and action = ? ",
+                                  current_user.id, id, 'club_like'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        club_visited_id: id,
+        action: 'club_like'
+      )
+
+      notification.save if notification.valid?
+    end
+  end
 end
