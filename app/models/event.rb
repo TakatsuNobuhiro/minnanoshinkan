@@ -51,10 +51,19 @@ class Event < ApplicationRecord
   end
   def create_notification_comment!(current_user, comment_id)
     #同じ投稿にコメントしているユーザーに通知を送る。（current_userと投稿ユーザーのぞく）
-    temp_ids = Comment.where(event_id: id).where.not("student_id=?", current_user.id).select(:student_id).distinct
+    
+     comment_ids = Comment.where(event_id: id).where.not("student_id=?", current_user.id).select(:student_id).distinct
+    favorite_ids = EventFavorite.where(event_id: id).where.not("student_id=?", current_user.id).select(:student_id).distinct
+    temp_ids=[]
+    ids = comment_ids|favorite_ids
+    ids.each do |i|
+      temp_ids.push(i["student_id"])
+    end
+    #重複を削除
+    temp_ids=temp_ids.uniq
     #取得したユーザー達へ通知を作成。（user_idのみ繰り返し取得）
     temp_ids.each do |temp_id|
-      save_student_notification_comment!(current_user, comment_id, temp_id['student_id'])
+      save_student_notification_comment!(current_user, comment_id, temp_id)
     end
     #投稿者へ通知を作成
     save_club_notification_comment!(current_user, comment_id, self.club.id)
