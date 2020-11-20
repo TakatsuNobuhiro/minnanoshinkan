@@ -105,6 +105,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 
 - Ruby 2.7.2
 - rails 6
+- Rubocop
 
 ### インフラ・環境開発等
 
