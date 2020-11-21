@@ -1,8 +1,14 @@
 <h2 class="text-center">イベント一覧</h2>
 <%= form_tag(events_path,:method => 'get') do %>
+<%= datetime_field_tag :start, params[:start] %>~
+<%= datetime_field_tag :end, params[:end] %>
 <%= text_field_tag :search, params[:search] ,placeholder: "キーワード検索" %>
 <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
 <% end %>
+
+
+
+
 <div id="tagbox">
   <div id="tagbox_title">
     タグ一覧
