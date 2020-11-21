@@ -77,7 +77,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 
 ### 検索機能
 
-- イベント検索(イベント名 or タグ　検索)
+- イベント検索(イベント名+イベント時間 or タグ　検索)
 - 生徒検索(生徒名で検索)
 - サークル検索(サークル名で検索)
 
@@ -105,6 +105,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 
 - Ruby 2.7.2
 - rails 6
+- Rubocop
 
 ### インフラ・環境開発等
 
