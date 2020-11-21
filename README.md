@@ -119,3 +119,4 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 ## ER図
 
 ---
+/Users/takatsunobuhiro/Desktop/app/erd.png
