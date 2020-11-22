@@ -113,6 +113,8 @@ GEM
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     erubi (1.9.0)
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
@@ -344,6 +346,7 @@ DEPENDENCIES
   devise-i18n
   dotenv-rails
   enum_help
+  faker
   geocoder
   gon
   image_processing (= 1.9.3)
