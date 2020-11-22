@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
   def index
-    @clubs = Club.search(params[:search])
+    @clubs = Club.with_attached_avatar.search(params[:search])
   end
 
   def show

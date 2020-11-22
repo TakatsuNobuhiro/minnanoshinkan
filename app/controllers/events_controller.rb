@@ -18,14 +18,14 @@ class EventsController < ApplicationController
     @tag_lists = Tag.all
     @events =
       Kaminari.paginate_array(
-        events.where('start > ?', Date.today).order(start: :asc)
+        events.includes(:tags).where('start > ?', Date.today).order(start: :asc)
       ).page(params[:page]).per(10)
   end
 
   def show
     @event = Event.find(params[:id])
     @comment = Comment.new
-    @comments = @event.comments
+    @comments = @event.comments.includes(:student)
     event_count(@event)
   end
 

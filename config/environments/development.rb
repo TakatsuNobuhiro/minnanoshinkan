@@ -57,19 +57,27 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.reload_classes_only_on_change = false # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker # mailer setting
-  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 } # config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 } # config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => 'smtp.gmail.com',
-    :port => 587,
-    :user_name => 'minnanoshinkan@gmail.com',
-    :password => 'xzodcjpxtkctdhmq',
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'minnanoshinkan@gmail.com',
+    password: 'xzodcjpxtkctdhmq',
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   config.hosts.clear
 
   config.web_console.whitelisted_ips = '172.23.0.1'
+
+  config.after_initialize do
+    Bullet.enable = true #Bullet gemを有効
+
+    Bullet.bullet_logger = true #Bulletログファイル（Rails.root/log/bullet.log）に記録
+    Bullet.console = true #警告をブラウザーのconsole.logに記録
+    Bullet.rails_logger = true #警告を直接Railsログに追加
+  end
 end
