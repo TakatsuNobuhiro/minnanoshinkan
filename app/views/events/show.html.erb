@@ -94,8 +94,8 @@
   function initMap() {
 
     var test = {
-      lat: < %= @event.latitude % > ,
-      lng: < %= @event.longitude % >
+      lat: <%=@event.latitude%> ,
+      lng: <%=@event.longitude%>
     };
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 15,
