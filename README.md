@@ -104,14 +104,19 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 ### バックエンド
 
 - Ruby 2.7.2
-- rails 6
-- Rubocop
+- rails 6.0.3.4
 
 ### インフラ・環境開発等
 
 - Heroku
 - Docker/docker-compose
+- MySQL
 
 ### その他
 
-- Google API
+- Rubocop
+
+## ER図
+
+---
+![erd](https://user-images.githubusercontent.com/65536732/99871369-2caad900-2c1d-11eb-8c68-04c3a25fc39f.png)
