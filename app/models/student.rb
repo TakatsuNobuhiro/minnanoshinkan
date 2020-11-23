@@ -1,5 +1,9 @@
 class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable # Include default devise modules. Others available are:
-  validates :name, presence: true, length: { in: 1..30 }
+  validates :name,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..30 }
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow
   has_many :reverses_of_relationship,
