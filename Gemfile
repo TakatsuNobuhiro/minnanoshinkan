@@ -86,3 +86,5 @@ gem 'actiontext'
 gem "geocoder"
 gem 'gon' #コントローラーで定義したインスタンス変数をビューのJavaScript内で使用出来る様にする。
 gem "stripe"
+
+gem 'rspec_junit_formatter'

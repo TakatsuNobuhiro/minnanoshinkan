@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Student, type: :model do
+RSpec.describe Student, :type => :model do
   before { @student = create(:student) }
   describe 'バリデーション' do
     it '全て正常に記入されていればOK' do
