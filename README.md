@@ -106,15 +106,18 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 - Ruby 2.7.2
 - rails 6.0.3.4
 
-### インフラ・環境開発等
+### インフラ・本番環境
 
 - Heroku
-- Docker/docker-compose
 - MySQL
 
-### その他
+### テスト・開発環境等
 
-- Rubocop
+- Docker/docker-compose
+- Rspec
+- rubocop
+- vscode
+- git github
 
 ## ER図
 

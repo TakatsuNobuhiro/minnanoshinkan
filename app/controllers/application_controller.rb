@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery :with => :exception
+  protect_from_forgery with: :exception
 
   def counts(student)
     @count_followings = student.followings.count
@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
 
   #guset_login
   def check_guest
-    email = resource&.email || params[:user][:email].downcase
+    email =
+      resource&.email || (params[:student] || params[:club])[:email].downcase
     if email == 'test@example.com'
       flash[:danger] = 'ゲストユーザーの変更・削除はできません。'
       redirect_to root_path

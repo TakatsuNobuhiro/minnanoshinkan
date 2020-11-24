@@ -1,36 +1,7 @@
 class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable # Include default devise modules. Others available are:
-  has_many :relationships, :dependent => :destroy
-  has_many :followings, :through => :relationships, :source => :follow
-  has_many :reverses_of_relationship,
-           :class_name => 'Relationship',
-           :foreign_key => 'follow_id',
-           :dependent => :destroy
-  has_many :followers, :through => :reverses_of_relationship, :source => :student
-  def follow(other_student)
-    unless self == other_student
-      self.relationships.find_or_create_by(:follow_id => other_student.id)
-    end
-  end
-
-  def unfollow(other_student)
-    relationship = self.relationships.find_by(:follow_id => other_student.id)
-    relationship.destroy if relationship
-  end
-
-  def following?(other_student)
-    self.followings.include?(other_student)
-  end #active_storage
-
-  has_one_attached :avatar
-  validates :avatar,
-            :content_type => {
-              :in => %w[image/jpg image/jpeg image/gif image/png],
-              :message => 'must be a valid image format'
-            },
-            :size => { :less_than => 5.megabytes, :message => 'should be less than 5MB' }
-  enum :gender => { :男 => 1, :女 => 2, :未選択 => 3 }
-  enum :prefecture => {
-         :"---" => 0,
+  enum gender: { :男 => 1, :女 => 2, :未選択 => 3 }
+  enum prefecture: {
+         "---": 0,
          :北海道 => 1,
          :青森県 => 2,
          :岩手県 => 3,
@@ -79,6 +50,62 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
          :鹿児島県 => 46,
          :沖縄県 => 47
        }
+  validates :name,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..30 }
+  validates :gender,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            inclusion: { in: Student.genders.keys }
+  validates :university,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..50 }
+  validates :department,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..50 }
+
+  validates :prefecture,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            inclusion: { in: Student.prefectures.keys }
+  has_one_attached :avatar
+  validates :avatar,
+            content_type: {
+              in: %w[image/jpg image/jpeg image/gif image/png],
+              message: 'must be a valid image format'
+            },
+            size: { less_than: 5.megabytes, message: 'should be less than 5MB' }
+
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverses_of_relationship,
+           class_name: 'Relationship',
+           foreign_key: 'follow_id',
+           dependent: :destroy
+  has_many :followers, through: :reverses_of_relationship, source: :student
+  def follow(other_student)
+    unless self == other_student
+      self.relationships.find_or_create_by(follow_id: other_student.id)
+    end
+  end
+
+  def unfollow(other_student)
+    relationship = self.relationships.find_by(follow_id: other_student.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_student)
+    self.followings.include?(other_student)
+  end #active_storage
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -89,25 +116,25 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
          :timeoutable,
          :trackable,
          :omniauthable,
-         :omniauth_providers => %i[facebook twitter google_oauth2]
+         omniauth_providers: %i[facebook twitter google_oauth2]
 
   def self.from_omniauth(auth)
-    where(:provider => auth.provider, :uid => auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end
   end
 
-  has_many :comments, :dependent => :destroy #club_favorite
-  has_many :club_favorites, :dependent => :destroy
-  has_many :club_likes, :through => :club_favorites, :source => :club
+  has_many :comments, dependent: :destroy #club_favorite
+  has_many :club_favorites, dependent: :destroy
+  has_many :club_likes, through: :club_favorites, source: :club
 
   def club_favorite(club)
-    self.club_favorites.find_or_create_by(:club_id => club.id)
+    self.club_favorites.find_or_create_by(club_id: club.id)
   end
 
   def club_unfavorite(club)
-    club_favorite = self.club_favorites.find_by(:club_id => club.id)
+    club_favorite = self.club_favorites.find_by(club_id: club.id)
     club_favorite.destroy if club_favorite
   end
 
@@ -115,14 +142,14 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
     self.club_likes.include?(club)
   end #event_favorite
 
-  has_many :event_favorites, :dependent => :destroy
-  has_many :event_likes, :through => :event_favorites, :source => :event
+  has_many :event_favorites, dependent: :destroy
+  has_many :event_likes, through: :event_favorites, source: :event
   def event_favorite(event)
-    self.event_favorites.find_or_create_by(:event_id => event.id)
+    self.event_favorites.find_or_create_by(event_id: event.id)
   end
 
   def event_unfavorite(event)
-    event_favorite = self.event_favorites.find_by(:event_id => event.id)
+    event_favorite = self.event_favorites.find_by(event_id: event.id)
     event_favorite.destroy if event_favorite
   end
 
@@ -135,13 +162,13 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
   end #notificaton
 
   has_many :active_notifications,
-           :foreign_key => 'student_visitor_id',
-           :class_name => 'Notification',
-           :dependent => :destroy
+           foreign_key: 'student_visitor_id',
+           class_name: 'Notification',
+           dependent: :destroy
   has_many :passive_notifications,
-           :foreign_key => 'student_visited_id',
-           :class_name => 'Notification',
-           :dependent => :destroy
+           foreign_key: 'student_visited_id',
+           class_name: 'Notification',
+           dependent: :destroy
 
   def create_notification_follow!(current_user)
     temp =
@@ -157,7 +184,7 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
     if temp.blank?
       notification =
         current_user.active_notifications.new(
-          :student_visited_id => id, :action => 'follow'
+          student_visited_id: id, action: 'follow'
         )
       notification.save if notification.valid?
     end
