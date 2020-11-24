@@ -6,9 +6,9 @@ class PremiumMailsController < ApplicationController
   def create
     @premium_mail = current_club.premium_mails.build(mail_params)
     if @premium_mail.save
-      PremiumMailer.send_mail(@premium_mail).deliver_now
+      PremiumMailer.send_mail(@premium_mail, current_club).deliver_now
       flash[:success] = 'メールを送信しました'
-      current_club.update(:premium => 0)
+      current_club.update(premium: 0)
       redirect_to club_path(current_club.id)
     else
       flash.now[:danger] = 'メールの送信に失敗しました'
