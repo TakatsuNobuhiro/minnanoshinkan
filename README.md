@@ -109,17 +109,19 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 ### インフラ・本番環境
 
 - Heroku
-- MySQL
+- MySQL 8.0
 
 ### テスト・開発環境等
 
 - Docker/docker-compose
+- Cicle CI
 - Rspec
-- rubocop
-- vscode
-- git github
+- Rubocop
+- VSCode
+- Git Github
 
-## ER図
+## ER 図
 
 ---
+
 ![erd](https://user-images.githubusercontent.com/65536732/99871369-2caad900-2c1d-11eb-8c68-04c3a25fc39f.png)
