@@ -1,38 +1,4 @@
 class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable # Include default devise modules. Others available are:
-  validates :name,
-            presence: true,
-            on: :update,
-            unless: :encrypted_password_changed?,
-            length: { in: 1..30 }
-  has_many :relationships, dependent: :destroy
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship,
-           class_name: 'Relationship',
-           foreign_key: 'follow_id',
-           dependent: :destroy
-  has_many :followers, through: :reverses_of_relationship, source: :student
-  def follow(other_student)
-    unless self == other_student
-      self.relationships.find_or_create_by(follow_id: other_student.id)
-    end
-  end
-
-  def unfollow(other_student)
-    relationship = self.relationships.find_by(follow_id: other_student.id)
-    relationship.destroy if relationship
-  end
-
-  def following?(other_student)
-    self.followings.include?(other_student)
-  end #active_storage
-
-  has_one_attached :avatar
-  validates :avatar,
-            content_type: {
-              in: %w[image/jpg image/jpeg image/gif image/png],
-              message: 'must be a valid image format'
-            },
-            size: { less_than: 5.megabytes, message: 'should be less than 5MB' }
   enum gender: { :男 => 1, :女 => 2, :未選択 => 3 }
   enum prefecture: {
          "---": 0,
@@ -84,6 +50,62 @@ class Student < ApplicationRecord #follow # :confirmable, :lockable, :timeoutabl
          :鹿児島県 => 46,
          :沖縄県 => 47
        }
+  validates :name,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..30 }
+  validates :gender,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            inclusion: { in: Student.genders.keys }
+  validates :university,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..50 }
+  validates :department,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            length: { in: 1..50 }
+
+  validates :prefecture,
+            presence: true,
+            on: :update,
+            unless: :encrypted_password_changed?,
+            inclusion: { in: Student.prefectures.keys }
+  has_one_attached :avatar
+  validates :avatar,
+            content_type: {
+              in: %w[image/jpg image/jpeg image/gif image/png],
+              message: 'must be a valid image format'
+            },
+            size: { less_than: 5.megabytes, message: 'should be less than 5MB' }
+
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverses_of_relationship,
+           class_name: 'Relationship',
+           foreign_key: 'follow_id',
+           dependent: :destroy
+  has_many :followers, through: :reverses_of_relationship, source: :student
+  def follow(other_student)
+    unless self == other_student
+      self.relationships.find_or_create_by(follow_id: other_student.id)
+    end
+  end
+
+  def unfollow(other_student)
+    relationship = self.relationships.find_by(follow_id: other_student.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_student)
+    self.followings.include?(other_student)
+  end #active_storage
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
