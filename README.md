@@ -114,10 +114,11 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 ### テスト・開発環境等
 
 - Docker/docker-compose
+- Cicle CI
 - Rspec
-- rubocop
-- vscode
-- git github
+- Rubocop
+- VSCode
+- Git Github
 
 ## ER図
 
