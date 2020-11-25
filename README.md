@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/TakatsuNobuhiro/minnanoshinkan.svg?style=svg)](https://circleci.com/gh/TakatsuNobuhiro/minnanoshinkan)
 ---
 
-学生とサークルの双方向のやりとりによりオンラインで新歓活動を行えるアプリ
+学生とサークルの双方向のやりとりによりオンラインで新歓活動を行えるアプリ.
 
 ## URL
 
