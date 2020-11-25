@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/TakatsuNobuhiro/minnanoshinkan.svg?style=svg)](https://circleci.com/gh/TakatsuNobuhiro/minnanoshinkan)
 ---
 
-学生とサークルの双方向のやりとりによりオンラインで新歓活動を行えるアプリ。
+学生とサークルの双方向のやりとりによりオンラインで新歓活動を行えるアプリ.
 
 ## URL
 
@@ -34,7 +34,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 
 ### ユーザー機能（サークルと生徒別々で実装）
 
-- ログイン認証 -ユーザー登録・編集・削除
+- ログイン認証 (Devise)
 - ユーザー登録後にプロフィール編集ページ遷移
 - -プロフィール画像の登録・編集(ActiveStorage)
 
