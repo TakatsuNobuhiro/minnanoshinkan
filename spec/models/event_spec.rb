@@ -27,4 +27,12 @@ RSpec.describe Event, type: :model do
 
     # enumのテスト
   end
+  describe 'search' do
+    it 'ゲームで検索はOK' do
+      expect(Event.events_search('ゲーム')).to include(@event)
+    end
+    it 'ガームで検索はNG' do
+      expect(Event.events_search('ガーム')).to eq([])
+    end
+  end
 end

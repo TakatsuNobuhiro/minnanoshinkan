@@ -34,7 +34,13 @@ RSpec.describe Club, type: :model do
       @club.name = 'a' * 76
       expect(@club.valid?).to eq(false)
     end
-
-    # enumのテスト
+  end
+  describe 'search' do
+    it 'Testで検索はOK' do
+      expect(Club.search('Test')).to include(@club)
+    end
+    it 'tstで検索はNG' do
+      expect(Club.search('tst')).to eq([])
+    end
   end
 end
