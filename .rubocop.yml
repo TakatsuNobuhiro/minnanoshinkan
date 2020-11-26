@@ -16,3 +16,6 @@ Style/GuardClause:
 Metrics/ClassLength:
   Exclude:
     - app/models/*.rb
+
+HashSyntax:
+  EnforcedStyle: ruby19

@@ -6,7 +6,7 @@ class EventFavoritesController < ApplicationController
     event_count(@event)
     @event.create_notification_like!(current_student)
     respond_to do |format|
-      format.html { redirect_back(:fallback_location => root_path) }
+      format.html { redirect_back(fallback_location: root_path) }
       format.js
     end
   end
@@ -17,7 +17,7 @@ class EventFavoritesController < ApplicationController
     event_count(@event)
 
     respond_to do |format|
-      format.html { redirect_back(:fallback_location => root_path) }
+      format.html { redirect_back(fallback_location: root_path) }
       format.js
     end
   end

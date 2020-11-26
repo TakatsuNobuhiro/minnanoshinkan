@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Club, :type => :model do
+RSpec.describe Club, type: :model do
   before { @club = create(:club) }
   describe 'バリデーション' do
     it '全て正常に記入されていればOK' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Event, :type => :model do
+RSpec.describe Event, type: :model do
   before { @event = create(:event) }
   describe 'バリデーション' do
     it '全て正常に記入されていればOK' do
