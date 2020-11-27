@@ -89,5 +89,3 @@ gem "stripe"
 
 gem 'rspec_junit_formatter'
 
-gem 'therubyracer'
-gem 'less-rails'
