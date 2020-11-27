@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :club do
+    sequence(:id) { |n| n }
     sequence(:name) { |n| "TestUser#{n}" }
     sequence(:email) { |n| "Test#{n}@example.com" }
     password = 'password'

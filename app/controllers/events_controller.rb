@@ -1,11 +1,12 @@
 class EventsController < ApplicationController
-  before_action :correct_user, only: %i[destroy]
-  before_action :authenticate_club!, only: %i[new create destroy]
+  before_action :authenticate_club!, only: %i[new create destroy update edit]
   def index
     if (params[:start] || params[:end] || params[:search]).present?
       events = Event
       events = events.events_search(params[:search]) if params[:search].present?
-      events = events.where('start > ?', params[:start]) if params[:start].present?
+      if params[:start].present?
+        events = events.where('start > ?', params[:start])
+      end
       events = events.where('end < ?', params[:end]) if params[:end].present?
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
@@ -84,11 +85,6 @@ class EventsController < ApplicationController
       :latitude,
       :longitude
     )
-  end
-
-  def correct_user
-    @event = current_club.events.find_by(id: params[:id])
-    redirect_to root_url unless @event
   end
 
   def tag_delete
