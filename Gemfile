@@ -88,3 +88,6 @@ gem 'gon' #コントローラーで定義したインスタンス変数をビュ
 gem "stripe"
 
 gem 'rspec_junit_formatter'
+
+gem 'therubyracer'
+gem 'less-rails'
