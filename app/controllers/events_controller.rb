@@ -4,9 +4,7 @@ class EventsController < ApplicationController
     if (params[:start] || params[:end] || params[:search]).present?
       events = Event
       events = events.events_search(params[:search]) if params[:search].present?
-      if params[:start].present?
-        events = events.where('start > ?', params[:start])
-      end
+      events = events.where('start > ?', params[:start]) if params[:start].present?
       events = events.where('end < ?', params[:end]) if params[:end].present?
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
