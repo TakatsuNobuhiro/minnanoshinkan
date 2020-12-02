@@ -1,3 +1,6 @@
+<div class="first_view">
+<h1>みんなの新歓</h1>
+</div>
 <% if !student_signed_in?&&!club_signed_in? %>
 <div class="guest-button">
   <%= link_to 'ゲストログイン（学生）', students_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>

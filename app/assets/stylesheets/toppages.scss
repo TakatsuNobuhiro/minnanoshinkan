@@ -14,11 +14,29 @@
 .guest-button {
   text-align: center;
 }
+
 .home-button-box {
   display: flex;
   justify-content: space-evenly;
   margin: 50px;
+
   a {
     display: inline-block;
   }
+}
+
+.first_view {
+
+  width: 100vw;
+
+  height: 100vh;
+  background: bottom/cover image-url('first_view.jpeg');
+
+  h1 {
+    color: white;
+    font-size: 265px;
+    letter-spacing: 55px;
+    text-align: left;
+  }
+
 }
