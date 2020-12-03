@@ -125,7 +125,6 @@ class Student < ApplicationRecord
          :validatable,
          :confirmable,
          :lockable,
-         :timeoutable,
          :trackable,
          :omniauthable,
          omniauth_providers: %i[facebook twitter google_oauth2]

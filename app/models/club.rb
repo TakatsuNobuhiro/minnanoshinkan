@@ -37,7 +37,6 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
          :validatable,
          :confirmable,
          :lockable,
-         :timeoutable,
          :trackable
 
   has_many :club_favorites, dependent: :destroy
