@@ -1,18 +1,44 @@
 <div class="first_view">
-<h1>みんなの新歓</h1>
 </div>
 <% if !student_signed_in?&&!club_signed_in? %>
-<div class="guest-button">
-  <%= link_to 'ゲストログイン（学生）', students_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
-  <%= link_to 'ゲストログイン（サークル）', clubs_guest_sign_in_path, method: :post , class: 'btn btn-primary'%>
+<div class="guest-button-box">
+  <%= link_to 'ゲストログイン（学生）', students_guest_sign_in_path, method: :post , class: 'guest-btn'%>
+  <%= link_to 'ゲストログイン（サークル）', clubs_guest_sign_in_path, method: :post , class: 'guest-btn'%>
 </div>
 <% end %>
-<div class="home-button-box">
-  <%= link_to '生徒一覧',students_path, class: 'btn btn-success'%>
-  <%= link_to 'サークル一覧',clubs_path, class: 'btn btn-success'%>
-  <%= link_to 'イベント一覧',events_path, class: 'btn btn-success'%>
-  <%= link_to 'お問い合わせ',contacts_path, class: 'btn btn-success'%>
+<div class="descriptions row">
+  <div class="description col-xs-5 col-sm-3">
+    <p class='title'>自分の入りたいサークルが見つかる</p>
+    <p>検索機能を使ってあなたに合ったサークルを探すことができます。自分の気になるサークルはお気に入りに登録し、通知を受け取ることができます。</p>
+    <%= link_to 'サークル一覧',clubs_path, class: 'btn btn-success'%>
+  </div>
+  <div class="description col-xs-5 col-sm-3">
+    <p class='title'>自分の都合に合う新歓イベントを見つけられる</p>
+    <p>検索機能を使ってあなたの都合に合うイベントを探すことが来ます。お気に入りに追加したイベントはカレンダーで閲覧することが出来ます。</p>
+    <%= link_to 'イベント一覧',events_path, class: 'btn btn-success'%>
+  </div>
+  <div class="description col-xs-5 col-sm-3">
+    <p class='title'>入学前にたくさん友達が作れる</p>
+    <p>気の合いそうな友達をフォローすることで繋がりを持つことができます。新歓期にたくさん友達を作って良いスタートダッシュを決めましょう</p>
+    <%= link_to '生徒一覧',students_path, class: 'btn btn-success'%>
+  </div>
+  <div class="description col-xs-5 col-sm-3">
+    <p class='title'>新入生にオンラインで新歓できる</p>
+    <p>サークル登録すれば、新歓イベントを無制限に投稿出来ます。課金をすれば新入生にメールを送信することが出来、より多くの人に認知されやすくなります。</p>
+    <% if club_signed_in? %>
+      <%= link_to 'イベント投稿',new_event_path, class: 'btn btn-success'%>
+    <% else %>
+      <%= link_to 'まずはサークル登録！',new_club_registration_path, class: 'btn btn-success'%>
+    <% end %>
+  </div>
+  <div class="description col-xs-5 col-sm-3">
+    <p class='title'>お問い合わせ</p>
+    <p>何かお困りでしたらお気軽にお問い合わせください。開発を手伝ってくれる方も募集しております。</p>
+    <%= link_to 'お問い合わせ',contacts_path, class: 'btn btn-success'%>
+  </div>
 </div>
+
+
 
 <%= month_calendar events: @events do |date, event| %>
 <%= date.day %>
