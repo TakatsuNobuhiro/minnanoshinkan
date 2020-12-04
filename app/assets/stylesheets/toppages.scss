@@ -28,7 +28,14 @@
 
 .guest-button-box {
 
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  .btn {
+    display: inline-block;
+    margin: 30px;
+  }
 
 
   .guest-btn {
@@ -48,11 +55,20 @@
 .descriptions {
   text-align: center;
 
+
   .description {
     border: 1px solid black;
     border-radius: 15%;
     padding: 10px;
-    margin: 10px;
+    margin: 10px auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+      margin-top: auto;
+      margin-bottom: 5px;
+    }
 
     .title {
       font-weight: bold;
@@ -67,6 +83,13 @@
   width: 100vw;
   height: 35vh;
 
+  p {
+    font-size: 24px;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+
 
 
 
@@ -78,6 +101,28 @@
     height: 50vh;
     background: bottom/cover image-url('first_view2.png');
 
+    p {
+      display: none;
+    }
+
+  }
+
+  .guest-button-box {
+
+
+    flex-direction: row;
+  }
+
+  .descriptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .description {
+      width: calc(50%-10px);
+      margin: 5px;
+
+    }
   }
 }
 
@@ -88,6 +133,19 @@
 
 
 
+
   }
 
+  .descriptions {
+
+    display: flex;
+    justify-content: space-evenly;
+
+    .description {
+      width: calc(33.33%-10px);
+      margin: 5px;
+
+    }
+
+  }
 }
