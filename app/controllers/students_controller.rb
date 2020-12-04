@@ -5,6 +5,12 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    club_like_events = []
+    @student.club_likes.includes(:events).each do |club|
+      club_like_events |= club.events
+    end
+    @event_likes = @student.event_likes
+    @events = club_like_events | @event_likes
     counts(@student)
   end
   def followings

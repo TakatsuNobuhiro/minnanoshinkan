@@ -38,11 +38,12 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
+  Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
   config.include Devise::Test::IntegrationHelpers, type: :request # The different available types are documented in the features, such as in
+  config.include Devise::Test::IntegrationHelpers, type: :system # The different available types are documented in the features, such as in
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.

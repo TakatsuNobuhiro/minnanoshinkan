@@ -69,3 +69,13 @@
     </div>
   </div>
 </div>
+
+<%= month_calendar events: @club.events do |date, event| %>
+<%= date.day %>
+<% event.each do |e| %>
+<div class="event-box">
+  <%= link_to e.title, e,class: "calendar-event" %>
+</div>
+<% end %>
+
+<% end %>

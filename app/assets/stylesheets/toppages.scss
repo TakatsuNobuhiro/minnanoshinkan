@@ -1,6 +1,7 @@
 // Place all the styles related to the toppages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.event-likes-box,
 .event-box {
   background-color: rgb(252, 19, 19);
   border-radius: 10%;
@@ -11,14 +12,140 @@
   }
 }
 
-.guest-button {
-  text-align: center;
+.club-likes-box {
+  background-color: blue;
+  border-radius: 10%;
+
+  .calendar-event {
+    font-size: 7px;
+    color: rgb(255, 255, 255);
+  }
 }
-.home-button-box {
+
+
+
+
+
+.guest-button-box {
+
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
-  margin: 50px;
-  a {
+
+  .btn {
     display: inline-block;
+    margin: 30px;
+  }
+
+
+  .guest-btn {
+    border-radius: 10%;
+    display: inline-block;
+    font-size: 11px;
+    color: white;
+    background-color: tomato;
+    padding: 5px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.descriptions {
+  text-align: center;
+
+
+  .description {
+    border: 1px solid black;
+    border-radius: 15%;
+    padding: 10px;
+    margin: 10px auto;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+      margin-top: auto;
+      margin-bottom: 5px;
+    }
+
+    .title {
+      font-weight: bold;
+    }
+  }
+
+}
+
+.first_view {
+
+  background: bottom/cover image-url('first_view.jpeg');
+  width: 100vw;
+  height: 35vh;
+
+  p {
+    font-size: 24px;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+
+
+
+}
+
+
+@media (min-width:560px) {
+  .first_view {
+    height: 50vh;
+    background: bottom/cover image-url('first_view2.png');
+
+    p {
+      display: none;
+    }
+
+  }
+
+  .guest-button-box {
+
+
+    flex-direction: row;
+  }
+
+  .descriptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    .description {
+      width: calc(50%-10px);
+      margin: 5px;
+
+    }
+  }
+}
+
+@media (min-width:960px) {
+  .first_view {
+    width: 100vw;
+    height: 105vh;
+
+
+
+
+  }
+
+  .descriptions {
+
+    display: flex;
+    justify-content: space-evenly;
+
+    .description {
+      width: calc(33.33%-10px);
+      margin: 5px;
+
+    }
+
   }
 }
