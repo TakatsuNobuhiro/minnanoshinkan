@@ -30,6 +30,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 .debug_dump {
   clear: both;
   float: left;
@@ -37,6 +38,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   margin-top: 45px;
   @include box_sizing;
 }
+
 // index
 .index-profile {
   padding: 10px 0;
@@ -45,6 +47,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   cursor: pointer;
 
   border-bottom: 1px solid rgb(134, 134, 134);
+
   &:hover {
     opacity: 0.7;
   }
@@ -57,14 +60,16 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
     width: 100%;
     height: 100%;
   }
+
   .index-avatar {
     margin-right: 10px;
+
     img {
       border-radius: 50%;
     }
   }
-  .index-rightbox {
-  }
+
+  .index-rightbox {}
 
   .index-name {
     font-size: 9px;
@@ -89,6 +94,7 @@ a:hover {
     margin-top: 0.6em;
     color: #81878b;
   }
+
   .data li {
     width: 32%;
     text-align: center;
@@ -97,9 +103,11 @@ a:hover {
     font-family: "Lato";
     border-right: solid 1px #bdc3c7;
   }
+
   .data li:last-child {
     border: none;
   }
+
   .data li span {
     display: block;
     text-transform: uppercase;
@@ -107,5 +115,21 @@ a:hover {
     font-size: 0.5em;
     margin-top: 0.6em;
     font-weight: 700;
+  }
+}
+
+.no-image {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+
+  background-color: rgb(233, 233, 233);
+
+  p {
+    font-size: 7px;
+    padding-top: 18px;
+    padding-left: 1px;
+
   }
 }
