@@ -1,11 +1,8 @@
 <div class="container">
-  <h2>生徒一覧</h2>
-  <%= form_tag(students_path,:method => 'get') do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "生徒名で検索" %>
-  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
-  <% end %>
+  <h2><%= @student.name %>のフォローユーザー</h2>
 
-  <% @students.each do |s|%>
+
+  <% @followings.each do |s|%>
   <div class="index-profile">
     <%= link_to "",student_path(s.id) %>
     <div class="index-avatar">
@@ -28,5 +25,5 @@
     </div>
   </div>
   <% end %>
-  <%= paginate @students%>
+  <%= paginate @followings%>
 </div>

@@ -16,11 +16,11 @@
       </li>
       <li id="count_followers">
         <%= @count_followers %>
-        <span>フォローワー</span>
+        <span><%= link_to 'フォローワー',followers_student_path %></span>
       </li>
       <li>
         <%= @count_followings %>
-        <span>フォロー</span>
+        <span><%= link_to 'フォロー',followings_student_path %></span>
       </li>
     </ul>
   </div>

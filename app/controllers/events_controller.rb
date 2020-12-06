@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @events =
       Kaminari.paginate_array(
         events.includes(:tags).where('start > ?', Date.today).order(start: :asc)
-      ).page(params[:page]).per(10)
+      ).page(params[:page]).per(25)
   end
 
   def show

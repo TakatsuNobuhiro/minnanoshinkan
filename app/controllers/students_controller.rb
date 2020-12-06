@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   def index
-    @students = Student.with_attached_avatar.search(params[:search])
+    @students = Student.with_attached_avatar.search(params[:search]).per(25)
   end
 
   def show
@@ -15,13 +15,14 @@ class StudentsController < ApplicationController
   end
   def followings
     @student = Student.find(params[:id])
-    @followings = @student.followings.page(params[:id])
+    @followings = @student.followings.page(params[:id]).per(25)
     counts(@student)
   end
 
   def followers
     @student = Student.find(params[:id])
-    @followers = @student.followers.page(params[:id])
+    @followers = @student.followers.page(params[:id]).per(25)
     counts(@student)
   end
+
 end

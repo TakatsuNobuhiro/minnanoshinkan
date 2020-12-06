@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     post 'students/guest_sign_in', to: 'students/sessions#new_guest'
   end
   resources :students, only: %i[show]
+  resources :students do
+    get :followings, on: :member 
+    get :followers, on: :member
+  end
   resources :clubs, only: %i[show] do
     resources :club_favorites, only: %i[create destroy]
   end
