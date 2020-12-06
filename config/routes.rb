@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   end
   resources :clubs, only: %i[show] do
     resources :club_favorites, only: %i[create destroy]
+    get :student_likes, on: :member 
   end
 end
