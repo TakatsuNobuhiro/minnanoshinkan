@@ -14,8 +14,10 @@
         <%= @count_club_likes %>
         <span><%= link_to 'お気に入り(サークル)',club_likes_student_path%> </span>
       </li>
-      <li id="count_followers">
-        <%= @count_followers %>
+      <li>
+        <div id="count_followers">
+          <%= @count_followers %>
+        </div>
         <span><%= link_to 'フォローワー',followers_student_path %></span>
       </li>
       <li>
