@@ -1,10 +1,10 @@
 class StudentsController < ApplicationController
+  before_action :set_student ,except: [:index]
   def index
-    @students = Student.with_attached_avatar.search(params[:search]).per(25)
+    @students = Student.with_attached_avatar.search(params[:search]).page(params[:params]).per(25)
   end
 
   def show
-    @student = Student.find(params[:id])
     club_like_events = []
     @student.club_likes.includes(:events).each do |club|
       club_like_events |= club.events
@@ -14,15 +14,21 @@ class StudentsController < ApplicationController
     counts(@student)
   end
   def followings
-    @student = Student.find(params[:id])
-    @followings = @student.followings.page(params[:id]).per(25)
+    @followings = @student.followings.page(params[:params]).per(25)
     counts(@student)
   end
 
   def followers
-    @student = Student.find(params[:id])
-    @followers = @student.followers.page(params[:id]).per(25)
+    @followers = @student.followers.page(params[:params]).per(25)
     counts(@student)
   end
 
+  def club_likes
+    @club_likes = @student.club_likes.page(params[:params]).per(25)
+  end
+
+  private
+  def set_student
+    @student = Student.find(params[:id])
+  end
 end

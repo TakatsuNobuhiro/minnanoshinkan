@@ -1,12 +1,6 @@
 <div class="container">
-  <h2>サークル一覧</h2>
-  <%= form_tag(clubs_path,:method => 'get') do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "サークル名で検索" %>
-  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
-  <% end %>
-
-
-  <% @clubs.each do |c|%>
+  <h2><%=@student.name%>のお気に入りサークル</h2>
+  <% @club_likes.each do |c|%>
   <div class="index-profile">
     <%= link_to "",club_path(c.id) %>
     <div class="index-avatar">
@@ -28,5 +22,5 @@
     </div>
   </div>
   <% end %>
-  <%= paginate @clubs%>
+  <%= paginate @club_likes%>
 </div>

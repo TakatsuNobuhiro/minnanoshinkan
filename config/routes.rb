@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   end
   resources :students, only: %i[show]
   resources :students do
+    get :club_likes, on: :member 
     get :followings, on: :member 
     get :followers, on: :member
   end
