@@ -6,21 +6,17 @@
   h2 {
     text-align: center;
   }
-  .club_image {
-    #club_image {
+
+  .show-image {
+    #show-image {
       margin: 10px auto;
       display: block;
       border-radius: 50%;
     }
   }
-  .club_name {
-    text-align: center;
-    font-weight: bold;
-  }
-  .club_detail {
-    text-align: center;
-  }
-  .club-button {
+
+
+  .show-button {
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;

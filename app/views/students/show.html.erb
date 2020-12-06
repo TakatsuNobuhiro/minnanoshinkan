@@ -2,8 +2,14 @@
 
   <h2 class='text-center'>プロフィール詳細</h2>
 
-  <div class="club_image">
-    <%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'club_image'if @student.avatar.attached?%>
+  <div class="show-image">
+    <% if @student.avatar.attached? %>
+      <%= image_tag @student.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'show-image'%>
+    <% else %>
+      <div class="no-show-image">
+        <p>No image</p>
+      </div>
+    <% end %>
   </div>
   <div class="student name"><%= @student.name %></div>
   <div class="student detail"><%= @student.detail %></div>
@@ -45,7 +51,7 @@
     </ul>
   </div>
 
-  <div class="club-button">
+  <div class="show-button">
     <div class="button1">
       <%= link_to '生徒一覧',students_path, class: 'btn btn-primary'%>
     </div>
