@@ -1,28 +1,78 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.event-index {
+  #tagbox {
+    display: flex;
+    margin: 10px 0;
+    border-bottom: 1px solid rgb(223, 223, 223);
 
-#tagbox {
-  display: flex;
-  margin: 10px 0;
-  border-bottom: 1px solid rgb(223, 223, 223);
-  #tagbox_title {
-    size: 14px;
+    #tagbox_title {
+      size: 14px;
 
-    margin-right: auto 7px;
-  }
-  #tag_list {
+      margin-right: auto 7px;
+    }
+
+
+
+
   }
 
-  .tag {
-    margin: 1px;
+
+  .event-search-box {
+    text-align: center;
+    margin: 10px auto;
+
+    #span {
+      transform: rotate(90deg);
+    }
+
+    .event-search {
+      margin-top: 10px
+    }
   }
+
+  .tag,
+  .datetime {
+    display: none;
+  }
+
+
 }
 
 .event {
   text-align: center;
+
   .event_favorite_box {
     display: flex;
     justify-content: center;
+  }
+}
+
+@media (min-width:560px) {
+  .event-index {
+    #span {
+      transform: rotate(90deg);
+      display: inline;
+    }
+
+    .datetime {
+      display: table-cell;
+    }
+  }
+}
+
+@media (min-width:960px) {
+  .event-index {
+    .tag {
+      display: table-cell;
+    }
+
+    #tag_list {
+      .btn {
+        margin: 2px;
+        display: inline-block;
+      }
+    }
   }
 }

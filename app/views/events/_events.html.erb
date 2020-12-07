@@ -3,8 +3,8 @@
     <tr>
       <td>主催</td>
       <td>イベント名</td>
-      <td>タグ</td>
-      <td>日時</td>
+      <td class='tag'>タグ</td>
+      <td class='datetime'>日時</td>
     </tr>
   </thead>
   <tbody>
@@ -12,12 +12,12 @@
     <tr>
       <td><%= link_to e.club.name ,club_path(e.club.id)%></td>
       <td><%= link_to e.title ,event_path(e.id)%></td>
-      <td>
+      <td class='tag'>
         <% e.tags.each do |t|%>
         <%= link_to t.name, events_path(tag_id: t.id), class: "btn btn-primary btn-sm" %>
         <% end %>
       </td>
-      <td><%= e.start.strftime('%m月%d日 %H時') %>(<%= time_ago_in_words(e.start) %>後)</td>
+      <td class='datetime'><%= e.start.strftime('%m月%d日 %H時') %>(<%= time_ago_in_words(e.start) %>後)</td>
     </tr>
     <% end %>
   </tbody>
