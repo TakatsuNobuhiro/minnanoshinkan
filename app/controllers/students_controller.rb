@@ -22,13 +22,19 @@ class StudentsController < ApplicationController
     end
   end
   def followings
-    @followings = @student.followings.page(params[:page]).per(25)
-    counts(@student)
+    @students = @student.followings.page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.js { render template: 'students/students.js.erb' }
+    end
   end
 
   def followers
-    @followers = @student.followers.page(params[:page]).per(25)
-    counts(@student)
+    @students = @student.followers.page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.js { render template: 'students/students.js.erb' }
+    end
   end
 
   def club_likes
