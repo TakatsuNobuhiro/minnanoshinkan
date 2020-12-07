@@ -12,6 +12,10 @@ class StudentsController < ApplicationController
     @event_likes = @student.event_likes
     @events = club_like_events | @event_likes
     counts(@student)
+    respond_to do |format|
+      format.html 
+      format.js
+    end
   end
   def followings
     @followings = @student.followings.page(params[:params]).per(25)

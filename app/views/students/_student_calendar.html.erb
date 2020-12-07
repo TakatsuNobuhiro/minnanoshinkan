@@ -1,0 +1,15 @@
+<%= month_calendar events: events do |date, event| %>
+<%= date.day %>
+<% event.each do |e| %>
+<% if event_likes.include?(e) %>
+<div class="event-likes-box">
+  <%= link_to e.title, e,class: "calendar-event" %>
+</div>
+<% else %>
+<div class="club-likes-box">
+  <%= link_to e.title, e,class: "calendar-event" %>
+</div>
+<% end %>
+<% end %>
+
+<% end %>

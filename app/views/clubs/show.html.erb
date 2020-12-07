@@ -1,7 +1,13 @@
 <div class="student profile">
   <h2>サークル詳細</h2>
   <div class="show-image">
-    <%= image_tag @club.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'show-image' if @club.avatar.attached?%>
+    <% if @club.avatar.attached? %>
+    <%= image_tag @club.avatar.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed ,id: 'show-image' %>
+    <% else %>
+      <div class="no-show-image">
+        <p>No image</p>
+      </div>   
+    <% end %>
   </div>
   <div class="student name"><%=  @club.name %></div>
   <div class="student detail"><%= @club.detail %></div>
