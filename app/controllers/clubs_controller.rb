@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
   def index
-    @clubs = Club.with_attached_avatar.search(params[:search]).page(params[:params]).per(25)
+    @clubs = Club.with_attached_avatar.search(params[:search]).page(params[:page]).per(25)
   end
 
   def show
@@ -15,6 +15,6 @@ class ClubsController < ApplicationController
 
   def student_likes
     @club = Club.find(params[:id])
-    @student_likes = @club.student_likes.page(params[:params]).per(25)
+    @student_likes = @club.student_likes.page(params[:page]).per(25)
   end
 end

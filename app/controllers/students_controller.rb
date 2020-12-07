@@ -1,7 +1,11 @@
 class StudentsController < ApplicationController
   before_action :set_student, except: [:index]
   def index
-    @students = Student.with_attached_avatar.search(params[:search]).page(params[:params]).per(25)
+    @students = Student.with_attached_avatar.search(params[:search]).page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.js { render template: 'students/students.js.erb' }
+    end
   end
 
   def show
@@ -18,17 +22,17 @@ class StudentsController < ApplicationController
     end
   end
   def followings
-    @followings = @student.followings.page(params[:params]).per(25)
+    @followings = @student.followings.page(params[:page]).per(25)
     counts(@student)
   end
 
   def followers
-    @followers = @student.followers.page(params[:params]).per(25)
+    @followers = @student.followers.page(params[:page]).per(25)
     counts(@student)
   end
 
   def club_likes
-    @club_likes = @student.club_likes.page(params[:params]).per(25)
+    @club_likes = @student.club_likes.page(params[:page]).per(25)
   end
 
   private

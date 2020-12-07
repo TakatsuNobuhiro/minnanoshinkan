@@ -4,30 +4,10 @@
   <%= text_field_tag :search, params[:search] ,placeholder: "生徒名で検索" %>
   <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
   <% end %>
-
-  <% @students.each do |s|%>
-  <div class="index-profile">
-    <%= link_to "",student_path(s.id) %>
-    <div class="index-avatar">
-    <% if s.avatar.attached? %>
-      <%= image_tag s.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed %>
-    <% else %>
-      <div class="no-index-image">
-      <p>No image</p>
-      </div>
-    <% end %>
-
-    </div>
-    <div class="index-rightbox">
-      <div class="index-name">
-        <%= s.name %>
-      </div>
-      <div class="index-detail">
-        <%= s.detail%>
-      </div>
-    </div>
+  <div class="students">
+    <%= render(partial:'students/students.html.erb', locals: {students: @students})%>
   </div>
-  <% end %>
-  <%= paginate @students%>
+
+  
 
 </div>
