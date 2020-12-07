@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
+  before_action :set_event, only: %i[show update edit]
   def index
     if (params[:start] || params[:end] || params[:search]).present?
       events = Event
@@ -24,7 +25,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @comment = Comment.new
     @comments = @event.comments.includes(:student)
     event_count(@event)
@@ -50,12 +50,10 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
     @tag_list = @event.tags.pluck(:name).join(',')
   end
 
   def update
-    @event = Event.find(params[:id])
     tag_list = params[:event][:tag_ids].split(',')
     if @event.update(event_params)
       @event.save_tags(tag_list)
@@ -92,4 +90,8 @@ class EventsController < ApplicationController
   def tag_delete
     Tag.all.each { |tag| tag.delete if tag.tag_relationships.length == 0 }
   end
+  def set_event
+    @event = Event.find(params[:id])
+  end
+  
 end
