@@ -40,12 +40,12 @@ Rails.application.routes.draw do
   end
   resources :students, only: %i[show]
   resources :students do
-    get :club_likes, on: :member 
-    get :followings, on: :member 
+    get :club_likes, on: :member
+    get :followings, on: :member
     get :followers, on: :member
   end
   resources :clubs, only: %i[show] do
     resources :club_favorites, only: %i[create destroy]
-    get :student_likes, on: :member 
+    get :student_likes, on: :member
   end
 end

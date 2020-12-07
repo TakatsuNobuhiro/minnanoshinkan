@@ -5,7 +5,12 @@ class ClubsController < ApplicationController
 
   def show
     @club = Club.find(params[:id])
+    @events = @club.events
     club_count(@club)
+    respond_to do |format|
+      format.html
+      format.js { render template: './layouts/calendar.js.erb' }
+    end
   end
 
   def student_likes

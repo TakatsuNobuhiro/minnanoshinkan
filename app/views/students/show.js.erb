@@ -1,1 +1,1 @@
-document.getElementById('calendar').innerHTML = "<%= j(render(partial:'student_calendar', locals: {events: @events,event_likes: @event_likes})) %>"
+document.getElementsByClassName('calendar')[0].innerHTML = "<%= j(render(partial:'student_calendar', locals: {events: @events,event_likes: @event_likes})) %>"

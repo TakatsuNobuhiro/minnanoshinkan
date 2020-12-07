@@ -44,7 +44,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 - 時間投稿機能
 - 地図表示（Google Maps API）
 - 投稿タグ付機能
-- ページネーション機能(kaminari)
+- ページネーション機能(kaminari,Ajax)
 - SNS 共有機能(Twitter)
 
 ### 決済機能(Stripe)
@@ -66,9 +66,9 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 - お気に入り機能（学生 → イベント）
 - お気に入り機能（学生 → サークル）
 
-### カレンダー表示機能(simple calendar)
+### カレンダー表示機能
 
-- イベントをカレンダーに表示
+- イベントをカレンダーに表示(Ajax)
 
 ### コメント機能
 

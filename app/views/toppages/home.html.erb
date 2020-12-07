@@ -50,5 +50,6 @@
 
 
 
-
-<%= render('layouts/calendar')%>
+<div class="calendar">
+  <%= render(partial: 'layouts/calendar',locals: {events: @events})%>
+</div>

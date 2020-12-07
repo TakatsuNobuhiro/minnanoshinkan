@@ -17,6 +17,10 @@ class EventsController < ApplicationController
       Kaminari.paginate_array(
         events.includes(:tags).where('start > ?', Date.today).order(start: :asc)
       ).page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.js { render template: './layouts/calendar.js.erb' }
+    end
   end
 
   def show

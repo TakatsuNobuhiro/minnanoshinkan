@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student ,except: [:index]
+  before_action :set_student, except: [:index]
   def index
     @students = Student.with_attached_avatar.search(params[:search]).page(params[:params]).per(25)
   end
@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     @events = club_like_events | @event_likes
     counts(@student)
     respond_to do |format|
-      format.html 
+      format.html
       format.js
     end
   end
@@ -32,6 +32,7 @@ class StudentsController < ApplicationController
   end
 
   private
+
   def set_student
     @student = Student.find(params[:id])
   end
