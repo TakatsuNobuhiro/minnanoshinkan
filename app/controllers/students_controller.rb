@@ -38,7 +38,11 @@ class StudentsController < ApplicationController
   end
 
   def club_likes
-    @club_likes = @student.club_likes.page(params[:page]).per(25)
+    @clubs = @student.club_likes.page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.js { render template: 'clubs/clubs.js.erb' }
+    end
   end
 
   private

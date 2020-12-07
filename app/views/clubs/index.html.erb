@@ -4,29 +4,7 @@
   <%= text_field_tag :search, params[:search] ,placeholder: "サークル名で検索" %>
   <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
   <% end %>
-
-
-  <% @clubs.each do |c|%>
-  <div class="index-profile">
-    <%= link_to "",club_path(c.id) %>
-    <div class="index-avatar">
-    <% if c.avatar.attached? %>
-      <%= image_tag c.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed %>
-    <% else %>
-      <div class="no-index-image">
-        <p>No image</p>
-      </div>
-    <% end %>
-    </div>
-    <div class="index-rightbox">
-      <div class="index-name">
-        <%= c.name %>
-      </div>
-      <div class="index-detail">
-        <%= c.detail%>
-      </div>
-    </div>
+  <div class="clubs">
+    <%= render(partial:'clubs/clubs.html.erb', locals: {clubs: @clubs})%>
   </div>
-  <% end %>
-  <%= paginate @clubs%>
 </div>

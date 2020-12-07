@@ -18,8 +18,10 @@
         <%= @count_events %>
         <span>イベント投稿数</span>
       </li>
-      <li id='count_clubs'>
-        <%= @count_clubs %>
+      <li>
+        <div id="count_clubs">
+          <%= @count_clubs %>
+        </div>
         <span><%= link_to 'お気に入り数（サークル）',student_likes_club_path %></span>
       </li>
       <li>

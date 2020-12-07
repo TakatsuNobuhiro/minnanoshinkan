@@ -1,26 +1,6 @@
 <div class="container">
   <h2><%=@student.name%>のお気に入りサークル</h2>
-  <% @club_likes.each do |c|%>
-  <div class="index-profile">
-    <%= link_to "",club_path(c.id) %>
-    <div class="index-avatar">
-    <% if c.avatar.attached? %>
-      <%= image_tag c.avatar.variant(gravity: :center, resize:"50x50^", crop:"50x50+0+0").processed %>
-    <% else %>
-      <div class="no-index-image">
-        <p>No image</p>
-      </div>
-    <% end %>
-    </div>
-    <div class="index-rightbox">
-      <div class="index-name">
-        <%= c.name %>
-      </div>
-      <div class="index-detail">
-        <%= c.detail%>
-      </div>
-    </div>
+  <div class="clubs">
+    <%= render(partial:'clubs/clubs.html.erb', locals: {clubs: @clubs})%>
   </div>
-  <% end %>
-  <%= paginate @club_likes%>
 </div>
