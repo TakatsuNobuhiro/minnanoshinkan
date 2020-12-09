@@ -1,1 +1,5 @@
 <%= render "form" %>
+<div class="container">
+  <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に
+  削除しますか？" }, class: "btn btn-danger btn-block mt-1 mb-1" %>
+</div>

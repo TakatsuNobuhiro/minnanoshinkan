@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
-  before_action :set_event, only: %i[show update edit]
+  before_action :set_event, only: %i[show update edit destroy]
   def index
     if (params[:start] || params[:end] || params[:search]).present?
       events = Event
@@ -20,7 +20,7 @@ class EventsController < ApplicationController
       ).page(params[:page]).per(100)
     respond_to do |format|
       format.html
-      format.js 
+      format.js
     end
   end
 
@@ -70,7 +70,7 @@ class EventsController < ApplicationController
     @event.destroy
     tag_delete
     flash[:success] = 'イベントを削除しました'
-    redirect_to root_path
+    redirect_to club_path(current_club.id)
   end
 
   private
@@ -93,5 +93,4 @@ class EventsController < ApplicationController
   def set_event
     @event = Event.find(params[:id])
   end
-  
 end

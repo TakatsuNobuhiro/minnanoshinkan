@@ -21,9 +21,9 @@
       placeholder: "タグをつける。複数つけるには','で区切ってください。" %>
   </div>
   <div class="field">
-    <%= f.label :content %>
+    <%= f.label :content, 'イベント内容(必須)' %>
     <%= f.rich_text_area :content %>
   </div>
-  <%= f.submit '投稿' %>
+  <%= f.submit '投稿',class: 'btn btn-success btn-block mt-1'%>
   <% end %>
 </div>

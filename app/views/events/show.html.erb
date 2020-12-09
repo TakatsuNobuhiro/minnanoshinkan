@@ -3,11 +3,12 @@
     <h2><%= @event.title %></h2>
     <p>主催サークル<%= link_to @event.club.name,club_path(@event.club.id) %></p>
     <% time = (@event.end-@event.start).to_i %>
+
+    <%= @event.content %>
     <p><i
         class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)
     </p>
-
-    <%= @event.content %>
+    <div id="map"></div>
     <div class="event_favorite_box">
 
       <% if student_signed_in?%>
@@ -35,6 +36,9 @@
     <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
     <%= link_to "サークル詳細",club_path(@event.club.id),class: "btn btn-warning"%>
   </div>
+
+
+
   <% if student_signed_in? %>
   <%= form_with(model: [@event,@comment], remote: true) do |f| %>
   <div class="comment">
@@ -58,7 +62,7 @@
   <div id="comments">
     <%= render "comments/comments"%>
   </div>
-  <div id="map"></div>
+  
 
   <script type="text/javascript">
     function initMap() {
@@ -100,7 +104,8 @@
     #map {
       height: 400px;
       width: 100%;
-      margin-top: 100px;
+      margin: 20px 0;
+
       border: solid, 5px, black;
     }
   </style>

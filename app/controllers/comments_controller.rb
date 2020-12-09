@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       event_count(@event)
       respond_to do |format|
         format.html
-        format.js 
+        format.js
       end
     else
       flash.now[:danger] = 'コメントの投稿に失敗しました'
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       event_count(@event)
       respond_to do |format|
         format.html
-        format.js 
+        format.js
       end
     else
       flash.now[:danger] = '他人のコメントは削除できません'
@@ -47,6 +47,6 @@ class CommentsController < ApplicationController
 
   def correct_user
     @comment = Comment.find(params[:id])
-    redirect_to root_path unless @comment.student==current_student
+    redirect_to root_path unless @comment.student == current_student
   end
 end
