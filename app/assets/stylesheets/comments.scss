@@ -1,3 +1,70 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.comment {
+  display: flex;
+  margin: 10px;
+
+
+
+  .comment-avatar {
+    img {
+      border-radius: 50%;
+      margin-right: 10px;
+
+    }
+  }
+
+  .no-comment-image {
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+
+    background-color: rgb(233, 233, 233);
+
+    p {
+      font-size: 11px;
+      padding-top: 22px;
+      padding-left: 7px;
+
+    }
+  }
+
+  .comment-body {
+    .comment-box {
+      display: flex;
+
+      .comment-content {
+        font-size: 19px;
+        margin: 0;
+      }
+    }
+
+    .trash {
+      color: black;
+      font-size: 12px;
+    }
+
+    p {
+      .name {
+        font-size: 14px;
+        font-weight: bold;
+        color: black;
+      }
+
+      .datetime {
+        font-size: 11px;
+        color: gray;
+      }
+    }
+
+    .form-control {
+      width: 500px;
+      height: 32px;
+    }
+  }
+
+
+}

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def event_count(event)
     @count_like_events = event.student_event_likes.count
-    @count_comment = event.comments
+    @count_comments = event.comments.count
   end
 
   #guset_login
