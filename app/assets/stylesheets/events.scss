@@ -43,9 +43,22 @@
 .event {
   text-align: center;
 
+  .event-content {
+    text-align: left;
+  }
+
   .event_favorite_box {
     display: flex;
     justify-content: center;
+
+  }
+
+  .btn-block {
+    .btn {
+      display: block;
+      margin: 10px;
+
+    }
   }
 }
 
@@ -63,6 +76,18 @@
 }
 
 @media (min-width:960px) {
+
+
+  .btn-block {
+
+
+    .btn {
+      display: inline;
+      margin: 10px;
+
+    }
+  }
+
   .event-index {
     .tag {
       display: table-cell;

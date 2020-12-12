@@ -1,14 +1,21 @@
 <div class="container">
   <div class="event">
-    <h2><%= @event.title %></h2>
-    <p>主催サークル<%= link_to @event.club.name,club_path(@event.club.id) %></p>
-    <% time = (@event.end-@event.start).to_i %>
-
-    <%= @event.content %>
-    <p><i
-        class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)
-    </p>
-    <div id="map"></div>
+    <div class="top-box">
+      <div class="left-box">
+        <h2><%= @event.title %></h2>
+        <p>主催サークル<%= link_to @event.club.name,club_path(@event.club.id) %></p>
+        <% time = (@event.end-@event.start).to_i %>
+        <div class="event-content">
+          <%= @event.content %>
+        </div>
+      </div>
+      <div class="right-box">
+        <p><i
+            class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)
+        </p>
+        <div id="map"></div>
+      </div>
+    </div>
     <div class="event_favorite_box">
 
       <% if student_signed_in?%>
@@ -22,19 +29,20 @@
       <% end %>
       <p id="event_count"><i class="fas fa-heart"></i><%= @count_like_events %></p>
     </div>
-    <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
-    <i class="fab fa-twitter" style='color: #3399FF;'></i>
-    Twitterでシェア
-    <% end %>
+    <div class="btn-block">
+      <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
+      <i class="fab fa-twitter" style='color: #3399FF;'></i>
+      Twitterでシェア
+      <% end %>
 
-    <% if club_signed_in? %>
-    <% if current_club==@event.club%>
-    <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
-    <%= link_to "イベント削除", @event , method: :delete, data: { confirm: "イベントを本当に削除しますか？" }, class: "btn btn-danger" %>
-    <% end %>
-    <% end %>
-    <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
-    <%= link_to "サークル詳細",club_path(@event.club.id),class: "btn btn-warning"%>
+      <% if club_signed_in? %>
+      <% if current_club==@event.club%>
+      <%= link_to "イベント修正", edit_event_path(@event),class: "btn btn-success" %>
+      <% end %>
+      <% end %>
+      <%= link_to "イベント一覧",events_path,class: "btn btn-primary"%>
+      <%= link_to "サークル詳細",club_path(@event.club.id),class: "btn btn-warning"%>
+    </div>
   </div>
 
 
