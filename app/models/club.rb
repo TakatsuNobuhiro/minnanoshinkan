@@ -1,4 +1,5 @@
 class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable # Include default devise modules. Others available are:
+  belongs_to :category
   enum active: { 文化系: false, 運動系: true }
   enum intercollege: { 学内: false, インカレ: true }
   has_many :events, dependent: :destroy

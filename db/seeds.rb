@@ -1,26 +1,9 @@
 require 'faker'
 I18n.locale = :ja
 Faker::Config.locale = :en
-15.times do
-  Student.create(
-    name: Faker::Name.name,
-    email: Faker::Internet.email,
-    password: 'hugahuga',
-    gender: 1,
-    university: '東京工業大学',
-    highschool: '広尾学園',
-    detail: "私は#{Faker::Food.dish}が好きです。"
-  )
-end
 
-15.times do
-  Student.create(
-    name: 'fake',
-    email: Faker::Internet.email,
-    password: 'hugahuga',
-    intercollege: true,
-    university: '東京工業大学',
-    active: true,
-    detail: '毎週火曜日にやってます。'
-  )
-end
+tokyo_tech = Category.create(:name=>"東京工業大学")
+tokyo_tech.children.create([{:name=>"理学院"}, {:name=>"工学院"},{:name=>"物質理工学院"},{:name=>"情報理工学院"},{:name=>"生命理工学院"},{:name=>"環境・社会理工学院"}])
+u_tokyo = Category.create(:name=>"東京大学")
+u_tokyo.children.create([{:name=>"文科一類"}, {:name=>"文化二類"},{:name=>"文化三類"},{:name=>"理科一類"},{:name=>"理科二類"},{:name=>"理科三類"}])
+

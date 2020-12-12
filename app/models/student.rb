@@ -1,4 +1,5 @@
 class Student < ApplicationRecord
+  belongs_to :category
   enum prefecture: {
          "---": 0,
          北海道: 1,
