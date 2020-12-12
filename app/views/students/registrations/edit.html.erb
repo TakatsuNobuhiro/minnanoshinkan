@@ -23,13 +23,10 @@
 
   <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
 
-  <div class="form-group">
-    <%= f.label :university, '大学(必須)' %>
-    <%= f.text_field :university, class: 'form-control', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :department, '学部(必須)' %>
-    <%= f.text_field :department, class: 'form-control', required: true %>
+  <div class="item_input__body__category" id="category_box">
+    <div class="pulldown" id="partent_box">
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"} %>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :highschool, '出身高校' %>

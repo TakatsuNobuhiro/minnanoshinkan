@@ -15,9 +15,9 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    set_category
+  end
 
   # PUT /resource
   def update
