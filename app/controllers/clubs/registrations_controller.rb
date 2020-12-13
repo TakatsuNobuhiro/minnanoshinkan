@@ -52,7 +52,7 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: %i[name sns home university intercollege active detail avatar]
+      keys: %i[name sns home intercollege active detail avatar category_id]
     )
   end
 

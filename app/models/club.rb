@@ -20,11 +20,6 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
             on: :update,
             unless: :encrypted_password_changed?,
             inclusion: { in: Club.actives.keys }
-  validates :university,
-            presence: true,
-            on: :update,
-            unless: :encrypted_password_changed?,
-            length: { in: 1..50 }
 
   validates :intercollege,
             presence: true,

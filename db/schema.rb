@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_083902) do
+ActiveRecord::Schema.define(version: 2020_12_12_150031) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_083902) do
     t.boolean "intercollege", default: false
     t.boolean "active"
     t.integer "premium", default: 0
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_clubs_on_category_id"
     t.index ["confirmation_token"], name: "index_clubs_on_confirmation_token", unique: true
     t.index ["email"], name: "index_clubs_on_email", unique: true
     t.index ["reset_password_token"], name: "index_clubs_on_reset_password_token", unique: true
@@ -196,6 +198,8 @@ ActiveRecord::Schema.define(version: 2020_12_12_083902) do
     t.string "hobby"
     t.text "detail"
     t.integer "prefecture", default: 0
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_students_on_category_id"
     t.index ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
@@ -221,6 +225,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_083902) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "club_favorites", "clubs"
   add_foreign_key "club_favorites", "students"
+  add_foreign_key "clubs", "categories"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "students"
   add_foreign_key "event_favorites", "events"
@@ -235,6 +240,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_083902) do
   add_foreign_key "premium_mails", "clubs"
   add_foreign_key "relationships", "students"
   add_foreign_key "relationships", "students", column: "follow_id"
+  add_foreign_key "students", "categories"
   add_foreign_key "tag_relationships", "events"
   add_foreign_key "tag_relationships", "tags"
 end

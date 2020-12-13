@@ -13,7 +13,8 @@
 
   <div class="item_input__body__category" id="category_box">
     <div class="pulldown" id="partent_box">
-      <%= f.select :category, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"} %>
+      <%= f.label :category_id, '大学' %>
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}, :selected => resource.category_id ),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"} %>
     </div>
   </div>
 

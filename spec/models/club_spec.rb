@@ -14,10 +14,6 @@ RSpec.describe Club, type: :model do
       @club.email = ''
       expect(@club.valid?).to eq(false)
     end
-    it 'universityが空だとNG' do
-      @club.university = ''
-      expect(@club.valid?).to eq(false)
-    end
     it 'intercollegeがnillだとNG' do
       @club.intercollege = nil
       expect(@club.valid?).to eq(false)
