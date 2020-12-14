@@ -16,12 +16,7 @@ class ApplicationController < ActionController::Base
     @count_like_events = event.student_event_likes.count
     @count_comments = event.comments.count
   end
-  #jsonで親の名前で検索し、紐づく小カテゴリーの配列を取得
-  def get_category_children
-    @category_children = Category.find(params[:parent_name]).children
-  end
 
-  #親カテゴリー
   def set_category  
     @category_parent_array = Category.where(ancestry: nil)
   end

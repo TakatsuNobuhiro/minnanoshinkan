@@ -15,9 +15,16 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @category_parent_array = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+        @category_parent_array << parent.name
+    end
+    respond_to do |format|
+      format.html 
+      format.json { render json: @messages }
+    end  
+  end
 
   # PUT /resource
   def update
@@ -25,8 +32,13 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
     if account_update_params[:avatar].present?
       resource.avatar.attach(account_update_params[:avatar])
     end
+
   end
 
+  def get_category_children
+    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
   # DELETE /resource
   # def destroy
   #   super
@@ -60,8 +72,7 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
         name
         age
         gender
-        university
-        department
+        category_id
         highschool
         detail
         hobby
