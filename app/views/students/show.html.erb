@@ -42,8 +42,8 @@
       <% end %>
       <li><i class="fas fa-map-marker-alt"></i>出身:<%= @student.prefecture %></li>
       <li>
-        <i class="fas fa-graduation-cap"></i>大学：<%= @student.university %>
-        <%= @student.department %>
+        <i class="fas fa-graduation-cap"></i>大学：<%= @student.category.parent.name%>
+        <%= @student.category.name %>
       </li>
       <li><i class="fas fa-school"></i>出身高校:<%= @student.highschool %></li>
       <li><i class="fas fa-cog"></i>趣味:<%= @student.hobby %></li>

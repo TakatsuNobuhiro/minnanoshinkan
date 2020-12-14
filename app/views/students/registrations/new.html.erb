@@ -5,6 +5,25 @@
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
+    <%= f.label :gender, '男' %>
+    <%= f.radio_button :gender, :男 %>
+    <%= f.label :gender, '女'%>
+    <%= f.radio_button :gender, :女 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :prefecture,'出身(都道府県)' %>
+    <%= f.select :prefecture, Student.prefectures.keys,{},class: 'form-control' %>
+  </div>
+
+  <div class="listing-form-box">
+    <div class="listing-product-detail__category"> 
+        <%= f.label '大学' %>
+        <%= f.select :category, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, {class: 'listing-select-wrapper__box--select form-control', id: 'parent_category'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
   </div>
@@ -31,3 +50,5 @@
 
   <%= render "students/shared/links" %>
 </div>
+
+<%= javascript_pack_tag 'students/category' %>

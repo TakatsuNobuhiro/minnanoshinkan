@@ -2,12 +2,14 @@
 
 class Clubs::RegistrationsController < Devise::RegistrationsController # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: %i[update]
+  before_action :configure_account_create_params, only: %i[create]
   before_action :check_guest, only: %i[destroy]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    set_category
+    super
+  end
 
   # POST /resource
   # def create
@@ -15,9 +17,9 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
   # end
 
   # GET /resource/edit
-  def edit
-    set_category
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update
@@ -48,11 +50,16 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
   end # end
 
   # If you have extra params to permit, append them to the sanitizer.
-
+  def configure_account_create_params
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: %i[name category_id active]
+    )
+  end
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,
-      keys: %i[name sns home intercollege active detail avatar category_id]
+      keys: %i[name sns home intercollege detail avatar]
     )
   end
 

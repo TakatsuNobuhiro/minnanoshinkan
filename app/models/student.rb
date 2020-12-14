@@ -58,19 +58,9 @@ class Student < ApplicationRecord
             length: { in: 1..30 }
   validates :gender,
             presence: true,
-            on: :update,
+            on: :create,
             unless: :encrypted_password_changed?,
             inclusion: { in: Student.genders.keys }
-  validates :university,
-            presence: true,
-            on: :update,
-            unless: :encrypted_password_changed?,
-            length: { in: 1..50 }
-  validates :department,
-            presence: true,
-            on: :update,
-            unless: :encrypted_password_changed?,
-            length: { in: 1..50 }
   validates :highschool,
             on: :update,
             unless: :encrypted_password_changed?,
@@ -86,7 +76,7 @@ class Student < ApplicationRecord
 
   validates :prefecture,
             presence: true,
-            on: :update,
+            on: :create,
             unless: :encrypted_password_changed?,
             inclusion: { in: Student.prefectures.keys }
   has_one_attached :avatar

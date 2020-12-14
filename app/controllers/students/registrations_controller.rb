@@ -2,12 +2,14 @@
 
 class Students::RegistrationsController < Devise::RegistrationsController # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: %i[update]
+  before_action :configure_account_create_params, only: %i[create]
   before_action :check_guest, only: %i[destroy]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    set_category
+    super
+  end
 
   # POST /resource
   # def create
@@ -15,12 +17,9 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
   # end
 
   # GET /resource/edit
-  def edit
-    @category_parent_array = ["---"]
-    Category.where(ancestry: nil).each do |parent|
-        @category_parent_array << parent.name
-    end
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
   def update
@@ -31,10 +30,6 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
 
   end
 
-  def get_category_children
-    #選択された親カテゴリーに紐付く子カテゴリーの配列を取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
-  end
   # DELETE /resource
   # def destroy
   #   super
@@ -73,6 +68,18 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
         detail
         hobby
         avatar
+        prefecture
+      ]
+    )
+  end
+  def configure_account_create_params
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: %i[
+        name
+        age
+        gender
+        category_id
         prefecture
       ]
     )

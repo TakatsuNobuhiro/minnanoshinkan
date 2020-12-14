@@ -8,22 +8,10 @@
     <%= f.label :name, '団体名(必須)' %>
     <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
+
   <%= f.label :avator, '画像' %>
   <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
 
-  <div class="item_input__body__category" id="category_box">
-    <div class="pulldown" id="partent_box">
-      <%= f.label :category_id, '大学' %>
-      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}, :selected => resource.category_id ),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"} %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :active, '文化系' %>
-    <%= f.radio_button :active, :文化系 %>
-    <%= f.label :active, '運動系'%>
-    <%= f.radio_button :active, :運動系 %>
-  </div>
   <div class="form-group">
     <%= f.label :intercollege, '学内' %>
     <%= f.radio_button :intercollege, :学内 %>

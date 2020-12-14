@@ -28,6 +28,8 @@ class EventsController < ApplicationController
     @comment = Comment.new
     @comments = @event.comments.includes(:student)
     event_count(@event)
+    gon.lat = @event.latitude
+    gon.lng = @event.longitude
   end
 
   def new

@@ -12,12 +12,12 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
             size: { less_than: 5.megabytes, message: 'should be less than 5MB' }
   validates :name,
             presence: true,
-            on: :update,
+            on: [:update, :create],
             unless: :encrypted_password_changed?,
             length: { in: 1..75 }
   validates :active,
             presence: true,
-            on: :update,
+            on: :create,
             unless: :encrypted_password_changed?,
             inclusion: { in: Club.actives.keys }
   validates :category_id,

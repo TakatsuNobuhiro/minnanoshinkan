@@ -3,7 +3,22 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= bootstrap_devise_error_messages! %>
-
+  <div class="item_input__body__category" id="category_box">
+    <div class="pulldown" id="partent_box">
+      <%= f.label :category_id, '大学' %>
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "選択してください"}, { class: "parent_category_box", id: "parent_category"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :active, '文化系' %>
+    <%= f.radio_button :active, :文化系 %>
+    <%= f.label :active, '運動系'%>
+    <%= f.radio_button :active, :運動系 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, '団体名(必須)' %>
+    <%= f.text_field :name, class: 'form-control', required: true %>
+  </div>
   <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
