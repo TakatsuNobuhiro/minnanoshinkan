@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: %i[create destroy]
 
+  namespace :students do 
+    resources :get_category_children, only: :index, defaults: { format: :json }
+  end
+
   devise_for :students,
              controllers: {
                omniauth_callbacks: 'omniauth_callbacks',
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
                registrations: 'students/registrations'
              } 
 
-               
+              
              
 
     
@@ -45,6 +49,7 @@ Rails.application.routes.draw do
     get '/students' => 'devise/registrations#destroy'
     post 'students/guest_sign_in', to: 'students/sessions#new_guest'
   end
+
 
   
   resources :students, only: %i[show]

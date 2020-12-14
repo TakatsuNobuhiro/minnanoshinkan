@@ -20,10 +20,6 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
     Category.where(ancestry: nil).each do |parent|
         @category_parent_array << parent.name
     end
-    respond_to do |format|
-      format.html 
-      format.json { render json: @messages }
-    end  
   end
 
   # PUT /resource
