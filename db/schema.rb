@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_150031) do
+ActiveRecord::Schema.define(version: 2020_12_14_150840) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_150031) do
     t.text "detail"
     t.integer "prefecture", default: 0
     t.bigint "category_id"
+    t.date "birth_date"
     t.index ["category_id"], name: "index_students_on_category_id"
     t.index ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
     t.index ["email"], name: "index_students_on_email", unique: true

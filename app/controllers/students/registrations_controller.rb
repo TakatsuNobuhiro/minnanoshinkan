@@ -81,6 +81,7 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
         gender
         category_id
         prefecture
+        birth_date
       ]
     )
   end
