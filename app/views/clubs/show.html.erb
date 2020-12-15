@@ -45,11 +45,11 @@
       <li>
         <i class="fas fa-graduation-cap"></i>大学：<%= @club.category.name %>
       </li>
-      <% if @club.sns %>
-      <li><i class="fas fa-users"></i>SNS:<%= text_url_to_link(h(@club.sns)).html_safe %></li>
-      <% end %>
       <% if @club.home%>
       <li><i class="fas fa-home"></i></i>ホームページ:<%= text_url_to_link(h(@club.home)).html_safe %></li>
+      <% end %>
+      <% if @club.sns %>
+      <li><i class="fas fa-users"></i>SNS:<%= text_url_to_link(h(@club.sns)).html_safe %></li>
       <% end %>
 
     </ul>

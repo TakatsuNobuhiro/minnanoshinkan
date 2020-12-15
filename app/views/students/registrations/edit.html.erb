@@ -9,11 +9,15 @@
     <%= f.text_field :name, class: 'form-control', required: true %>
   </div>
 
-
-  <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png" %>
+  <div class="form-group">
+    <i class="fas fa-user-circle"></i>
+    <%= f.label :avatar, 'プロフィール画像' %>
+    <%= f.file_field :avatar, accept: "image/jpg,image/jpeg,image/gif,image/png",class: 'form-control-file' %>
+  </div>
 
 
   <div class="form-group">
+    <i class="fas fa-school"></i>
     <%= f.label :highschool, '出身高校' %>
     <%= f.text_field :highschool, class: 'form-control' %>
   </div>
@@ -22,6 +26,7 @@
     <%= f.text_field :hobby, class: 'form-control' %>
   </div>
   <div class="form-group">
+    <i class="fas fa-user"></i>
     <%= f.label :detail, '自己紹介' %>
     <%= f.text_area :detail, class: 'form-control' %>
   </div>
