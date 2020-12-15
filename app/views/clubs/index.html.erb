@@ -1,8 +1,41 @@
 <div class="container">
   <h2>サークル一覧</h2>
-  <%= form_tag(clubs_path,:method => 'get', remote: true) do %>
-  <%= text_field_tag :search, params[:search] ,placeholder: "サークル名で検索" %>
-  <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+  <%= form_with url: clubs_path,method: :get do |f| %>
+    <div class="form-group">
+      <div class="form-check-inline">
+        <%= f.radio_button :active, :文化系,class: 'form-check-input' %>
+        <i class="fas fa-pen"></i>
+        <%= f.label :active, '文化系',class: 'form-check-label' %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.radio_button :active, :運動系,class: 'form-check-input'%>
+        <i class="fas fa-running"></i>
+        <%= f.label :active, '運動系',class: 'form-check-label'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check-inline">
+        <%= f.radio_button :intercollege, :学内,class: 'form-check-input' %>
+        <i class="fas fa-universal-access"></i>
+        <%= f.label :intercollege, '学内',class: 'form-check-label' %>
+      </div>
+      <div class="form-check-inline">
+        <%= f.radio_button :intercollege, :インカレ,class: 'form-check-input' %>
+        <i class="fas fa-globe"></i>
+        <%= f.label :intercollege, 'インカレ',class: 'form-check-label'%>
+      </div>
+    </div>
+    <div class="form-group">
+      <% if student_signed_in? %>
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}, selected: current_student.category.parent_id),{include_blank: "大学選択"}, { class: "parent_category_box form-control-sm", id: "parent_category"} %>
+      <% elsif club_signed_in? %>
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}, selected: current_club.category.id),{include_blank: "大学選択"}, { class: "parent_category_box form-control-sm", id: "parent_category"} %>
+      <% else %>
+      <%= f.select :category_id, options_for_select( @category_parent_array.map{|c| [c[:name], c[:id]]}),{include_blank: "大学選択"}, { class: "parent_category_box form-control-sm", id: "parent_category"} %>
+      <% end %>
+      <%= f.text_field :name ,placeholder: "サークル名で検索"%>
+      <%= f.submit '検索' ,class:'btn btn-primary btn-sm'%>
+    </div>
   <% end %>
   <div class="clubs">
     <%= render(partial:'clubs/clubs.html.erb', locals: {clubs: @clubs})%>

@@ -2,11 +2,12 @@ class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
   before_action :set_event, only: %i[show update edit destroy]
   def index
-    if (params[:start] || params[:end] || params[:search]).present?
-      events = Event
-      events = events.events_search(params[:search]) if params[:search].present?
-      events = events.where('start > ?', params[:start]) if params[:start].present?
-      events = events.where('end < ?', params[:end]) if params[:end].present?
+    if params[:title].present?
+      events = Event.events_title_search(params[:title])
+    elsif params[:start].present?
+      events = events.where('start > ?', params[:start]) 
+    elsif params[:end].present?
+      events = events.where('end < ?', params[:end]) 
     elsif params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       events = @tag.events
@@ -16,7 +17,7 @@ class EventsController < ApplicationController
     @tag_lists = Tag.all
     @events =
       Kaminari.paginate_array(
-        events.includes(:tags).where('start > ?', Date.today).order(start: :asc)
+        events.includes(:tags).includes([:club]).where('start > ?', Date.today).order(start: :asc)
       ).page(params[:page]).per(100)
     respond_to do |format|
       format.html

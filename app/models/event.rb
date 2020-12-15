@@ -13,9 +13,12 @@ class Event < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  def self.events_search(search)
-    Event.where(['title LIKE ?', "%#{search}%"])
+  def self.events_title_search(search)
+    return self unless search
+    self.where(['title LIKE ?', "%#{search}%"])
   end
+
+
   has_many :event_favorites, dependent: :destroy
   has_many :student_event_likes, through: :event_favorites, source: :student #tag
   has_many :tag_relationships, dependent: :destroy

@@ -43,10 +43,7 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
   has_many :club_favorites, dependent: :destroy
   has_many :student_likes, through: :club_favorites, source: :student #premium_mail
   has_many :premium_mails
-  def self.search(search)
-    return Club.all unless search
-    Club.where(['name LIKE ?', "%#{search}%"])
-  end
+
 
   #notificaton
   has_many :active_notifications,

@@ -158,10 +158,7 @@ class Student < ApplicationRecord
   def event_favorite?(event)
     self.event_likes.include?(event)
   end
-  def self.search(search)
-    return Student.all unless search
-    Student.where(['name LIKE ?', "%#{search}%"])
-  end #notificaton
+#notificaton
 
   has_many :active_notifications,
            foreign_key: 'student_visitor_id',

@@ -1,13 +1,13 @@
 <div class="event-index">
   <h2 class='text-center'>イベント一覧</h2>
   <div class="event-search-box">
-    <%= form_tag(events_path,:method => 'get',remote: true) do %>
-    <%= datetime_field_tag :start, params[:start] %>
+    <%= form_with(url: events_path,method: :get)  do |f| %>
+    <%= f.datetime_field :start %>
     <div id='span'>〜</div>
-    <%= datetime_field_tag :end, params[:end] %>
+    <%= f.datetime_field :end %>
     <div class="event-search">
-      <%= text_field_tag :search, params[:search] ,placeholder: "キーワード検索" %>
-      <%= submit_tag '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
+      <%= f.text_field :title,placeholder: "キーワード検索" %>
+      <%= f.submit '検索', :name => nil ,class:'btn btn-primary btn-sm'%>
     </div>
     <% end %>
   </div>
