@@ -158,7 +158,7 @@ class Student < ApplicationRecord
   def event_favorite?(event)
     self.event_likes.include?(event)
   end
-#notificaton
+  #notificaton
 
   has_many :active_notifications,
            foreign_key: 'student_visitor_id',

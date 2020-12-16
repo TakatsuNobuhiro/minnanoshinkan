@@ -56,6 +56,7 @@ class Clubs::RegistrationsController < Devise::RegistrationsController # before_
       keys: %i[name category_id active]
     )
   end
+
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update,

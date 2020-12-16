@@ -27,7 +27,6 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
     if account_update_params[:avatar].present?
       resource.avatar.attach(account_update_params[:avatar])
     end
-
   end
 
   # DELETE /resource
@@ -72,6 +71,7 @@ class Students::RegistrationsController < Devise::RegistrationsController # befo
       ]
     )
   end
+
   def configure_account_create_params
     devise_parameter_sanitizer.permit(
       :sign_up,

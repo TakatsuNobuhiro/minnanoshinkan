@@ -6,8 +6,10 @@ class ApplicationRecord < ActiveRecord::Base
       user.confirmed_at = Time.now # Confirmable を使用している場合は必要
     end
   end
+
   def self.search(search)
-    return self.all unless search
-    self.where(['name LIKE ?', "%#{search}%"])
-  end 
+    return all unless search
+
+    where(['name LIKE ?', "%#{search}%"])
+  end
 end

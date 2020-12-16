@@ -8,13 +8,11 @@ class StudentsController < ApplicationController
     elsif club_signed_in? && params[:category_id].blank?
       params[:category_id] = current_club.category.id
     end
-    
+
     students = students.search(params[:name]) if params[:name].present?
-    students = students.where(prefecture: Student.prefectures[params[:prefecture]]) if params[:prefecture].present? && !(params[:prefecture]=='---')
-    students =students.where(gender: params[:gender]) if params[:gender].present?
-    if params[:category_id].present?
-      students =students
-    end
+    students = students.where(prefecture: Student.prefectures[params[:prefecture]]) if params[:prefecture].present? && !(params[:prefecture] == '---')
+    students = students.where(gender: params[:gender]) if params[:gender].present?
+    students = students if params[:category_id].present?
     @students = students.with_attached_avatar.page(params[:page]).per(25)
     respond_to do |format|
       format.html
@@ -29,9 +27,9 @@ class StudentsController < ApplicationController
     end
     @event_likes = @student.event_likes
     @events = club_like_events | @event_likes
-    
-    @age = (Date.today.strftime("%Y%m%d").to_i - @student.birth_date.strftime("%Y%m%d").to_i)/10000 if @student.birth_date
-    
+
+    @age = (Date.today.strftime("%Y%m%d").to_i - @student.birth_date.strftime("%Y%m%d").to_i) / 10_000 if @student.birth_date
+
     counts(@student)
     respond_to do |format|
       format.html

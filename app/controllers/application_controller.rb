@@ -17,9 +17,10 @@ class ApplicationController < ActionController::Base
     @count_comments = event.comments.count
   end
 
-  def set_category  
+  def set_category
     @category_parent_array = Category.where(ancestry: nil)
   end
+
   #guset_login
   def check_guest
     email =

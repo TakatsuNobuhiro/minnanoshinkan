@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :relationships, only: %i[create destroy]
 
-  namespace :students do 
+  namespace :students do
     resources :get_category_children, only: :index, defaults: { format: :json }
   end
 
@@ -22,14 +22,8 @@ Rails.application.routes.draw do
                sessions: 'students/sessions',
                passwords: 'students/passwords',
                registrations: 'students/registrations'
-             } 
+             }
 
-              
-             
-
-    
-
-     
   root to: 'toppages#home'
 
   devise_for :clubs,
@@ -50,8 +44,6 @@ Rails.application.routes.draw do
     post 'students/guest_sign_in', to: 'students/sessions#new_guest'
   end
 
-
-  
   resources :students, only: %i[show]
   resources :students do
     get :club_likes, on: :member

@@ -12,7 +12,7 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
             size: { less_than: 5.megabytes, message: 'should be less than 5MB' }
   validates :name,
             presence: true,
-            on: [:update, :create],
+            on: %i[update create],
             unless: :encrypted_password_changed?,
             length: { in: 1..75 }
   validates :active,
@@ -43,7 +43,6 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
   has_many :club_favorites, dependent: :destroy
   has_many :student_likes, through: :club_favorites, source: :student #premium_mail
   has_many :premium_mails
-
 
   #notificaton
   has_many :active_notifications,

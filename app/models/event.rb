@@ -15,9 +15,9 @@ class Event < ApplicationRecord
 
   def self.events_title_search(search)
     return self unless search
+
     self.where(['title LIKE ?', "%#{search}%"])
   end
-
 
   has_many :event_favorites, dependent: :destroy
   has_many :student_event_likes, through: :event_favorites, source: :student #tag
