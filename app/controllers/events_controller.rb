@@ -2,17 +2,13 @@ class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
   before_action :set_event, only: %i[show update edit destroy]
   def index
-    if params[:title].present?
-      events = Event.events_title_search(params[:title])
-    elsif params[:start].present?
-      events = events.where('start > ?', params[:start]) 
-    elsif params[:end].present?
-      events = events.where('end < ?', params[:end]) 
-    elsif params[:tag_id].present?
+    events = Event
+    events = events.events_title_search(params[:title]) if params[:title].present?
+    events = events.where('start > ?', params[:start]) if params[:start].present?
+    events = events.where('end < ?', params[:end]) if params[:end].present?
+    if params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       events = @tag.events
-    else
-      events = Event
     end
     @tag_lists = Tag.all
     @events =

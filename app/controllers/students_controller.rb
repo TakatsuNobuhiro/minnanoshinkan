@@ -1,7 +1,21 @@
 class StudentsController < ApplicationController
   before_action :set_student, except: [:index]
   def index
-    @students = Student.with_attached_avatar.search(params[:search]).page(params[:page]).per(25)
+    set_category
+    students = Student.all
+    if student_signed_in? && params[:category_id].blank?
+      params[:category_id] = current_student.category.parent_id
+    elsif club_signed_in? && params[:category_id].blank?
+      params[:category_id] = current_club.category.id
+    end
+    
+    students = students.search(params[:name]) if params[:name].present?
+    students = students.where(prefecture: Student.prefectures[params[:prefecture]]) if params[:prefecture].present? && !(params[:prefecture]=='---')
+    students =students.where(gender: params[:gender]) if params[:gender].present?
+    if params[:category_id].present?
+      students =students
+    end
+    @students = students.with_attached_avatar.page(params[:page]).per(25)
     respond_to do |format|
       format.html
       format.js { render template: 'students/students.js.erb' }
