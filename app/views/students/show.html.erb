@@ -40,16 +40,18 @@
       <li><i class="fas fa-male"></i>性別：<%= @student.gender %></li>
       <% elsif @student.gender == "女"%><li><i class="fas fa-female"></i>性別：<%= @student.gender %></li>
       <% end %>
-      <% if @student.birth_date %>
-        <li><i class="fas fa-birthday-cake"></i>生年月日：<%= @student.birth_date.strftime('%Y年%m月%d日') %>（<%= @age %>歳）</li>
-      <% end %>
+      <li><i class="fas fa-birthday-cake"></i>生年月日：<%= @student.birth_date.strftime('%Y年%m月%d日') %>（<%= @age %>歳）</li>
       <li><i class="fas fa-map-marker-alt"></i>出身：<%= @student.prefecture %></li>
       <li>
         <i class="fas fa-graduation-cap"></i>大学：<%= @student.category.parent.name%>
         <%= @student.category.name %>
       </li>
-      <li><i class="fas fa-school"></i>出身高校：<%= @student.highschool %></li>
-      <li><i class="fas fa-cog"></i>趣味：<%= @student.hobby %></li>
+      <% if @student.highschool %>
+        <li><i class="fas fa-school"></i>出身高校：<%= @student.highschool %></li>
+      <% end %>
+      <% if @student.hobby %>
+        <li><i class="fas fa-cog"></i>趣味：<%= @student.hobby %></li>
+      <% end %>
 
     </ul>
   </div>

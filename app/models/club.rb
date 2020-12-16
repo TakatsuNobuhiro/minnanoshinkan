@@ -73,4 +73,12 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
       notification.save if notification.valid?
     end
   end
+
+  def self.guest
+    find_or_create_by!(email: 'test@example.com',category_id: 1) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.confirmed_at = Time.now # Confirmable を使用している場合は必要
+      user.active = true
+    end
+  end
 end

@@ -108,7 +108,15 @@ class Student < ApplicationRecord
   def following?(other_student)
     self.followings.include?(other_student)
   end #active_storage
-
+  def self.guest
+    find_or_create_by!(email: 'test@example.com',category_id: 2) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.confirmed_at = Time.now 
+      user.gender = 1
+      user.prefecture = 13 
+      user.birth_date = Date.new(2002,01,01)
+    end
+  end
   devise :database_authenticatable,
          :registerable,
          :recoverable,

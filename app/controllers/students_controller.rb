@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
     @event_likes = @student.event_likes
     @events = club_like_events | @event_likes
 
-    @age = (Date.today.strftime("%Y%m%d").to_i - @student.birth_date.strftime("%Y%m%d").to_i) / 10_000 if @student.birth_date
+    @age = (Date.today.strftime("%Y%m%d").to_i - @student.birth_date.strftime("%Y%m%d").to_i) / 10_000
 
     counts(@student)
     respond_to do |format|
