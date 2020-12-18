@@ -46,9 +46,15 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
+# heroku
+# production:
+#   <<: *default
+#   adapter: mysql2
+#   encoding: unicode
+#   pool: 5
 production:
   <<: *default
-  adapter: mysql2
-  encoding: unicode
-  pool: 5
+  database: minnanoshinkan_production
+  username: root
+  password: ENV["DB_PASSWORD"]
+  host: ENV["DB_HOST"]
