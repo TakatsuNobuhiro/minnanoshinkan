@@ -42,7 +42,7 @@ class Event < ApplicationRecord
 
   has_many :notifications, dependent: :destroy #お気に入り（イベント）
   def create_notification_like!(current_user)
-    temp =
+    note =
       Notification.where(
         [
           'student_visitor_id = ? and club_visited_id = ? and event_id = ? and action = ? ',
@@ -53,7 +53,7 @@ class Event < ApplicationRecord
         ]
       )
 
-    if temp.blank?
+    if note.blank?
       notification =
         current_user.active_notifications.new(
           event_id: id, club_visited_id: club_id, action: 'event_like'
@@ -75,12 +75,12 @@ class Event < ApplicationRecord
         'student_id=?',
         current_user.id
       ).select(:student_id)
-    temp_ids = []
+    note_ids = []
     ids = comment_ids | favorite_ids
-    ids.each { |i| temp_ids.push(i['student_id']) } #重複を削除
+    ids.each { |i| note_ids.push(i['student_id']) } #重複を削除
 
-    temp_ids = temp_ids.uniq #取得したユーザー達へ通知を作成。（user_idのみ繰り返し取得）
-    temp_ids.each do |temp_id|
+    note_ids = note_ids.uniq #取得したユーザー達へ通知を作成。（user_idのみ繰り返し取得）
+    note_ids.each do |note_id|
       save_student_notification_comment!(current_user, comment_id, temp_id)
     end #投稿者へ通知を作成
 
@@ -114,13 +114,13 @@ class Event < ApplicationRecord
   #イベント投稿
   def create_notification_event!(current_user)
     favorite_ids = ClubFavorite.where(club_id: current_user.id)
-    temp_ids = []
-    favorite_ids.each { |f| temp_ids.push(f['student_id']) }
+    note_ids = []
+    favorite_ids.each { |f| note_ids.push(f['student_id']) }
 
-    temp_ids.each do |temp_id|
+    note_ids.each do |note_id|
       notification =
         current_user.active_notifications.new(
-          event_id: id, student_visited_id: temp_id, action: 'event'
+          event_id: id, student_visited_id: note_id, action: 'event'
         )
       notification.save if notification.valid?
     end

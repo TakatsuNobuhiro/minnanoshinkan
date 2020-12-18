@@ -54,7 +54,7 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
            class_name: 'Notification',
            dependent: :destroy #お気に入り（クラブ）
   def create_notification_like!(current_user)
-    temp =
+    note =
       Notification.where(
         [
           'student_visitor_id = ? and club_visited_id = ? and action = ? ',
@@ -64,7 +64,7 @@ class Club < ApplicationRecord #active_storage # :confirmable, :lockable, :timeo
         ]
       )
 
-    if temp.blank?
+    if note.blank?
       notification =
         current_user.active_notifications.new(
           club_visited_id: id, action: 'club_like'

@@ -178,7 +178,7 @@ class Student < ApplicationRecord
            dependent: :destroy
 
   def create_notification_follow!(current_user)
-    temp =
+    note =
       Notification.where(
         [
           'student_visitor_id = ? and student_visited_id = ? and action = ? ',
@@ -188,7 +188,7 @@ class Student < ApplicationRecord
         ]
       )
 
-    if temp.blank?
+    if note.blank?
       notification =
         current_user.active_notifications.new(
           student_visited_id: id, action: 'follow'
