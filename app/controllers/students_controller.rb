@@ -10,7 +10,7 @@ class StudentsController < ApplicationController
     end
 
     students = students.search(params[:name]) if params[:name].present?
-    students = students.where(prefecture: Student.prefectures[params[:prefecture]]) if params[:prefecture].present? && !(params[:prefecture] == '---')
+    students = students.where(prefecture: Student.prefectures[params[:prefecture]]) if params[:prefecture].present? && params[:prefecture] != '---'
     students = students.where(gender: params[:gender]) if params[:gender].present?
     students = students if params[:category_id].present?
     @students = students.with_attached_avatar.page(params[:page]).per(25)
