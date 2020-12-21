@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_12_20_135509) do
-
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -19,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_135509) do
     t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+    t.index %w[record_type record_id name], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -29,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_135509) do
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+    t.index %w[record_type record_id name blob_id], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -142,14 +141,14 @@ ActiveRecord::Schema.define(version: 2020_12_20_135509) do
     t.text "params"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
-    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
-    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
-    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
-    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index", length: { params: 255 }
-    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
-    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
-    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", length: { message: 255 }
+    t.index %w[controller_name action_name ip_address], name: "controlleraction_ip_index"
+    t.index %w[controller_name action_name request_hash], name: "controlleraction_request_index"
+    t.index %w[controller_name action_name session_hash], name: "controlleraction_session_index"
+    t.index %w[impressionable_type impressionable_id ip_address], name: "poly_ip_index"
+    t.index %w[impressionable_type impressionable_id params], name: "poly_params_request_index", length: { params: 255 }
+    t.index %w[impressionable_type impressionable_id request_hash], name: "poly_request_index"
+    t.index %w[impressionable_type impressionable_id session_hash], name: "poly_session_index"
+    t.index %w[impressionable_type message impressionable_id], name: "impressionable_type_message_index", length: { message: 255 }
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
@@ -188,7 +187,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_135509) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
-    t.index ["student_id", "follow_id"], name: "index_relationships_on_student_id_and_follow_id", unique: true
+    t.index %w[student_id follow_id], name: "index_relationships_on_student_id_and_follow_id", unique: true
     t.index ["student_id"], name: "index_relationships_on_student_id"
   end
 
@@ -236,7 +235,7 @@ ActiveRecord::Schema.define(version: 2020_12_20_135509) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id", "tag_id"], name: "index_tag_relationships_on_event_id_and_tag_id", unique: true
+    t.index %w[event_id tag_id], name: "index_tag_relationships_on_event_id_and_tag_id", unique: true
     t.index ["event_id"], name: "index_tag_relationships_on_event_id"
     t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
   end

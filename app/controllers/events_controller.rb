@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
   before_action :set_event, only: %i[show update edit destroy]
-  impressionist :actions=> [:show]
+  impressionist actions: [:show]
   def index
     events = Event
     events = events.events_title_search(params[:title]) if params[:title].present?

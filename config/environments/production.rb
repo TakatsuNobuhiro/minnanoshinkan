@@ -1,10 +1,10 @@
 Rails.application.configure do
-  server "52.196.215.163", user: "admin", roles: %w{app db web}
+  server "52.196.215.163", user: "admin", roles: %w[app db web]
 
   set :ssh_options, {
-    keys: %w(~/.ssh/minnanoshinkan.pem),
+    keys: %w[~/.ssh/minnanoshinkan.pem],
     forward_agent: true,
-    auth_methods: %w(publickey),
+    auth_methods: %w[publickey]
   }
   # Settings specified here will take precedence over those in config/application.rb.
 

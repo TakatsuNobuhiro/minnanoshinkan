@@ -81,7 +81,7 @@ class Event < ApplicationRecord
     ids.each { |i| note_ids.push(i['student_id']) } #重複を削除
 
     note_ids = note_ids.uniq #取得したユーザー達へ通知を作成。（user_idのみ繰り返し取得）
-    note_ids.each do |note_id|
+    note_ids.each do |_note_id|
       save_student_notification_comment!(current_user, comment_id, temp_id)
     end #投稿者へ通知を作成
 
