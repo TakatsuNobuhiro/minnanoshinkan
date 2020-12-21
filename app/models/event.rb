@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  is_impressionable
   validates :title, presence: true, length: { in: 1..100 }
   validates :start, presence: true
   validates :end, presence: true

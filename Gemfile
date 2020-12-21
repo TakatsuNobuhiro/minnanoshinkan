@@ -48,12 +48,6 @@ group :development do
   gem 'rubocop', require: false
   gem 'bullet'
   gem 'spring-commands-rspec'
-
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.6", require: false
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-rbenv-vars', '~> 0.1'
-  gem 'capistrano3-puma', '< 5'
 end
 
 group :test do
@@ -93,5 +87,5 @@ gem 'actiontext'
 gem "geocoder"
 gem 'gon' #コントローラーで定義したインスタンス変数をビューのJavaScript内で使用出来る様にする。
 gem "stripe"
-
+gem 'impressionist'
 gem 'rspec_junit_formatter'

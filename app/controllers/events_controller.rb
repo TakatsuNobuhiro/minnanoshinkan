@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_club!, only: %i[new create destroy update edit]
   before_action :set_event, only: %i[show update edit destroy]
+  impressionist :actions=> [:show]
   def index
     events = Event
     events = events.events_title_search(params[:title]) if params[:title].present?
@@ -24,9 +25,8 @@ class EventsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @event.comments.includes(:student)
+    impressionist(@event, nil, unique: [:session_hash])
     event_count(@event)
-    gon.lat = @event.latitude
-    gon.lng = @event.longitude
   end
 
   def new

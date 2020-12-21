@@ -12,6 +12,12 @@
       <div class="right-box">
         <p><i
             class="fas fa-calendar-alt"></i><%= @event.start.strftime('%m月%d日 %H時%M分') %>~<%= @event.end.strftime('%m月%d日 %H時%M分') %>(<%=time/3600 %>時間)
+            <span>
+            <i class="fas fa-eye"></i>
+            <span class="view_count">
+            <%=  @event.impressionist_count %>views
+            </span>
+            </span>
         </p>
         <div id="map"></div>
       </div>
@@ -29,6 +35,7 @@
       <% end %>
       <p id="event_count"><i class="fas fa-heart"></i><%= @count_like_events %></p>
     </div>
+    
     <div class="btn-block">
       <%= link_to "https://twitter.com/share?url=#{request.url}&text=イベント名:#{@event.title}%0a新入生は参加しましょう！&hashtags=みんなの新歓", class: 'btn btn-default', target: '_blank' do %>
       <i class="fab fa-twitter" style='color: #3399FF;'></i>

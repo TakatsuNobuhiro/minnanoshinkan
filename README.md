@@ -46,6 +46,7 @@ URL:[みんなの新歓](https://minnanoshinkan.herokuapp.com/)
 - 投稿タグ付機能
 - ページネーション機能(kaminari,Ajax)
 - SNS 共有機能(Twitter)
+- PV数計測
 
 ### 決済機能(Stripe)
 
