@@ -1,11 +1,17 @@
 version: "3"
 services:
   db:
-    image: mysql:8.0
+    image: mysql:8.0.21
     volumes:
-      - ./tmp/db:/var/lib/mysql:delegated
+      - mysql-data:/var/lib/mysql
+      - ./mysql-conf:/etc/mysql/conf.d
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=app_development
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=password
+    ports:
+      - '3307:3306'
   web:
     build: .
     stdin_open: true
@@ -18,4 +24,5 @@ services:
     depends_on:
       - db
 volumes:
-  bundle:
+  mysql-data:
+    driver: local
