@@ -28,7 +28,7 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
   config.assets.initialize_on_precompile = false
-
+  config.assets.js_compressor = :uglifier
   # config.action_controller.asset_host = 'http://assets.example.com'
 
   # Specifies the header that your server uses for sending files.
