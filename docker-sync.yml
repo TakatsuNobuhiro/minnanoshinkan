@@ -1,6 +1,0 @@
-version: "2"
-
-syncs:
-  sync-volume:
-    src: "~/home/app"
-    #自分の作業ディレクトリパスを指定
